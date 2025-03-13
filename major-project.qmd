@@ -42,7 +42,7 @@ Contents
 
 ### This could be useful
 
-It is possible to create the entire report all within R, integrating all the data, tables, and graphics without having to cut, paste, or insert anything. The utility that does this is called [quatro](https://quarto.org/docs/get-started/hello/rstudio.html){target="_blank"}. In fact, this document is written in `quarto` and you can see the code that produced it at [this link](https://github.com/eugene100hickey/ATU-2023/blob/main/major-project.qmd){target="_blank"}.
+It is possible to create the entire report all within R, integrating all the data, tables, and graphics without having to cut, paste, or insert anything. The utility that does this is called [quatro](https://quarto.org/docs/get-started/hello/rstudio.html){target="_blank"}. In fact, this document is written in `quarto` and you can see the code that produced it at [this link](https://github.com/eugene100hickey/ATU-2025/blob/main/major-project.qmd){target="_blank"}.
 
 The tables here were produced using the [gt](https://gt.rstudio.com/){target="_blank"} package. It's a bit like `ggplot2` for tables. Like `quarto`, it takes a bit of getting used to, but it makes very nice data tables.
 
