@@ -1,0 +1,32 @@
+```{r data generation, echo = FALSE, results = "hide", message=F, warning=F}
+library(exams)
+library(tidyverse)
+
+z <- read_csv("https://raw.githubusercontent.com/eugene100hickey/ATU-2023/main/rexams/data/university-rankings-kaggle.csv")
+
+country <- table(z$country)
+country <- country[country > 5]
+my_country <- names(country) |> 
+  sample(1)
+
+solution <- country[my_country]
+```
+
+
+Question
+========
+Read in the _csv_ file located at `"https://raw.githubusercontent.com/eugene100hickey/ATU-2023/main/rexams/data/university-rankings-kaggle.csv"`. This gives university rankings for 2023. How many universities from `r my_country` are present in this dataset?
+
+
+Solution
+========
+Use `read_csv("https://raw.githubusercontent.com/eugene100hickey/ATU-2023/main/rexams/data/university-rankings-kaggle.csv")` followed by `table(my_file_name$country)`.
+
+
+
+Meta-information
+================
+extype: num
+exsolution: `r solution`
+exname: univ-csv
+extol: `r solution*0.002`

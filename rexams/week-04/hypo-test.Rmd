@@ -1,0 +1,39 @@
+```{r data generation, echo = FALSE, results = "hide", message=F, warning=F}
+library(exams)
+library(tidyverse)
+library(agridat)
+
+repeat{
+  subplot1 <- 1:12 |> 
+    sample(1)
+  subplot2 <- 1:12 |> 
+    sample(1)  
+  solution <- t.test(yield ~ subplot, 
+                     paired = F, 
+                     var.equal = T, 
+                     data = hanks.sprinkler |> filter(subplot %in% c(subplot1, subplot2))
+  )$p.value
+  if(subplot1 != subplot2 & solution > 0.1){
+    break
+  }
+}
+```
+
+
+Question
+========
+Install the `agridat` package from _CRAN_ (use `install.packages("agridat")`). Load up the `hanks.sprinkler` data. Use `?hanks.sprinkler` to see a discription of this data. Calculate the __P Value__ for the null hypothesis that the `yield` from __subplot `r subplot1`__ is the same as the `yield` from __subplot `r subplot2`__. Give your answer as a probabilty between 0 and 1, and give it to three significant figures.
+
+
+
+Solution
+========
+Filter the data set for only subplots `r subplot1` and `r subplot2` using `hanks.sprinkler |> filter(subplot %in% c(`r subplot1`, `r subplot2`)`. Use `t.test(yield ~ subplot, paired = F, var.equal = T, data = filtered_hanks.sprinkler)$p.value`.
+
+
+Meta-information
+================
+extype: num
+exsolution: `r solution`
+exname: pbinom
+extol: `r solution*0.02`

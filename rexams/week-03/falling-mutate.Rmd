@@ -1,0 +1,41 @@
+```{r data generation, echo = FALSE, results = "hide", message=F, warning=F}
+library(exams)
+library(tidyverse)
+library(dslabs)
+
+my_number <- sample(1:100, 1)
+set.seed(my_number)
+z <- rfalling_object(n = 1000) |> 
+  mutate(inaccuracy = abs(distance - observed_distance))
+
+solution <- sum(z$inaccuracy) |> round(0)
+
+```
+
+
+Question
+========
+Install the `dslabs` package if you haven't already (`install.packages("dslabs")`). Create an `rfalling_object` using the code below (note, the `set.seed()` is crucial otherwise the random number generator won't be the same. Use the value `r my_number` for `my_number`)
+
+```{r eval=FALSE}
+library(tidyverse)
+library(dslabs)
+
+set.seed(my_number)
+falling <- rfalling_object(n = 1000)
+```
+
+Create a new column using `mutate()` of the absolute value difference between the `distance` and `observed_distance` columns (the R function `abs()` will be useful). What is the sum of the values in this column? Give your answer to the nearest whole number.
+
+Solution
+========
+Use `mutate(inaccuracy = abs(distance - observed_distance))`.
+
+
+
+Meta-information
+================
+extype: num
+exsolution: `r solution %>% signif(4)`
+exname: us-contagious
+extol: `r solution*0.002`

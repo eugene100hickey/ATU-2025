@@ -1,0 +1,71 @@
+```{r data generation, echo = FALSE, results = "hide", message=F, warning=F}
+library(exams)
+library(tidyverse)
+library(gt)
+
+my_month <- 5:9 |> 
+  sample(1)
+month_name <- month.name[my_month]
+my_variable <- tribble(~dataset_name, ~variable_name,
+                      "Temp", "Temperature in Fahrenheit",
+                      "Wind", "Wind Speed in mph")
+variable_index <- 1:2 |> sample(1)
+my_variable <- my_variable[variable_index,]
+
+my_data <- airquality |> 
+  filter(Month == my_month)
+n <- nrow(my_data)
+s <- ifelse(my_variable$dataset_name == "Temp", sd(my_data$Temp), sd(my_data$Wind))
+xbar <- ifelse(my_variable$dataset_name == "Temp", mean(my_data$Temp), mean(my_data$Wind))
+
+margin <- qt(0.975, df=n-1)*s/sqrt(n)
+
+conf_int <- (xbar + c(-margin, +margin)) |> 
+  signif(4)
+
+water_numbers <- 1:2
+conf_int_answer <- glue::glue("##ANSWER{water_numbers}##")
+
+my_table <- tibble(interval = c("Lower Interval", "Higher Interval"), conf_int_answer)
+```
+
+
+Question
+========
+Load up the `tidyverse` package, and examine the `airquality` dataset therein. This contains daily air quality measurements in New York, May to September 1973. For the month of __`r month_name`__, calculate the 95% confidence interval for the _`mean`_ of the __`r my_variable$variable_name`__ using a _t test_. 
+
+
+```{r echo = F}
+my_table %>% 
+  gt() %>% 
+  cols_label(interval = "95% Bounds",
+             conf_int_answer = "Confidence Interval for Mean") %>% 
+  cols_align(align = "center") %>% 
+  tab_options(column_labels.background.color = "cornflowerblue", 
+              table.font.names = "Caveat",
+              table.font.style = "oblique",
+              column_labels.font.weight = "bold",
+              column_labels.vlines.width = 1,
+              column_labels.vlines.color = "darkblue",
+              column_labels.vlines.style = "solid",
+              table_body.vlines.width = 1,
+              table_body.vlines.color = "darkblue",
+              table_body.vlines.style = "solid"
+              )
+```
+
+
+Solution
+========
+Use `margin <- qt(0.975, df=n-1)*s/sqrt(n)`, then `xbar + c(-margin, +margin)` where `xbar` is the mean, `n` is the number of samples,and `s` is the sample standard deviation.
+
+
+
+Meta-information
+================
+extype: cloze
+exsolution: `r paste(conf_int, collapse = "|")`
+exclozetype: num|num
+exname: conf_int
+extol: 0.05
+exextra[numwidth,logical]: TRUE

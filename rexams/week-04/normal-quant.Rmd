@@ -1,0 +1,35 @@
+```{r data generation, echo = FALSE, results = "hide", message=F, warning=F}
+library(exams)
+library(tidyverse)
+
+drum_mean <- rnorm(1, 100, 10) |> signif(3)
+drum_sd <- rnorm(1, 15, 5) |> abs() |> signif(3)
+
+repeat{
+  drum_prob <- rnorm(1, 0.5, 0.2) |> abs() |> signif(2)
+  if(drum_prob < 1){
+    break
+  }
+}
+
+
+solution <- qnorm(drum_prob, drum_mean, drum_sd) |> signif(3)
+```
+
+Question
+========
+Drumcondra test scores for a large school have an average value of `r drum_mean` and a standard deviation of `r drum_sd`. Calculate the score below which `r drum_prob*100`% of the pupils score.
+
+
+
+Solution
+========
+The command `qnorm(`r drum_prob`, `r drum_mean`, `r drum_sd`)` should give the answer.
+
+
+Meta-information
+================
+extype: num
+exsolution: `r solution`
+exname: normal_probs
+extol: `r solution*0.02`

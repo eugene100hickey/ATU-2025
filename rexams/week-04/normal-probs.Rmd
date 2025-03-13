@@ -1,0 +1,38 @@
+```{r data generation, echo = FALSE, results = "hide", message=F, warning=F}
+library(exams)
+library(tidyverse)
+
+repeat{
+  ph_mean <- rnorm(1, 8, 1) |> signif(3)
+  ph_sd <- rnorm(1, 2, 1) |> abs() |> signif(3)
+
+  ph_lower <- rnorm(1, 8, 1) |> signif(3)
+  ph_higher <- rnorm(1, 8, 1) |> signif(3)
+  solution <- (pnorm(ph_higher, ph_mean, ph_sd) - pnorm(ph_lower, ph_mean, ph_sd)) |>
+    signif(3)
+  if(ph_higher > ph_lower & solution > 0.1){
+    break
+  }
+}
+
+
+# solution <- (pnorm(ph_higher, ph_mean, ph_sd) - pnorm(ph_lower, ph_mean, ph_sd)) |> signif(3)
+```
+
+Question
+========
+Soil samples from a coastal area have a mean pH value of `r ph_mean` with a standard deviation of `r ph_sd`. Calculate the probability that a given soil sample will have a pH value between `r ph_lower` and `r ph_higher`.
+
+
+
+Solution
+========
+The command `pnorm(`r ph_higher`, `r ph_mean`, `r ph_sd`)` will give the probability of a sample being less than `r ph_higher`. The command `pnorm(`r ph_lower`, `r ph_mean`, `r ph_sd`)` will give the probability of a sample being less than `r ph_lower`. The difference will give answer needed.
+
+
+Meta-information
+================
+extype: num
+exsolution: `r solution`
+exname: normal_probs
+extol: `r solution*0.02`

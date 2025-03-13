@@ -1,0 +1,66 @@
+```{r data generation, echo = FALSE, results = "hide", message=F, warning=F}
+library(exams)
+library(tidyverse)
+#library(Biostrings)
+library(rentrez)
+library(seqinr)
+
+ntd <- tribble(~name, ~accession,
+               "Dengue", "MZ310562",
+               "Japanese encephalitis virus",  "L48961",
+               "Rabies", "MK981888",
+               "Zika virus", "MW015936",
+               "Yellow fever", "NC_002031",
+               "Enterovirus", "OP501799"
+               ) |> 
+  mutate(file_name = str_replace_all(name,  " ", "_")) |> 
+  slice_sample(n=1)
+my_disease_file <- ntd$file_name
+
+dna <- c("a", "t", "g", "c") |> 
+  sample(1)
+
+enterovirus_search <- entrez_search(db="nuccore", term=ntd$accession, retmax=40) 
+enterovirus_seqs <- entrez_fetch(db="nuccore", 
+                                 id=enterovirus_search$ids[1], # c(2:9, 15:40)
+                                 rettype="fasta")
+
+file_base <- "C:\\Users\\ehickey\\OneDrive - Technological University Dublin\\Desktop\\Academic\\Research\\R_Fun\\cristianinni/data/"
+
+write(enterovirus_seqs, glue::glue("{file_base}{ntd$file_name}.fasta"), sep="\n")
+
+z <- read.fasta(file = glue::glue("{file_base}{ntd$file_name}.fasta"))[[1]]
+
+solution <- table(z)[dna]
+```
+
+
+Question
+========
+Install the `BiocManager` package (`install.packages("BiocManager")`). Install the `rentrez` and `seqinr` packages from `Bioconductor` (e.g. `BiocManager::install("rentrez")`). 
+
+We're going to look at the genomic sequences for [neglected tropical diseases (ntd)](https://www.cdc.gov/globalhealth/ntd/) using the [NCBI](https://www.ncbi.nlm.nih.gov/) databases. 
+
+Find the ncbi accession id for **`r ntd$name`** using the ncbi accession number **`r ntd$accession`** and the `entrez_search()` function from `rentrez` (something like ``r ntd$file_name` <- entrez_search(db="nuccore", term="`r ntd$accession`", retmax=40)`).
+
+Now download this sequence, again using a `rentrez` function using `entrez_fetch(db="nuccore", id=`r my_disease_file`$ids[1], rettype="fasta")`.
+
+Save this downloaded sequence as a file using `write(my_downloaded_sequence, "some-file-name.fasta", sep="\n")`.
+
+Read this sequence back in again (but now in a cleaner format) using `read.fasta(file = "some-file-name.fasta")[[1]]`.
+
+Use the `table()` command to find out how many **"`r dna`"** nucleotides are in the DNA sequence.
+
+
+Solution
+========
+Use `table(z)["`r dna`"]`
+
+
+
+Meta-information
+================
+extype: num
+exsolution: `r solution`
+exname: genomics
+extol: `r solution*0.002`

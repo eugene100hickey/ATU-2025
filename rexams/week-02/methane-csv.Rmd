@@ -1,0 +1,41 @@
+```{r data generation, echo = FALSE, results = "hide", message=F, warning=F}
+library(exams)
+library(tidyverse)
+
+z <- read_csv("https://raw.githubusercontent.com/eugene100hickey/ATU-2023/main/rexams/data/Methane.csv")
+
+z <- z |> 
+  group_by(type, region) |> 
+  summarise(total = sum(emissions)) |> 
+  ungroup()
+my_type <- z$type |> 
+  unique() |> 
+  sample(1)
+my_region <- z$region |> 
+  unique() |> 
+  sample(1)
+
+solution <- z |> 
+  filter(type == my_type, region == my_region) |> 
+  pull(total) |> 
+  signif(3)
+```
+
+
+Question
+========
+Read in the _csv_ file located at `"https://raw.githubusercontent.com/eugene100hickey/ATU-2023/main/rexams/data/Methane_final.csv"`. This gives global methane emissions for  (mostly) 2022. Calculate the total emissions due to *__`r  my_type`__* from *__`r my_region`__*.
+
+
+Solution
+========
+Use `read_csv("https://raw.githubusercontent.com/eugene100hickey/ATU-2023/main/rexams/data/Methane_final.csv")` followed by `group_by(type, region) |> summarise(total = sum(emissions)) |> ungroup()`.
+
+
+
+Meta-information
+================
+extype: num
+exsolution: `r solution`
+exname: methane-csv
+extol: `r solution*0.002`

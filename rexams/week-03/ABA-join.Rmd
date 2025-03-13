@@ -1,0 +1,53 @@
+```{r data generation, echo = FALSE, results = "hide", message=F, warning=F}
+library(exams)
+library(tidyverse)
+
+gene_data <- read_rds("https://github.com/eugene100hickey/ATU-2023/blob/main/rexams/data/ABA-adult?raw=true")
+brain_data <- read_rds("https://github.com/eugene100hickey/ATU-2023/blob/main/rexams/data/brain-area-code?raw=true")
+my_brain_area <- brain_data$brain_area |> sample(1)
+
+z1 <- gene_data |> 
+  left_join(brain_data)
+
+z2 <- z1 |> 
+  filter(brain_area == my_brain_area)
+
+solution <- mean(z2$signal) |> signif(3)
+```
+
+
+Question
+========
+Run the code lines below to read in two data frames called `gene_data` and `brain_data`. 
+
+```{r eval=FALSE}
+gene_data <- read_rds("https://github.com/eugene100hickey/ATU-2023/blob/main/rexams/data/ABA-adult?raw=true")
+brain_data <- read_rds("https://github.com/eugene100hickey/ATU-2023/blob/main/rexams/data/brain-area-code?raw=true")
+```
+
+Then join these two data frames together to make one where the first few rows look like this:
+
+```{r echo=FALSE}
+gt::gt(z1 |> head())
+```
+
+`hgnc_xsymbol` refers to the name of the gene, `structure` is a code number for the specific brain area, `signal` measures how active the gene is in this brain area, and `brain_area` is the name for  the general brain area.
+
+Filter this to only look at gene expression from the `r my_brain_area`. 
+
+What is the average gene expression in `r my_brain_area`?
+
+
+
+Solution
+========
+Use `gene_data |> left_join(brain_data, join_by(structure == brain_code))` and then `filter(brain_area == `r my_brain_area`)`
+
+
+
+Meta-information
+================
+extype: num
+exsolution: `r solution`
+exname: ABAData-join
+extol: `r solution*0.002`

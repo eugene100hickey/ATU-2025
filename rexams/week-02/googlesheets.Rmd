@@ -1,0 +1,39 @@
+```{r data generation, echo = FALSE, results = "hide", message=F, warning=F}
+library(exams)
+library(tidyverse)
+library(rio)
+library(googlesheets4)
+
+google_link <- "https://docs.google.com/spreadsheets/d/1Jrr9I-GcGiusqkgRJQsQ3UFmsoXet3wsH3r1HQZZyms/edit?usp=sharing"
+my_sheet <- sheet_names(google_link) |> 
+  sample(1)
+
+z <- read_sheet(google_link, sheet = my_sheet) |> 
+  select(where(is.numeric))
+my_column <- names(z) |> 
+  sample(1)
+
+solution <- z[, {{my_column}}] |> pull(1) |> mean(na.rm = T)
+```
+
+
+Question
+========
+Install the `googlesheets4` package (`install.packages("googlesheets4")`).
+
+There is a batch of **googlesheets** located [here](`r google_link`). We're going to read in the **`r my_sheet`** and then work out the *mean* of  the values in the **`r my_column`** column.
+
+Use `read_sheet(google_link, sheet = `r my_sheet`)` where *google_link* is *`r google_link`. Calculate the `mean()` of `r my_column` in the usual way, including `na.rm = TRUE` in case there are missing values in the column.
+
+Solution
+========
+Use `mean(my_data$my_column, na.rm = TRUE)`
+
+
+
+Meta-information
+================
+extype: num
+exsolution: `r solution`
+exname: google
+extol: `r solution*0.002`

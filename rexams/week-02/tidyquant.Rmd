@@ -1,0 +1,41 @@
+```{r data generation, echo = FALSE, results = "hide", message=F, warning=F}
+library(exams)
+library(tidyverse)
+library(tidyquant)
+
+stock_market <- tq_index("DOW")
+index <- sample(1:nrow(stock_market), 1)
+stock_symbol <- stock_market$symbol[index]
+stock_name <- stock_market$company[index]
+stock_data <- tq_get(stock_symbol)
+start_date <- seq(from = min(stock_data$date), to = max(stock_data$date), "years") |> 
+  sample(1)
+stop_date <- as.Date("2023-04-13")
+
+stock_data <- stock_data |> 
+  filter(date > start_date, date < stop_date)
+
+solution <- stock_data |> 
+  pull(close) |> 
+  mean(na.rm = T) |> 
+  signif(3)
+```
+
+
+Question
+========
+Install the `tidyquant` package if you don't have it already. Find the stock symbol for *__`r stock_name`__* using `tq_index("DOW")`. Get the stock prices using `tq_get()`. Filter the stock price data to only include days after __`r start_date`__ and before __`r stop_date`__. Find the average of the *__close__* prices.
+
+
+Solution
+========
+Use `tq_get("`r stock_symbol`") |> filter(date > "`r start_date`", date < "`r stop_date`")`, then `mean(my_stock_data$close)`.
+
+
+
+Meta-information
+================
+extype: num
+exsolution: `r solution`
+exname: dow-jones
+extol: `r solution*0.002`

@@ -1,0 +1,706 @@
+---
+pagetitle: "Introduction to Statistical Computing - dplyr"
+abstract: |
+ This is the fourth of a five part series of lectures as part of the data handling postgraduate module in Atlantic Technological University. 
+author: "Eugene Hickey"
+date: "May 2023"
+host: "Sligo Campus"
+institute: "Atlantic Technological University"
+strip-comments: true
+format: 
+  revealjs:
+    transition: slide
+    transition-speed: fast
+    logo: images/atu-logo.png
+    footer: "[Statistical Computing](https://vlesligo.atu.ie)"
+    # embed-resources: true
+    slide-number: c/t
+    multiplex: true
+    theme: solarized
+    show-slide-number: all
+    controls: true
+    width: 1280
+    height: 720
+    incremental: false
+    auto-stretch: false
+    css: [assets/custom.css, assets/tachyons-addon.css]
+    include-after: |
+      <link rel="stylesheet" href="assets/syntax-highlight.css">
+      <link rel="stylesheet" href="assets/fontawesome-free-6.1.1-web/css/all.min.css">
+      <script src="assets/fontawesome-free-6.1.1-web/js/all.min.js"></script>
+callout-icon: false
+output-file: index.html
+keep-tex: true
+execute:
+  echo: true
+  message: false
+  warning: false
+---
+
+##  {#title-slide background="images/dawn.JPG"}
+
+```{r setup, include = FALSE}
+library(tidyverse)
+library(gt)
+library(showtext)
+rotating_text <- function(x, align = "top") {
+  glue::glue('
+<div style="overflow: hidden; height: 1.2em;">
+<ul class="content__container__list {align}" style="text-align: {align}">
+<li class="content__item">{x[1]}</li>
+<li class="content__item">{x[2]}</li>
+<li class="content__item">{x[3]}</li>
+<li class="content__item">{x[4]}</li>
+</ul>
+</div>')
+}
+fa_list <- function(x, incremental = FALSE) {
+  icons <- names(x)
+  fragment <- ifelse(incremental, "fragment", "")
+  items <- glue::glue('<li class="{fragment}"><span class="fa-li"><i class="{icons}"></i></span> {x}</li>')
+  paste('<ul class="fa-ul">', 
+        paste(items, collapse = "\n"),
+        "</ul>", sep = "\n")
+}
+```
+
+```{r ggplot-theme}
+#| cache: false
+#| echo: false
+my_font <- "Neucha"
+my_font <- "Coming Soon"
+font_add(family = my_font, regular = "assets/ComingSoon-Regular.ttf")
+showtext_auto()
+theme_clean <- function() {
+    theme_minimal(base_family = my_font) +
+        theme(panel.grid.minor = element_blank(),
+              text = element_text(size = 32, family = my_font),
+              plot.background = element_rect(fill = "white", color = NA),
+              axis.text = element_text(size = 32),
+              axis.title = element_text(face = "bold", size = 28),
+              strip.text = element_text(face = "bold", size = rel(0.8), hjust = 0),
+              strip.background = element_rect(fill = "grey80", color = NA),
+              legend.text = element_text(size = 36))
+}
+```
+
+::: title-box
+<h2>`r rmarkdown::metadata$pagetitle`</h2>
+
+👨‍💻 [`r rmarkdown::metadata$author` \@ `r rmarkdown::metadata$institute`]{.author} 👨‍💻
+
+`r rotating_text(c('<i class="fa-solid fa-envelope"></i> eugene.hickey@tudublin.ie', '<i class="fa-brands fa-mastodon"></i> @eugene100hickey', '<i class="fa-brands fa-github"></i> github.com/eugene100hickey', '<i class="fa-solid fa-globe"></i> www.fizzics.ie'))`
+:::
+
+------------------------------------------------------------------------
+
+## Week Four - Statistical Inference
+
+::: {style="font-size: 100%;"}
+-   Time we did some statistics on our data
+
+-   This ties in nicely with John's half of our course
+
+-   We'll look at this from three perspectives
+
+    -   distributions
+
+    -   confidence intervals
+
+    -   hypothesis tests
+:::
+
+## Distributions
+
+-   There are lots of these, but we'll mention five (and describe two)
+
+    -   **binomial** (discrete)
+
+    -   poisson
+
+    -   **normal** (continuous)
+
+    -   Student's t distribution
+
+    -   exponential
+
+## Binomial Distribution
+
+-   number of *successes* in a sequence of trials
+
+-   three parameters
+
+    -   the number of trials, **n**
+
+    -   the number of successes, **k**
+
+    -   the probability of success in a single trial, **p**
+
+------------------------------------------------------------------------
+
+$$ {\displaystyle f(k,n,p)=\Pr(k;n,p)=\Pr(X=k)={\binom {n}{k}}p^{k}(1-p)^{n-k}}$$
+
+-   for k = 0, 1, 2, ..., n, where
+
+$$ {\displaystyle {\binom {n}{k}}={\frac {n!}{k!(n-k)!}}} $$
+
+## What this looks like:
+
+```{r binom-setup}
+#| echo: false
+n <- 100
+p <- 0.85
+```
+
+A rocket launch has a probability of success of `r p*100`%. From a `r n` launches, what is the profile of the number of successes?
+
+```{r binom-1}
+#| echo: false
+tibble(x = 1:n, y = dbinom(1:n, n, p)) |> 
+  ggplot(aes(x, y))  + 
+  geom_point(size = 5, colour = "firebrick4") + 
+  geom_line(alpha = 0.5, colour = "firebrick4") +
+  labs(title = "Number of successful rocket launches", y = "", x = "Successful Launches") + 
+  theme_clean() +
+  theme(plot.title.position = "plot")
+```
+
+## How this works in R
+
+::: columns
+::: {.column width="50%"}
+-   number if successes (k) called **x**
+-   number of trials (n) called **size**
+-   probability (p) called **prob**
+:::
+
+::: {.column width="50%"}
+```{r}
+dbinom(x = 90, size = 100, prob = 0.85)
+```
+
+```{r}
+dbinom(x = 85, size = 100, prob = 0.85)
+```
+
+```{r}
+dbinom(x = 80, size = 100, prob = 0.85)
+```
+
+```{r}
+dbinom(x = 70, size = 100, prob = 0.85)
+```
+
+```{r}
+dbinom(x = 60, size = 100, prob = 0.85)
+```
+
+```{r}
+dbinom(x = 50, size = 100, prob = 0.85)
+```
+:::
+:::
+
+## `dbinom()`, `pbinom()`, `qbinom()`, and `rbinom()`
+
+::: {style="font-size: 80%;"}
+-   `dbinom()` calculates the probability of a specific outcome value
+
+-   `pbinom()` calculates the sum of probabilities less than (or greater than), an outcome value
+
+    -   this is the *cumulative probability*
+
+    -   adds up a whole bunch of `dbinom()`'s
+
+-   `qbinom()` calculates the number of successes below which there is a certain probability
+
+    -   like the inverse function of `pbinom()`
+
+    -   give it a probability and it works out the number of successes threshold
+
+    -   *q* stands for **quantile**
+
+-   `rbinom()` generates random numbers of *successs* from a binomial distribution
+:::
+
+## `pbinom()`
+
+::: columns
+::: {.column width="50%"}
+```{r}
+#| echo: false
+theme_set(
+  theme_clean() +
+  theme(plot.title.position = "plot"))
+```
+
+```{r}
+#| eval: false
+pbinom(1:100,100,0.85,lower.tail=TRUE)
+```
+
+```{r binom-2}
+#| echo: false
+tibble(x = 1:n, y = pbinom(1:n, n, p, lower.tail=T)) |> 
+  ggplot(aes(x, y))  + 
+  geom_point(size = 5, colour = "firebrick4") + 
+  geom_line(alpha = 0.5, colour = "firebrick4") +
+  labs(title = "Probability of getting this or less than this\nnumber of successful rocket launches", y = "", x = "Successful Launches")
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+#| eval: false
+pbinom(1:100,100,0.85,lower.tail=FALSE)
+```
+
+```{r binom-3}
+#| echo: false
+tibble(x = 1:n, y = pbinom(1:n, n, p, lower.tail = F)) |> 
+  ggplot(aes(x, y))  + 
+  geom_point(size = 5, colour = "firebrick4") + 
+  geom_line(alpha = 0.5, colour = "firebrick4") +
+  labs(title = "Probability of getting more than this\nnumber of successful rocket launches", y = "", x = "Successful Launches")
+```
+:::
+:::
+
+::: {style="font-size: 80%;"}
+-   `lower.tail = TRUE` means *k* successes or less (successes $\le$ threshold, k)
+
+-   `lower.tail = FALSE` means more than *k* successes (successes $>$ threshold, k)
+
+-   worth remembering when to use `lower.tail = TRUE/FALSE`
+:::
+
+## Example
+
+-   Family of eight children, chance of getting at least 7 girls
+
+```{r}
+dbinom(x = 7, size = 8, prob = 0.5) + dbinom(x = 8, size = 8, prob = 0.5)
+```
+
+```{r}
+pbinom(q = 6, size = 8, prob = 0.5, lower.tail = FALSE)
+```
+
+-   Note we had to use *k - 1 = 6* in `pbinom()` calculation
+
+## `qbinom()`
+
+::: columns
+::: {.column width="50%"}
+```{r}
+#| echo: false
+#| fig-height: 8
+tibble(x = seq(0, 1, by = 0.01), y = qbinom(seq(0, 1, by = 0.01), 8, 0.5)) |> 
+  ggplot(aes(x, y)) + 
+  geom_line() + 
+  labs(y = "At least this number of girls",
+       x = "Proportion of Families") +
+  theme(axis.title = element_text(size = 44),
+        axis.text = element_text(size = 36))
+  
+```
+:::
+
+::: {.column width="50%"}
+-   in families of eight children, 30% of them have **X** girls or less. What is **X**?
+
+-   `qbinom(p = 0.3, size = 8, prob = 0.5, lower.tail = TRUE)`
+
+-   gives **X** = 3
+:::
+:::
+
+## `pbinom()` versus `qbinom()`
+
+-   `pbinom()` gives the [probability]{.underline} of observing at least *k* successes
+
+    -   it returns a **probability**
+
+-   `qbinom()` gives the [number of successes]{.underline} that would be observed with *p* probability
+
+    -   it returns a **number of successes**
+
+    -   gives us the positon of some *quantile*
+
+## `rbinom()`
+
+-   this gives a random number from the distribution
+
+-   take a sample of `r n` rocket launches, then for this sample `r rbinom(1, n, p)` will be successful
+
+-   command is `rbinom(n = 1, size=`r n`, prob =`r p`)`
+
+    -   `n = 1` means just one sample
+
+## Normal Distribution
+
+-   spread in values of a continuous variable
+
+-   two parameters
+
+-   the mean value, $\mu$
+
+-   the standard deviation, $\sigma$
+
+------------------------------------------------------------------------
+
+$$ {\displaystyle f(x)={\frac {1}{\sigma {\sqrt {2\pi }}}}e^{-{\frac {1}{2}}\left({\frac {x-\mu }{\sigma }}\right)^{2}}} $$
+
+-   $\mu$ is the mean
+
+-   $\sigma$ is the standard deviation
+
+## What this looks like:
+
+```{r norm-setup}
+#| echo: false
+m <- 1.5
+dev <- 0.2
+```
+
+A human liver has an average mass of `r p`kg with a standard deviation of `r dev`kg.
+
+```{r norm-1}
+#| echo: false
+x = seq(0, 3, by = 0.01)
+tibble(x = x, y = dnorm(x, mean = 1.5, sd = 0.2)) |> 
+  ggplot(aes(x, y))  + 
+  geom_point(size = 2, colour = "firebrick4") + 
+  geom_line(alpha = 0.5, colour = "firebrick4") +
+  labs(title = "Mass of Human Livers", y = "", x = "Mass (kg)") + 
+  theme_clean() +
+  theme(plot.title.position = "plot",
+        axis.text.y = element_blank())
+```
+
+## How this works in R
+
+```{r}
+dnorm(x = 1.0, mean = 1.5, sd = 0.2)
+```
+
+```{r}
+dnorm(x = 1.2, mean = 1.5, sd = 0.2)
+```
+
+```{r}
+dnorm(x = 1.4, mean = 1.5, sd = 0.2)
+```
+
+```{r}
+dnorm(x = 1.6, mean = 1.5, sd = 0.2)
+```
+
+```{r}
+dnorm(x = 1.8, mean = 1.5, sd = 0.2)
+```
+
+```{r}
+dnorm(x = 2.0, mean = 1.5, sd = 0.2)
+```
+
+## `dnorm()`, `pnorm()`, `qnorm()`, and `rnorm()`
+
+::: {style="font-size: 80%;"}
+-   `dnorm()` calculates the relative probability of a specific outcome value
+
+-   `pnorm()` calculates the sum of probabilities less than (or greater than), an outcome value
+
+    -   this is the *cumulative probability*
+
+    -   adds up a whole bunch of `dnorm()`'s
+
+-   `qnorm()` calculates the value below which there is a certain probability
+
+    -   like the inverse function of `pnorm()`
+
+    -   give it a probability and it works out the value
+
+-   `rnorm()` generates random value from the normal distribution
+:::
+
+## `pnorm()`
+
+::: columns
+::: {.column width="50%"}
+```{r}
+#| echo: false
+theme_set(
+  theme_clean() +
+  theme(plot.title.position = "plot"))
+```
+
+```{r}
+#| eval: false
+pnorm(q = seq(0, 3, by = 0.01), mean = 1.5, sd = 0.2, lower.tail = TRUE)
+```
+
+```{r norm-2}
+#| echo: false
+x <- seq(0, 3, by = 0.01)
+y <- pnorm(q = x, mean = 1.5, sd = 0.2, lower.tail = TRUE)
+tibble(x = x, y = y) |> 
+  ggplot(aes(x, y))  + 
+  geom_point(size = 5, colour = "firebrick4") + 
+  geom_line(alpha = 0.5, colour = "firebrick4") +
+  labs(title = "Probability of a human liver being lighter than this mass", y = "", x = "Liver Mass (kg)")
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+#| eval: false
+pnorm(q = seq(0, 3, by = 0.01), mean = 1.5, sd = 0.2, lower.tail = FALSE)
+```
+
+```{r norm-3}
+#| echo: false
+x <- seq(0, 3, by = 0.01)
+y <- pnorm(q = x, mean = 1.5, sd = 0.2, lower.tail = FALSE)
+tibble(x = x, y = y) |> 
+  ggplot(aes(x, y))  + 
+  geom_point(size = 5, colour = "firebrick4") + 
+  geom_line(alpha = 0.5, colour = "firebrick4") +
+  labs(title = "Probability of a human liver being **heavier** than this mass", y = "", x = "Liver Mass (kg)") +
+  theme(plot.title = ggtext::element_textbox_simple())
+```
+:::
+:::
+
+::: {style="font-size: 80%;"}
+-   `lower.tail = TRUE` means values less than
+
+-   `lower.tail = FALSE` means values more than
+
+-   because this is a continuous distribution we never have to worry about the pesky *-1*
+:::
+
+## Examples
+
+```{r}
+#| echo: false
+#| 
+my_mean <- 12
+my_sd <- 5
+```
+
+::: {style="font-size: 80%;"}
+-   The concentration of $PM_{2.5}$ in air has an average value of `r my_mean` $\mu g/m^{3}$ with a standard deviation of `r my_sd` $\mu g/m^{3}$. What is the probability that a given day will exceed the recommended 25$\mu g/m^{3}$?
+
+    -   `pnorm(q = 25, mean =`r my_mean`, sd =`r my_sd`, lower.tail = FALSE)`
+
+    -   gives `r (pnorm(q = 25, mean = my_mean, sd = my_sd, lower.tail = FALSE)*100) |> signif(2)`%
+
+-   Using the values above, what is the highest value of $PM_{2.5}$ we can expect to see once a year?
+
+    -   `qnorm(p = 1/365.25, mean =`r my_mean`, sd =`r my_sd`, lower.tail = FALSE)`
+
+    -   gives `r qnorm(p = 1/365.25, mean = my_mean, sd = my_sd, lower.tail = FALSE) |> round(1)`$\mu g/m^{3}$
+:::
+
+## `rnorm()`
+
+-   this gives a random number from the normal distribution
+
+-   a random sample of one person's liver mass
+
+-   command is `rnorm(n = 1, mean = 1.5, sd = 0.2)`
+
+    -   `n = 1` means just one sample
+
+## Confidence Intervals
+
+-   we rarely know *population* statistics about our data
+
+-   more common to have to infer them from *sample* statistics
+
+-   if we don't know the real standard deviation
+
+    -   estimate it from the sample
+
+    -   replace the normal distribution by its little cousin, the **t-distribution**
+
+    -   *t-distribution* is more spread out (more uncertain) than the *normal*
+
+    -   as sample size gets bigger the *t* converges to the *normal*
+
+## Confidence Intervals
+
+-   imagine taking a bunch of different samples from a population
+
+-   each one will have a slightly different mean
+
+-   for one sample, its mean is our best guess as to the true population mean
+
+-   but also need to express our degree of certainty (or otherwise) in this guess
+
+-   this gives the **confidence interval**
+
+## Confidence Interval Imagined
+
+![](images/conf-int.png){fig-align="center" width="75%" height="75%"}
+
+## Confidence Intervals in R
+
+::: columns
+::: {.column width="60%"}
+-   function `t.test()` is handy for confidence interval calculation
+
+-   in fact it's a bit of a Swiss army knife of conf. int., hypothesis testing....
+
+-   give it a set of values and it'll output the confidence interval for their mean
+
+-   `t.test(airquality$Wind)`
+
+-   `t.test(airquality$Wind)$conf.int`
+:::
+
+::: {.column width="40%"}
+```{r}
+#| echo: false
+t.test(airquality$Wind)
+```
+:::
+:::
+
+## Hypothesis Testing
+
+::: {style="font-size: 80%;"}
+-   do two samples have difference means?
+
+-   consider `gapminder` dataset
+
+    -   was life expectancy in 2007 higher in Southern Europe than Northern Europe?
+
+```{r}
+z <- dslabs::gapminder |> 
+  filter(year == 2007, region %in% c("Northern Europe", "Southern Europe"))
+t.test(life_expectancy ~  region, data = z)
+```
+:::
+
+## Paired T-tests
+
+::: columns
+::: {.column width="50%"}
+Ten mice were placed on a high fat diet. Their weights were recorded before and afterwards. Is there a significant weight gain?
+:::
+
+::: {.column width="50%"}
+```{r paired-t-test-data}
+#| echo: false
+# Data in two numeric vectors
+# ++++++++++++++++++++++++++
+# Weight of the mice before treatment
+before <-rnorm(10, mean = 200, sd = 50) |> round(1)
+# Weight of the mice after treatment
+after <- before + rnorm(10, mean = 10, sd=5) |> round(1)
+# Create a data frame
+my_data <- data.frame( 
+    group = rep(c("before", "after"), each = 10),
+    weight = c(before,  after), mouse = c(1:10,  1:10)
+) |> 
+  mutate(group = fct_relevel(group, "before", "after"))
+my_data |> 
+  relocate(mouse, .before = group) |> 
+  pivot_wider(names_from = group, values_from = weight) |> 
+  gt::gt()
+```
+:::
+:::
+
+## Graphically
+
+::: columns
+::: {.column width="50%"}
+```{r}
+#| echo: false
+#| fig-height: 10
+my_data |> 
+  ggplot(aes(group, weight)) + 
+  geom_point() + 
+  ggalt::geom_encircle(spread = 0.01) + 
+  theme_clean()
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+#| echo: false
+#| fig-height: 10
+my_data |> 
+  ggplot(aes(group, weight)) + 
+  geom_point() + 
+  ggalt::geom_encircle(spread = 0.01) + 
+  theme_clean() +
+  geom_segment(x = "before", xend = "after",  
+                 aes(y = before, yend = after), 
+                 data =  my_data |> pivot_wider(names_from = group, values_from = weight),
+                 inherit.aes = F)
+```
+:::
+:::
+
+## With Paired t-test
+
+::: columns
+::: {.column width="50%"}
+```{r}
+#| echo: true
+t.test(weight ~ group, data = my_data)
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+#| echo: true
+t.test(weight ~ group, data = my_data, paired = TRUE)
+```
+:::
+:::
+
+# Workshop - Week Four
+
+## Perform the Following Tasks:
+
+-   These are largely based on the [lterdatasampler package](https://lter.github.io/lterdatasampler/)
+
+    -   `remotes::install_github("lter/lterdatasampler")`
+
+1.  Human gestation has an average period of 266 days with a standard deviation of 16 days. What is the probability that a baby will arrive exactly on their due date? Assume normal distribution.
+
+2.  Make a 95% confidence interval for animal weight for the bisons recorded in the `knz_bison` dataset.
+
+3.  Perform a hypothesis test that female and male bisons are the same weight.
+
+## Assignments - Week Four
+
+1.  Complete week four moodle quiz
+
+2.  Complete `swirl()` exercises
+
+::: {style="font-size: 70%; margin-left: 150px;"}
+-   `install.packages("swirl")`
+
+-   `library(swirl)`
+
+-   `install_course("Statistical Inference")`
+
+-   `swirl()`
+
+-   choose course *Statistical Inference*
+
+-   do the four exercises 1 (Introduction), 7 (CommonDistros), 9 (T Confidence Intervals), and 10 (Hypothesis Testing)
+
+-   email a screen shot of the end of each lesson to eugene.hickey\@associate.atu.ie
+
+-   it'll look a bit like screen capture here
+:::
+
+![](images/swirl.png){.absolute top="20" right="0" width="400" height="300"}
+

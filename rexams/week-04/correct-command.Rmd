@@ -1,0 +1,52 @@
+```{r data generation, echo = FALSE, results = "hide", message=F, warning=F}
+library(exams)
+library(tidyverse)
+
+commands <- tribble(~commands, ~text,
+                    "pbinom(lower.tail = TRUE)", "The probability of a number of successes less than or equal to a certain value",
+                    "pbinom(lower.tail = FALSE)", "The probability of a number of successes greater than a certain value",
+                    "qbinom(lower.tail = TRUE)", "The number of successes or less that will be achieved with a certain probability",
+                    "qbinom(lower.tail = FALSE)", "The number of successes or more that will be achieved with a certain probability",
+                    "rbinom(n)", "Generates n values from a binomial distribution",
+                    "dbinom()", "The probability that exactly a certain number of successes will occur")
+
+indices <- sample(1:6)
+commands <- commands[indices,]
+```
+
+
+Question
+========
+What is the correct discription of the `r commands$commands[1]` function?
+
+Answerlist
+----------
+* `r commands$text[1]`
+* `r commands$text[2]`
+* `r commands$text[3]`
+* `r commands$text[4]`
+* `r commands$text[5]`
+* `r commands$text[6]`
+
+
+Solution
+========
+Use `?`r commands$commands[1]`.
+
+Answerlist
+----------
+* True
+* False
+* False
+* False
+* False
+* False
+
+
+
+Meta-information
+================
+exname: distro-commands
+extype: schoice
+exsolution: 100000
+exshuffle: 5

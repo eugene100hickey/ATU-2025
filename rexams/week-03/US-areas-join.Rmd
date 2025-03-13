@@ -1,0 +1,48 @@
+```{r data generation, echo = FALSE, results = "hide", message=F, warning=F}
+library(exams)
+library(tidyverse)
+
+state_areas <- read_rds("https://github.com/eugene100hickey/ATU-2023/blob/main/rexams/data/state-areas?raw=true")
+state_regions <- read_rds("https://github.com/eugene100hickey/ATU-2023/blob/main/rexams/data/state-regions?raw=true")
+
+states <- state_regions |> 
+  left_join(state_areas, join_by(state == state_name))
+regions <- levels(states$region)
+my_region <- sample(regions, 1)
+solution <- states |> 
+  filter(region == my_region) |> 
+  pull(area) |> 
+  sum(na.rm = T) |> 
+  signif(3)
+```
+
+
+Question
+========
+Run the code lines below to read in two data frames called `state_areas` and `state_regions`. 
+
+```{r eval=FALSE}
+state_areas <- read_rds("https://github.com/eugene100hickey/ATU-2023/blob/main/rexams/data/state-areas?raw=true")
+state_regions <- read_rds("https://github.com/eugene100hickey/ATU-2023/blob/main/rexams/data/state-regions?raw=true")
+```
+
+Then join these two data frames together to make one that looks like this:
+
+```{r echo=FALSE}
+gt::gt(states |> head())
+```
+
+What is the sum of the area of the states in the `r my_region`?
+
+Solution
+========
+Use `left_join(state_areas, join_by(state == state_name))`.
+
+
+
+Meta-information
+================
+extype: num
+exsolution: `r solution`
+exname: us-areas-join
+extol: `r solution*0.02`

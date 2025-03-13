@@ -1,0 +1,32 @@
+```{r data generation, echo = FALSE, results = "hide", message=F, warning=F}
+library(exams)
+library(tidyverse)
+library(readxl)
+
+file_name <- "C:/Users/ehickey/OneDrive - Technological University Dublin/Desktop/Academic/SciencePG/ATU-2023/rexams/data/excel-example.xlsx"
+file_link <- "https://github.com/eugene100hickey/ATU-2023/blob/main/rexams/data/excel-example.xlsx?raw=true"
+my_sheet <- excel_sheets(file_name) |> 
+  sample(1)
+
+my_data <- rio::import(file_link, which = my_sheet)
+
+solution <- nrow(my_data)
+
+```
+
+
+Question
+========
+Open the sheet __*`r my_sheet`*__ from the file at __`r file_link`__ using `rio::import(`r file_link`, which = "`r my_sheet`")` (or else you can download the file to your computer and open with `read_excel()`). How many rows are there in this file?
+
+Solution
+========
+Use `excel_sheets()`, followed by `read_excel()`, and then `nrow()`.
+
+
+Meta-information
+================
+extype: num
+exsolution: `r solution`
+exname: imdb
+extol: `r solution*0.02`

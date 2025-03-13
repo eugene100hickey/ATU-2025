@@ -1,0 +1,71 @@
+```{r data generation, echo = FALSE, results = "hide", message=F, warning=F}
+library(exams)
+library(tidyverse)
+
+
+year <- 2000:2022 |> 
+  sample(1)
+new_url <- glue::glue("https://www.imdb.com/search/title/?title_type=feature&year={year}-01-01,{year}-12-31")
+
+answer_list <- tribble(~feature, ~node,
+                       "Movie Titles", ".lister-item-header a",
+                       "Number of Votes",".sort-num_votes-visible span:nth-child(2)",
+                       "Gross Takings ($)", ".ghost~ .text-muted+ span",
+                       "The Year for Each Movie", ".text-muted.unbold",
+                       "The Categories for Each Movie", ".genre",
+                       "The Directors", ".text-muted+ p a:nth-child(1)",
+                       "The Stars Actors in All the Movies", ".lister-item-content .ghost~ a",
+                       "The Star Ratings", ".ratings-imdb-rating strong",
+                       "The Movie Duration", ".runtime",
+                       "The Paragraph of Movie Summary", ".ratings-bar+ .text-muted"
+                       )
+
+
+
+index <- sample(1:10, 1)
+other_index <- c(1:10)[!(1:10 %in% index)]
+question <- answer_list$feature[index]
+answer <- answer_list$node[index]
+
+other_answers <- answer_list$node[other_index] |> 
+  sample(5)
+
+solution <- c(answer, other_answers)
+
+```
+
+
+Question
+========
+Examine the movie database webpage for __`r year`__ at __`r new_url`__. Which is the correct __css__ selector for __`r question`__? 
+
+Answerlist
+----------
+* `r solution[1]`
+* `r solution[2]`
+* `r solution[3]`
+* `r solution[4]`
+* `r solution[5]`
+* `r solution[6]`
+
+
+Solution
+========
+Either use `Ctrl+U` to examine the html code for the webpage, or more simply, use the __*Selector Gagdet*__ browser plugin.
+
+Answerlist
+----------
+* True
+* False
+* False
+* False
+* False
+* False
+
+
+Meta-information
+================
+exname: R selector-gadget
+extype: schoice
+exsolution: 100000
+exshuffle: 5

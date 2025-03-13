@@ -1,0 +1,36 @@
+```{r data generation, echo = FALSE, results = "hide", message=F, warning=F}
+library(exams)
+library(tidyverse)
+library(palmerpenguins)
+
+solution <- 1 - (sum(complete.cases(penguins)) / nrow(penguins)) |> signif(3)
+
+```
+
+
+Question
+========
+Below is an excerpt from the penguins dataset of the `palmerpenguins` package (if not already installed, use `install.packages("palmerpenguins")`):
+
+```{r}
+library(tidyverse)
+library(palmerpenguins)
+head(penguins)
+```
+
+What fraction of rows in this data set have missing values?
+
+
+
+Solution
+========
+Make use of the R command `sum(complete.cases(penguins)) / nrow(penguins)` and adjust accordingly.
+
+
+
+Meta-information
+================
+extype: num
+exsolution: `r solution`
+exname: penguins-complete
+extol: `r solution*0.05`

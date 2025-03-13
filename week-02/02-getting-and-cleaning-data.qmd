@@ -1,0 +1,404 @@
+---
+pagetitle: "Introduction to Statistical Computing"
+abstract: |
+ This is the second of a six part series of lectures as part of the data handling postgraduate module in Atlantic Technological University. 
+author: "Eugene Hickey"
+date: "May 2023"
+host: "Sligo Campus"
+institute: "Atlantic Technological University"
+strip-comments: true
+format: 
+  revealjs:
+    transition: slide
+    transition-speed: fast
+    logo: images/atu-logo.png
+    footer: "[Statistical Computing](https://vlesligo.atu.ie)"
+    # embed-resources: true
+    slide-number: c/t
+    multiplex: true
+    theme: solarized
+    show-slide-number: all
+    controls: true
+    width: 1280
+    height: 720
+    incremental: false
+    auto-stretch: false
+    css: [assets/custom.css, assets/tachyons-addon.css]
+    include-after: |
+      <link rel="stylesheet" href="assets/syntax-highlight.css">
+      <link rel="stylesheet" href="assets/fontawesome-free-6.1.1-web/css/all.min.css">
+      <script src="assets/fontawesome-free-6.1.1-web/js/all.min.js"></script>
+callout-icon: false
+output-file: index.html
+execute:
+  echo: true
+---
+
+##  {#title-slide background="images/half-dome.JPG"}
+
+```{r setup, include = FALSE}
+library(tidyverse)
+
+rotating_text <- function(x, align = "top") {
+  glue::glue('
+<div style="overflow: hidden; height: 1.2em;">
+<ul class="content__container__list {align}" style="text-align: {align}">
+<li class="content__item">{x[1]}</li>
+<li class="content__item">{x[2]}</li>
+<li class="content__item">{x[3]}</li>
+<li class="content__item">{x[4]}</li>
+</ul>
+</div>')
+}
+
+fa_list <- function(x, incremental = FALSE) {
+  icons <- names(x)
+  fragment <- ifelse(incremental, "fragment", "")
+  items <- glue::glue('<li class="{fragment}"><span class="fa-li"><i class="{icons}"></i></span> {x}</li>')
+  paste('<ul class="fa-ul">', 
+        paste(items, collapse = "\n"),
+        "</ul>", sep = "\n")
+}
+
+```
+
+::: title-box
+<h2>`r rmarkdown::metadata$pagetitle`</h2>
+
+👨‍💻 [`r rmarkdown::metadata$author` \@ `r rmarkdown::metadata$institute`]{.author} 👨‍💻
+
+`r rotating_text(c('<i class="fa-solid fa-envelope"></i> eugene.hickey@tudublin.ie', '<i class="fa-brands fa-mastodon"></i> @eugene100hickey', '<i class="fa-brands fa-github"></i> github.com/eugene100hickey', '<i class="fa-solid fa-globe"></i> www.fizzics.ie'))`
+:::
+
+------------------------------------------------------------------------
+
+##  Week Two - Getting and Cleaning Data
+
+- R only any good when it has data to work with, and lots of it
+
+- really not a good idea to enter data in to R directly
+
+- we'll look at three ways to load our data in to an R session
+
+    - reading it in from files
+    
+    - using an application programme interface (API) to get data from external data sources
+    
+    - web scraping
+
+## Reading in from Files
+
+- getting data from a csv file
+
+- getting data from an excel file
+
+- getting data from a googlesheet
+
+- getting data from a pdf file
+
+- other file formats
+
+## Reading in from Files
+
+- two options
+
+    - files are located on your local computer
+    
+    - files are located somewhere on the internet
+
+- R is pretty good at treating these the same
+
+
+## Reading in from Files
+
+
+::: {style="font-size: 80%;"}
+- we'll harness two packages for this
+    - `here`
+    - this package is useful for finding files on your computer
+    - makes locating files a lot more streamlined
+    - makes you code more portable
+    - `rio`
+    - this package is very streamlined for accessing data
+    - as well as excel and csv, will do a host of other formats: SPSS, minitab, Stata, matlab, **and compressed formats like zip files**
+    - good at recognising file type automatically and leveraging appropriate function from other packages
+
+:::
+
+## `here`
+
+::: {style="font-size: 80%;"}
+
+- typing the full address of a file is cumbersome, e.g. `C:\Users\keyser-soze\Documents\this-week\shopping-list.doc`
+
+- if someone copies or moves your file, they must reconstitute file address
+
+- differences between "\\" in windows and "/" in Linux
+
+    -  sometimes even need a double "\\\\"
+
+- `here` gets around all this by having a chain of directories in quotes
+
+    - `here("keyser-soze", "Documents", "this-week", "shopping-list.doc")`
+    
+    - starts from current directory, find out where that is by typing `here()`
+
+
+- using **projects** in R is also a good idea
+
+- these make it so much easier to copy a block of someone's work (for example from github) without having to trace down all their file locations.
+
+:::
+
+    
+## `rio`
+
+::: {style="font-size: 70%; margin-left: 150px;"}
+
+- main function we'll use is `import()`
+
+    - `import("some-file-name.xlsx")`
+    
+    - `import(here(system.file("examples", package = "rio"), "noheader.csv"))`
+    
+    - `import("https://raw.githubusercontent.com/rfordatascience/tidytuesday/`
+    `master/data/2023/2023-02-14/age_gaps.csv")`
+    
+    - can specify sheet from *excel*, `import(here(.libPaths()[1],`   
+    
+    `"rio", "examples", "iris.xls"), which = "Sheet2")`
+    
+    - can skip the first few rows with `skip = 4`
+    
+    - also works with **googlesheets**. Pass in web address that we can get from     
+    the *Share* section of  the googlesheet (we'll look at this in this weeks     
+    worksheet later on)
+    
+:::
+
+---
+
+::: {.panel-tabset}
+    
+## PDF
+
+::: {style="font-size: 80%; list-style-position: outside; padding-left: 0em;"}
+
+- two packages of note; `pdftools` and `tabulizer`
+
+- `tabulizer` has an `extract_tables()` function.
+
+    - good to specify the specific page or location in the pdf of the table you want
+    
+    -  I (pretty much) always include a `output = "data.frame"` in the call to `extract_tables()`
+    
+- always returns a list, each element of the list would be one of the tables in the document
+
+    - use `object_returned_by_extract_tables[[1]]` to get the first table
+    
+`here(system.file(package="tabulizer"), "examples", "data.pdf") |> `
+`extract_tables(output = "data.frame") |> `
+`pluck(1)`
+
+:::
+
+## installing `tabulizer`
+
+::: {style="font-size: 80%; list-style-position: outside; padding-left: 0em;"}
+
+- Need **Java** installed, and R needs to know about it.
+
+- Might need to do this:
+
+    - Install 64 bit Java from [java.com](https://java.com/en/download/manual.jsp).
+    - Then in windows cmd run
+    - setx PATH `"C:\Program Files\Java\jre1.8.0_211\bin\server;%PATH%"` (make sure your path is correct).
+    - Then in RStudio run `Sys.setenv(JAVA_HOME="")`
+    
+- then `remotes::install_github(c("ropensci/tabulizerjars", "ropensci/tabulizer"), INSTALL_opts = "--no-multiarch")`
+
+:::
+
+:::
+
+---
+
+- [organ transplant an donation data from the NHS](https://nhsbtdbe.blob.core.windows.net/umbraco-assets-corp/29388/weekly-statistics.pdf)
+
+```{r}
+library(tabulizer)
+organ_transplant <- "https://nhsbtdbe.blob.core.windows.net/umbraco-assets-corp/18494/centre-specific-activity-report.pdf"
+extract_tables(organ_transplant, output = "data.frame") |> pluck(1) |> gt::gt()
+```
+
+
+## Other File Formats
+
+- see the bottom of [this page](https://www.epirhandbook.com/en/import-and-export.html) to see some other file formats that `rio::import()` can handle.
+
+- includes *SPSS* files ([.sav]{.underline}), *Minitab* files ([.mtp]{.underline}), *Matlab* files ([.mat]{.underline}), etc.....
+
+
+## Using Application Programme (API) Access
+
+::: {style="font-size: 80%; margin-left: 150px;"}
+
+- people working in different domains simplify access to databases
+
+- produce an R package that does the trick
+
+- financial, social media, life science, census, music, ecology, earth observation.......
+
+     - pretty much anyway there's large data stores
+     
+- we'll look at some examples of these
+
+- tend to be quite domain specific, everyone does it differently to suit the vagaries of their data source
+
+- sometimes need to register and generate user token to get access
+
+    - can store this within RStudio so we just need to do this once
+    
+:::
+
+## Life Sciences, Bioinformatics, NCBI, and Bioconductor
+
+- this is a whole ecosystem of work in R
+
+- vast troves of data
+
+- `BiocManager` package is the *sine qua non* for accessing this
+
+    - instigates installation of relevant packages
+    
+    - even tighter controls over package quality than CRAN
+    
+- I like the `rentrez` package to access gene sequences
+
+- we'll look at this in the workshop
+
+## Financial
+
+- `tidyquant` is my go-to for stock data
+
+    - `tq_index_options()` returns the names of stock markets
+    
+    - `tq_index("my_stock_market")` returns a dataframe of stock market indices
+    
+    - `tq_get("my_stock_symbol")` returns actual stock market data.
+    
+## Social Media
+
+- let's look at **mastodon**
+
+- package `rtoot` is useful
+
+- function `auth_setup("mastodon.social", "public")` to connect to your account
+
+- `get_timeline_hashtag(hashtag = "eurovision", instance = "mastodon.social", limit = 200)` to get dataframe of [toots]{.underline}
+
+## Political Science
+
+- list of useful packages [here](https://rforpoliticalscience.com/2023/04/07/top-r-packages-for-downloading-political-science-and-economics-datasets/)
+
+## Ecology
+
+- `rfishbase`
+
+- `rgbif`
+
+- `GIFT` with this [tutorial](https://cran.r-project.org/web/packages/GIFT/vignettes/GIFT.html)
+
+## Earth Observation - Satellite Images
+
+- good resource for Ireland is [Sentinel2](https://scihub.copernicus.eu/)
+
+    - need to make an account on Copernicus
+    
+    - R package `sen2r`
+    
+    - see [this presentation](https://www.youtube.com/watch?v=k1K6nqgtRL8) for a walkthrough
+    
+- also [Planet.com](https://www.planet.com/)
+
+    - free (but limited) academic access
+
+
+## Web Scraping
+
+- often want to take data from an internet page (or family of pages) and read in to R
+
+- two types
+
+    - static web scraping where the web address changes when you click links in the page
+    
+    - dynamic when the web address stays the same but the page content changes
+    
+    - dynamic is tricky and requires the use of a virtual browser (RSelenium)
+    
+    - we'll just look at static web scraping
+
+
+## Static Web Scraping
+
+- `rvest` package is super useful
+
+- three step process
+
+    - read in the whole web page (`read_html()`)
+    
+    - select out the elements that you want (`html_nodes()`)
+    
+    - format the results (`html_text2()`)
+    
+- to figure out the elements part, the Chrome Extension called *Selector Gadget* is very useful. Could also look at the page source by [Ctrl+U]{.underline}
+
+# Workshop - Week Two
+
+## Perform the Following Tasks:
+
+::: {style="font-size: 45%; list-style-position: outside; padding-left: 0em;"}
+
+1. Use `rio::import()` to read in the *Ferris Wheel* dataset available from [https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-08-09/wheels.csv](https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-08-09/wheels.csv). Where is the highest ferris wheel?
+
+1. Look at the example excel file called `deaths.xlsx` from the `readxl` package (find it using `system.file(package = "readxl)` then look in the `extdata` directory). Read the `"other"` sheet from this file using the `import()` function. Note that the first four rows are full of junk so they should be skipped. See if you can figure out what the *Date of Birth* column represents.
+
+1. Make a new *googlesheet* in the **Chrome** browser. After you've entered some data, click **Share** (top right corner). Click **General Access** and choose *Anyone with the link*. **Copy the link**. Go to RStudio now and use the link you've  copied to import this googlesheet into R.
+
+1.  Have a look at the IPCC climate report from 2017 available [here](https://www.ipcc.ch/site/assets/uploads/2017/09/WG1AR5_AnnexII_FINAL.pdf). Use `tabulizer` to read in the table on page 10 of this report as a data.frame.
+
+1. Install the `eurostat` package. Search for datasets on *diabetes* using the `search_eurostat()` function. Get the *eurostat* dataset on screening of diabetes by sex, age, and education from 2014-2019. Decode the column values using `get_eurostat_dic()` (e.g. `get_eurostat_dic("age")`). Find the incidence of diabetes/cardiovascular that has been detected for [*less than one year*]{.underline} in [*Slovenia*]{.underline} in [*2019*]{.underline} for people of [*all*]{.underline} genders who are [*older than 75*]{.underline} with [*Upper secondary and post-secondary non-tertiary education*]{.underline}.
+
+1. Install the `BiocManager` package (`install.packages("BiocManager")`). Install the `rentrez` and `seqinr` packages from `Bioconductor` (e.g. `BiocManager::install("rentrez")`). Find the [NCBI]() accession numbers for the *BRCA1* cancer gene using `z <- entrez_search(db = "nuccore", term = "brca1")`. This returns a list of 5 elements, the first of which (`z[[1]]`) will be the relevant accession numbers. Take the first of these accession numbers and fetch the gene sequence using `entrez_fetch(db = "nuccore", id = "my_accession_numbber", rettype = "fasta")`.
+
+1.  Install **Selector Gadget** as a Chrome extension. Go to the [RTE](website). Find the *css* selector for the top navigation bar (where it says *"News Sport Entertainment..."*).
+
+1. Go to the wikipedia page for the [English Premier League Season 2020/2021](https://en.wikipedia.org/wiki/2020%E2%80%9321_Premier_League). Find the css selector for the *Best Goalkeeper* (should be something like "**tr:nth-child(11) .infobox-data a**"). Use `read_html()`, `html_nodes()`, and `html_text2()` from the `rvest` package to find the best goalkepper for this season.
+
+:::
+
+## Assignments - Week Two
+
+1.  Complete week two moodle quiz
+
+2.  Complete `swirl()` exercises
+
+::: {style="font-size: 80%; margin-left: 150px;"}
+
+-   `swirl()`
+
+-   choose course *R Programming E*
+
+-   do the four exercises 5 (Missing Values) to 8 (Logic)
+
+-   email the results to eugene.hickey\@associate.atu.ie
+
+<!-- 1: Basic Building Blocks      2: Workspace and Files      -->
+
+<!--  3: Sequences of Numbers       4: Vectors                  -->
+
+<!--  5: Missing Values             6: Subsetting Vectors       -->
+
+<!--  7: Matrices and Data Frames   8: Logic  -->
+
+:::

@@ -1,0 +1,66 @@
+```{r data generation, echo = FALSE, results = "hide", message=F, warning=F}
+library(exams)
+library(tidyverse)
+library(gt)
+library(showtext)
+
+font_add_google(name = "Caveat", family = "Caveat")
+showtext_auto()
+
+z <- read_rds("https://github.com/eugene100hickey/ATU-2023/blob/main/rexams/data/ABAData-wide?raw=true")
+
+genes <- colnames(z)[2:dim(z)[2]] |> 
+  sample(10)
+
+
+z1 <- z |> 
+  select(structure, any_of(genes)) |> 
+  pivot_longer(-structure, names_to = "gene", values_to = "signal")
+
+solution <- mean(z1$signal) |> signif(3)
+```
+
+
+Question
+========
+Run the code line below to read in a data frame called `brain_gene_expression_wide`. 
+
+`brain_gene_expression_wide <- read_rds("https://github.com/eugene100hickey/ATU-2023/blob/main/rexams/data/ABAData-wide?raw=true") |> 
+  select(structure, `r noquote(genes)`)`
+
+Use `pivot_longer()` to recast this data in long format. The top of this table is shown below. Use this to calculate the mean level of gene expression. 
+
+```{r echo=FALSE}
+z1 %>% 
+  head() |> 
+  gt() %>% 
+  cols_label(structure = "Brain Area Code",
+             gene = md("Gene Name"), 
+             signal = md("Gene Expression")) %>% 
+  cols_align(align = "center") %>% 
+  tab_options(column_labels.background.color = "cornflowerblue", 
+              table.font.names = "Caveat",
+              table.font.style = "oblique",
+              column_labels.font.weight = "bold",
+              column_labels.vlines.width = 1,
+              column_labels.vlines.color = "darkblue",
+              column_labels.vlines.style = "solid",
+              table_body.vlines.width = 1,
+              table_body.vlines.color = "darkblue",
+              table_body.vlines.style = "solid"
+              )
+```
+
+
+Solution
+========
+Use `pivot_longer(-structure, names_to = "gene", values_to = "signal")`.
+
+
+
+Meta-information
+================
+extype: num
+exsolution: `r solution`
+exname: ABAData-pivot-long
+extol: `r solution*0.02`

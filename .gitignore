@@ -1,0 +1,4 @@
+admin/*.*
+.Rproj.user
+*.pdf
+.httr-oauth

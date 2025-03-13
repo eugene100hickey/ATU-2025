@@ -1,0 +1,41 @@
+```{r data generation, echo = FALSE, results = "hide", message=F, warning=F}
+library(exams)
+library(tidyverse)
+library(palmerpenguins)
+
+parameters <- names(penguins)
+index <- sample(1:length(parameters), 1)
+
+penguins_parameter <- penguins |> pull(parameters[index])
+
+solution <- sum(is.na(penguins_parameter))
+
+```
+
+
+Question
+========
+Below is an excerpt from the penguins dataset of the `palmerpenguins` package (if not already installed, use `install.packages("palmerpenguins")`):
+
+```{r}
+library(tidyverse)
+library(palmerpenguins)
+head(penguins)
+```
+
+How many missing values are in the `r parameters[index]` column of this dataset?
+
+
+
+Solution
+========
+Use the R command `sum(is.na(penguins$...))`.
+
+
+
+Meta-information
+================
+extype: num
+exsolution: `r solution`
+exname: penguins-na
+extol: `r solution*0.01`

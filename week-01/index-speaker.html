@@ -1,0 +1,1257 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="01-introduction_files/libs/clipboard/clipboard.min.js"></script>
+<script src="01-introduction_files/libs/quarto-html/tabby.min.js"></script>
+<script src="01-introduction_files/libs/quarto-html/popper.min.js"></script>
+<script src="01-introduction_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="01-introduction_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="01-introduction_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="01-introduction_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.2.269">
+
+  <meta name="author" content="Eugene Hickey">
+  <title>Introduction to Statistical Computing</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="01-introduction_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="01-introduction_files/libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="01-introduction_files/libs/revealjs/dist/theme/quarto.css" id="theme">
+  <link rel="stylesheet" href="assets/custom.css">
+  <link rel="stylesheet" href="assets/tachyons-addon.css">
+  <link href="01-introduction_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="01-introduction_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="01-introduction_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="01-introduction_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+
+  .callout {
+    margin-top: 1em;
+    margin-bottom: 1em;  
+    border-radius: .25rem;
+  }
+
+  .callout.callout-style-simple { 
+    padding: 0em 0.5em;
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+    display: flex;
+  }
+
+  .callout.callout-style-default {
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+  }
+
+  .callout .callout-body-container {
+    flex-grow: 1;
+  }
+
+  .callout.callout-style-simple .callout-body {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-style-default .callout-body {
+    font-size: 0.9rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-captioned.callout-style-simple .callout-body {
+    margin-top: 0.2em;
+  }
+
+  .callout:not(.callout-captioned) .callout-body {
+      display: flex;
+  }
+
+  .callout:not(.no-icon).callout-captioned.callout-style-simple .callout-content {
+    padding-left: 1.6em;
+  }
+
+  .callout.callout-captioned .callout-header {
+    padding-top: 0.2em;
+    margin-bottom: -0.2em;
+  }
+
+  .callout.callout-captioned .callout-caption  p {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+    
+  .callout.callout-captioned.callout-style-simple .callout-content  p {
+    margin-top: 0;
+  }
+
+  .callout.callout-captioned.callout-style-default .callout-content  p {
+    margin-top: 0.7em;
+  }
+
+  .callout.callout-style-simple div.callout-caption {
+    border-bottom: none;
+    font-size: .9rem;
+    font-weight: 600;
+    opacity: 75%;
+  }
+
+  .callout.callout-style-default  div.callout-caption {
+    border-bottom: none;
+    font-weight: 600;
+    opacity: 85%;
+    font-size: 0.9rem;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-default div.callout-content {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-simple .callout-icon::before {
+    height: 1rem;
+    width: 1rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 1rem 1rem;
+  }
+
+  .callout.callout-style-default .callout-icon::before {
+    height: 0.9rem;
+    width: 0.9rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 0.9rem 0.9rem;
+  }
+
+  .callout-caption {
+    display: flex
+  }
+    
+  .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  .callout.no-icon::before {
+    display: none !important;
+  }
+
+  .callout.callout-captioned .callout-body > .callout-content > :last-child {
+    margin-bottom: 0.5rem;
+  }
+
+  .callout.callout-captioned .callout-icon::before {
+    margin-top: .5rem;
+    padding-right: .5rem;
+  }
+
+  .callout:not(.callout-captioned) .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  /* Callout Types */
+
+  div.callout-note {
+    border-left-color: #4582ec !important;
+  }
+
+  div.callout-note .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEU0lEQVRYCcVXTWhcVRQ+586kSUMMxkyaElstCto2SIhitS5Ek8xUKV2poatCcVHtUlFQk8mbaaziwpWgglJwVaquitBOfhQXFlqlzSJpFSpIYyXNjBNiTCck7x2/8/LeNDOZxDuEkgOXe++553zfefee+/OYLOXFk3+1LLrRdiO81yNqZ6K9cG0P3MeFaMIQjXssE8Z1JzLO9ls20MBZX7oG8w9GxB0goaPrW5aNMp1yOZIa7Wv6o2ykpLtmAPs/vrG14Z+6d4jpbSKuhdcSyq9wGMPXjonwmESXrriLzFGOdDBLB8Y6MNYBu0dRokSygMA/mrun8MGFN3behm6VVAwg4WR3i6FvYK1T7MHo9BK7ydH+1uurECoouk5MPRyVSBrBHMYwVobG2aOXM07sWrn5qgB60rc6mcwIDJtQrnrEr44kmy+UO9r0u9O5/YbkS9juQckLed3DyW2XV/qWBBB3ptvI8EUY3I9p/67OW+g967TNr3Sotn3IuVlfMLVnsBwH4fsnebJvyGm5GeIUA3jljERmrv49SizPYuq+z7c2H/jlGC+Ghhupn/hcapqmcudB9jwJ/3jvnvu6vu5lVzF1fXyZuZZ7U8nRmVzytvT+H3kilYvH09mLWrQdwFSsFEsxFVs5fK7A0g8gMZjbif4ACpKbjv7gNGaD8bUrlk8x+KRflttr22JEMRUbTUwwDQScyzPgedQHZT0xnx7ujw2jfVfExwYHwOsDTjLdJ2ebmeQIlJ7neo41s/DrsL3kl+W2lWvAga0tR3zueGr6GL78M3ifH0rGXrBC2aAR8uYcIA5gwV8zIE8onoh8u0Fca/ciF7j1uOzEnqcIm59sEXoGc0+z6+H45V1CvAvHcD7THztu669cnp+L0okAeIc6zjbM/24LgGM1gZk7jnRu1aQWoU9sfUOuhrmtaPIO3YY1KLLWZaEO5TKUbMY5zx8W9UJ6elpLwKXbsaZ4EFl7B4bMtDv0iRipKoDQT2sNQI9b1utXFdYisi+wzZ/ri/1m7QfDgEuvgUUEIJPq3DhX/5DWNqIXDOweC2wvIR90Oq3lDpdMIgD2r0dXvGdsEW5H6x6HLRJYU7C69VefO1x8Gde1ZFSJLfWS1jbCnhtOPxmpfv2LXOA2Xk2tvnwKKPFuZ/oRmwBwqRQDcKNeVQkYcOjtWVBuM/JuYw5b6isojIkYxyYAFn5K7ZBF10fea52y8QltAg6jnMqNHFBmGkQ1j+U43HMi2xMar1Nv0zGsf1s8nUsmUtPOOrbFIR8bHFDMB5zL13Gmr/kGlCkUzedTzzmzsaJXhYawnA3UmARpiYj5ooJZiUoxFRtK3X6pgNPv+IZVPcnwbOl6f+aBaO1CNvPW9n9LmCp01nuSaTRF2YxHqZ8DYQT6WsXT+RD6eUztwYLZ8rM+rcPxamv1VQzFUkzFXvkiVrySGQgJNvXHJAxiU3/NwiC03rSf05VBaPtu/Z7/B8Yn/w7eguloAAAAAElFTkSuQmCC');
+  }
+
+  div.callout-note.callout-style-default .callout-caption {
+    background-color: #dae6fb
+  }
+
+  div.callout-important {
+    border-left-color: #d9534f !important;
+  }
+
+  div.callout-important .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEKklEQVRYCcVXTWhcVRS+575MJym48A+hSRFr00ySRQhURRfd2HYjk2SSTokuBCkU2o0LoSKKraKIBTcuFCoidGFD08nkBzdREbpQ1EDNIv8qSGMFUboImMSZd4/f9zJv8ibJMC8xJQfO3HPPPef7zrvvvnvviIkpC9nsw0UttFunbUhpFzFtarSd6WJkStVMw5xyVqYTvkwfzuf/5FgtkVoB0729j1rjXwThS7Vio+Mo6DNnvLfahoZ+i/o32lULuJ3NNiz7q6+pyAUkJaFF6JwaM2lUJlV0MlnQn5aTRbEu0SEqHUa0A4AdiGuB1kFXRfVyg5d87+Dg4DL6m2TLAub60ilj7A1Ec4odSAc8X95sHh7+ZRPCFo6Fnp7HfU/fBng/hi10CjCnWnJjsxvDNxWw0NfV6Rv5GgP3I3jGWXumdTD/3cbEOP2ZbOZp69yniG3FQ9z1jD7bnBu9Fc2tKGC2q+uAJOQHBDRiZX1x36o7fWBs7J9ownbtO+n0/qWkvW7UPIfc37WgT6ZGR++EOJyeQDSb9UB+DZ1G6DdLDzyS+b/kBCYGsYgJbSQHuThGKRcw5xdeQf8YdNHsc6ePXrlSYMBuSIAFTGAtQo+VuALo4BX83N190NWZWbynBjhOHsmNfFWLeL6v+ynsA58zDvvAC8j5PkbOcXCMg2PZFk3q8MjI7WAG/Dp9AwP7jdGBOOQkAvlFUB+irtm16I1Zw9YBcpGTGXYmk3kQIC/Cds55l+iMI3jqhjAuaoe+am2Jw5GT3Nbz3CkE12NavmzN5+erJW7046n/CH1RO/RVa8lBLozXk9uqykkGAyRXLWlLv5jyp4RFsG5vGVzpDLnIjTWgnRy2Rr+tDKvRc7Y8AyZq10jj8DqXdnIRNtFZb+t/ZRtXcDiVnzpqx8mPcDWxgARUqx0W1QB9MeUZiNrV4qP+Ehc+BpNgATsTX8ozYKL2NtFYAHc84fG7ndxUPr+AR/iQSns7uSUufAymwDOb2+NjK27lEFocm/EE2WpyIy/Hi66MWuMKJn8RvxIcj87IM5Vh9663ziW36kR0HNenXuxmfaD8JC7tfKbrhFr7LiZCrMjrzTeGx+PmkosrkNzW94ObzwocJ7A1HokLolY+AvkTiD/q1H0cN48c5EL8Crkttsa/AXQVDmutfyku0E7jShx49XqV3MFK8IryDhYVbj7Sj2P2eBxwcXoe8T8idsKKPRcnZw1b+slFTubwUwhktrfnAt7J++jwQtLZcm3sr9LQrjRzz6cfMv9aLvgmnAGvpoaGLxM4mAEaLV7iAzQ3oU0IvD5x9ix3yF2RAAuYAOO2f7PEFWCXZ4C9Pb2UsgDeVnFSpbFK7/IWu7TPTvBqzbGdCHOJQSxiEjt6IyZmxQyEJHv6xyQsYk//moVFsN2zP6fRImjfq7/n/wFDguUQFNEwugAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-important.callout-style-default .callout-caption {
+    background-color: #f7dddc
+  }
+
+  div.callout-warning {
+    border-left-color: #f0ad4e !important;
+  }
+
+  div.callout-warning .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAETklEQVRYCeVWW2gcVRg+58yaTUnizqbipZeX4uWhBEniBaoUX1Ioze52t7sRq6APio9V9MEaoWlVsFasRq0gltaAPuxms8lu0gcviE/FFOstVbSIxgcv6SU7EZqmdc7v9+9mJtNks51NTUH84ed889/PP+cmxP+d5FIbMJmNbpREu4WUkiTtCicKny0l1pIKmBzovF2S+hIJHX8iEu3hZJ5lNZGqyRrGSIQpq15AzF28jgpeY6yk6GVdrfFqdrD6Iw+QlB8g0YS2g7dyQmXM/IDhBhT0UCiRf59lfqmmDvzRt6kByV/m4JjtzuaujMUM2c5Z2d6JdKrRb3K2q6mA+oYVz8JnDdKPmmNthzkAk/lN63sYPgevrguc72aZX/L9C6x09GYyxBgCX4NlvyGUHOKELlm5rXeR1kchuChJt4SSwyddZRXgvwMGvYo4QSlk3/zkHD8UHxwVJA6zjZZqP8v8kK8OWLnIZtLyCAJagYC4rTGW/9Pqj92N/c+LUaAj27movwbi19tk/whRCIE7Q9vyI6yvRpftAKVTdUjOW40X3h5OXsKCdmFcx0xlLJoSuQngnrJe7Kcjm4OMq9FlC7CMmScQANuNvjfP3PjGXDBaUQmbp296S5L4DrpbrHN1T87ZVEZVCzg1FF0Ft+dKrlLukI+/c9ENo+TvlTDbYFvuKPtQ9+l052rXrgKoWkDAFnvh0wTOmYn8R5f4k/jN/fZiCM1tQx9jQQ4ANhqG4hiL0qIFTGViG9DKB7GYzgubnpofgYRwO+DFjh0Zin2m4b/97EDkXkc+f6xYAPX0KK2I/7fUQuwzuwo/L3AkcjugPNixC8cHf0FyPjWlItmLxWw4Ou9YsQCr5fijMGoD/zpdRy95HRysyXA74MWOnscpO4j2y3HAVisw85hX5+AFBRSHt4ShfLFkIMXTqyKFc46xdzQM6XbAi702a7sy04J0+feReMFKp5q9esYLCqAZYw/k14E/xcLLsFElaornTuJB0svMuJINy8xkIYuL+xPAlWRceH6+HX7THJ0djLUom46zREu7tTkxwmf/FdOZ/sh6Q8qvEAiHpm4PJ4a/doJe0gH1t+aHRgCzOvBvJedEK5OFE5jpm4AGP2a8Dxe3gGJ/pAutug9Gp6he92CsSsWBaEcxGx0FHytmIpuqGkOpldqNYQK8cSoXvd+xLxXADw0kf6UkJNFtdo5MOgaLjiQOQHcn+A6h5NuL2s0qsC2LOM75PcF3yr5STuBSAcGG+meA14K/CI21HcS4LBT6tv0QAh8Dr5l93AhZzG5ZJ4VxAqdZUEl9z7WJ4aN+svMvwHHL21UKTd1mqvChH7/Za5xzXBBKrUcB0TQ+Ulgkfbi/H/YT5EptrGzsEK7tR1B7ln9BBwckYfMiuSqklSznIuoIIOM42MQO+QnduCoFCI0bpkzjCjddHPN/F+2Yu+sd9bKNpVwHhbS3LluK/0zgfwD0xYI5dXuzlQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-warning.callout-style-default .callout-caption {
+    background-color: #fcefdc
+  }
+
+  div.callout-tip {
+    border-left-color: #02b875 !important;
+  }
+
+  div.callout-tip .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAADr0lEQVRYCe1XTWgTQRj9ZjZV8a9SPIkKgj8I1bMHsUWrqYLVg4Ue6v9BwZOxSYsIerFao7UiUryIqJcqgtpimhbBXoSCVxUFe9CTiogUrUp2Pt+3aUI2u5vdNh4dmMzOzHvvezuz8xNFM0mjnbXaNu1MvFWRXkXEyE6aYOYJpdW4IXuA4r0fo8qqSMDBU0v1HJUgVieAXxzCsdE/YJTdFcVIZQNMyhruOMJKXYFoLfIfIvVIMWdsrd+Rpd86ZmyzzjJmLStqRn0v8lzkb4rVIXvnpScOJuAn2ACC65FkPzEdEy4TPWRLJ2h7z4cArXzzaOdKlbOvKKX25Wl00jSnrwVxAg3o4dRxhO13RBSdNvH0xSARv3adTXbBdTf64IWO2vH0LT+cv4GR1DJt+DUItaQogeBX/chhbTBxEiZ6gftlDNXTrvT7co4ub5A6gp9HIcHvzTa46OS5fBeP87Qm0fQkr4FsYgVQ7Qg+ZayaDg9jhg1GkWj8RG6lkeSacrrHgDaxdoBiZPg+NXV/KifMuB6//JmYH4CntVEHy/keA6x4h4CU5oFy8GzrBS18cLJMXcljAKB6INjWsRcuZBWVaS3GDrqB7rdapVIeA+isQ57Eev9eCqzqOa81CY05VLd6SamW2wA2H3SiTbnbSxmzfp7WtKZkqy4mdyAlGx7ennghYf8voqp9cLSgKdqNfa6RdRsAAkPwRuJZNbpByn+RrJi1RXTwdi8RQF6ymDwGMAtZ6TVE+4uoKh+MYkcLsT0Hk8eAienbiGdjJHZTpmNjlbFJNKDVAp2fJlYju6IreQxQ08UJDNYdoLSl6AadO+fFuCQqVMB1NJwPm69T04Wv5WhfcWyfXQB+wXRs1pt+nCknRa0LVzSA/2B+a9+zQJadb7IyyV24YAxKp2Jqs3emZTuNnKxsah+uabKbMk7CbTgJx/zIgQYErIeTKRQ9yD9wxVof5YolPHqaWo7TD6tJlh7jQnK5z2n3+fGdggIOx2kaa2YI9QWarc5Ce1ipNWMKeSG4DysFF52KBmTNMmn5HqCFkwy34rDg05gDwgH3bBi+sgFhN/e8QvRn8kbamCOhgrZ9GJhFDgfcMHzFb6BAtjKpFhzTjwv1KCVuxHvCbsSiEz4CANnj84cwHdFXAbAOJ4LTSAawGWFn5tDhLMYz6nWeU2wJfIhmIJBefcd/A5FWQWGgrWzyORZ3Q6HuV+Jf0Bj+BTX69fm1zWgK7By1YTXchFDORywnfQ7GpzOo6S+qECrsx2ifVQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-tip.callout-style-default .callout-caption {
+    background-color: #ccf1e3
+  }
+
+  div.callout-caution {
+    border-left-color: #fd7e14 !important;
+  }
+
+  div.callout-caution .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAACV0lEQVRYCdVWzWoUQRCuqp2ICBLJXgITZL1EfQDBW/bkzUMUD7klD+ATSHBEfAIfQO+iXsWDxJsHL96EHAwhgzlkg8nBg25XWb0zIb0zs9muYYWkoKeru+vn664fBqElyZNuyh167NXJ8Ut8McjbmEraKHkd7uAnAFku+VWdb3reSmRV8PKSLfZ0Gjn3a6Xlcq9YGb6tADjn+lUfTXtVmaZ1KwBIvFI11rRXlWlatwIAAv2asaa9mlB9wwygiDX26qaw1yYPzFXg2N1GgG0FMF8Oj+VIx7E/03lHx8UhvYyNZLN7BwSPgekXXLribw7w5/c8EF+DBK5idvDVYtEEwMeYefjjLAdEyQ3M9nfOkgnPTEkYU+sxMq0BxNR6jExrAI31H1rzvLEfRIdgcv1XEdj6QTQAS2wtstEALLG1yEZ3QhH6oDX7ExBSFEkFINXH98NTrme5IOaaA7kIfiu2L8A3qhH9zRbukdCqdsA98TdElyeMe5BI8Rs2xHRIsoTSSVFfCFCWGPn9XHb4cdobRIWABNf0add9jakDjQJpJ1bTXOJXnnRXHRf+dNL1ZV1MBRCXhMbaHqGI1JkKIL7+i8uffuP6wVQAzO7+qVEbF6NbS0LJureYcWXUUhH66nLR5rYmva+2tjRFtojkM2aD76HEGAD3tPtKM309FJg5j/K682ywcWJ3PASCcycH/22u+Bh7Aa0ehM2Fu4z0SAE81HF9RkB21c5bEn4Dzw+/qNOyXr3DCTQDMBOdhi4nAgiFDGCinIa2owCEChUwD8qzd03PG+qdW/4fDzjUMcE1ZpIAAAAASUVORK5CYII=');
+  }
+
+  div.callout-caution.callout-style-default .callout-caption {
+    background-color: #ffe5d0
+  }
+
+  </style>
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+
+<section id="title-slide" class="slide level2 center" data-background="images/horn.JPG">
+<h2></h2>
+<div class="title-box">
+<h2>
+Introduction to Statistical Computing
+</h2>
+<p>👨‍💻 <span class="author">Eugene Hickey @ Atlantic Technological University</span> 👨‍💻</p>
+<div style="overflow: hidden; height: 1.2em;">
+<ul class="content__container__list top" style="text-align: top">
+<li class="content__item">
+<i class="fa-solid fa-envelope"></i> eugene.hickey@tudublin.ie
+</li>
+<li class="content__item">
+<i class="fa-brands fa-mastodon"></i> <span class="citation" data-cites="eugene100hickey">@eugene100hickey</span>
+</li>
+<li class="content__item">
+<i class="fa-brands fa-github"></i> github.com/eugene100hickey
+</li>
+<li class="content__item">
+<i class="fa-solid fa-globe"></i> www.fizzics.ie
+</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="week-one" class="slide level2">
+<h2>Week One</h2>
+<ul>
+<li><p>Welcome to the course on statistical computing.</p></li>
+<li><p>We will discuss how to make the most of your data.</p></li>
+<li><p>Complimentary to the qualitative analysis you do with John.</p></li>
+<li><p>Goal here is to provides skills in data analysis.</p></li>
+<li><p>We’ll learn to use a software system called <strong><em>R</em></strong>.</p></li>
+</ul>
+</section>
+<section id="acknowledgments" class="title-slide slide level1 center">
+<h1>Acknowledgments</h1>
+<div class="columns">
+<div class="column" style="width:40%;">
+<p><img data-src="images/Ruth-Moran.jpg" class="absolute" style="right: 85%; width: 200px; "> <img data-src="images/quarto.jpg" class="absolute" style="bottom: 10%; right: 65%; width: 200px; "> <img data-src="images/rexams.svg" class="absolute" style="right: 65%; width: 200px; "></p>
+</div><div class="column" style="width:60%;">
+<ul>
+<li><p><a href="https://www.itsligo.ie/research/research-office/">Ruth Moran</a>, co-pilot for this workshop Graduate Research &amp; Education Training Officer.</p></li>
+<li><p>slides produced using <a href="https://quarto.org/">quarto</a></p></li>
+<li><p>assessments produced using <a href="https://www.r-exams.org/">Rexams</a></p></li>
+</ul>
+</div>
+</div>
+</section>
+
+<section id="target-audience" class="title-slide slide level1 center">
+<h1>Target Audience</h1>
+<ul>
+<li><p>Graduate students looking for better ways to present their data.</p></li>
+<li><p>People currently using tools like MS Excel for analysis.</p></li>
+</ul>
+</section>
+
+<section id="why-r" class="title-slide slide level1 center">
+<h1>Why R?</h1>
+<ul>
+<li><p>Working with a mouse isn’t reproducible</p>
+<ul>
+<li>difficult to log exactly what you’ve done</li>
+<li>hard to repeat for a series of analyses</li>
+<li>difficult to be inspired by other people’s work</li>
+</ul></li>
+<li><p>Good to separate sources of data from the analysis</p></li>
+<li><p>R uses series of commands that input, manipulate, and display data</p></li>
+<li><p>Lots of contributors around the globe, diverse fields</p>
+<ul>
+<li>this is the world of open source software</li>
+</ul></li>
+</ul>
+</section>
+
+<section>
+<section id="course-outline" class="title-slide slide level1 center">
+<h1>Course Outline</h1>
+<ol type="1">
+<li><p>Introduction to Statistical Computing &amp; R - <em>Wednesday May 10th</em></p></li>
+<li><p>Getting and Cleaning Data - <em>Wednesday May 17th</em></p></li>
+<li><p>Manipulating Data - <em>Wednesday May 24th</em></p></li>
+<li><p>Statistical Inference - <em>Wednesday May 31st</em></p></li>
+<li><p>Data Visualisation - <em>Wednesday June 7th</em></p></li>
+</ol>
+</section>
+<section id="stuff-we-wont-be-doing" class="slide level2">
+<h2>Stuff we won’t be doing</h2>
+<ol type="1">
+<li><p>creating functions, iterating</p></li>
+<li><p>R is cracker at machine learning</p></li>
+<li><p>also great at making documents and presentations using <a href="https://quarto.org/">quarto</a></p></li>
+<li><p>and websites and blogs</p></li>
+</ol>
+</section>
+<section id="assessment" class="slide level2">
+<h2>Assessment</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<ul>
+<li><span style="color: darkred; font-weight: bold;">Weekly online quizzes</span>
+<ul>
+<li>get three attempts</li>
+<li>best mark from the three</li>
+<li>some multiple choice, some open answer</li>
+<li>based on this weeks lecture</li>
+</ul></li>
+<li><span style="color: darkred; font-weight: bold;">Exercises to be done within R</span>
+<ul>
+<li>these are called <code>swirl()</code></li>
+<li>results get emailed to me automatically</li>
+</ul></li>
+</ul>
+</div><div class="column" style="width:40%;">
+<ul>
+<li><span style="color: darkred; font-weight: bold;">Project at end of course</span>
+<ul>
+<li>somewhat optional, can either do one on John’s section or on this part, or a combination</li>
+<li>best to do something associated with your research that can be useful beyond this module</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</section></section>
+<section id="resources" class="title-slide slide level1 center">
+<h1>Resources</h1>
+<ul>
+<li><a href="https://www.bigbookofr.com/index.html">Big Book of R</a></li>
+</ul>
+</section>
+
+<section id="books" class="title-slide slide level1 center">
+<h1>Books</h1>
+<ul>
+<li><em>recommended text</em></li>
+<li><a href="https://r4ds.had.co.nz/">Hadley’s book, R for Data Science</a></li>
+<li><a href="https://www.epirhandbook.com/en/index.html">The Epidemiologist R Handbook</a></li>
+<li><a href="https://datascienceineducation.com/">Data Science in Education Using R</a></li>
+<li><a href="https://serialmentor.com/dataviz/">Data Visualization by Wilke</a>, lots of his actual code is on github at <a href="https://github.com/clauswilke/practical_ggplot2" class="uri">https://github.com/clauswilke/practical_ggplot2</a></li>
+<li>Data Visualization by Kieran Healy (ISBN = 978-0691181622). ~€25. Also online at <a href="https://socviz.co/index.html" class="uri">https://socviz.co/index.html</a></li>
+<li>check out the list of online books at <a href="bookdown.org">bookdown.org</a></li>
+</ul>
+<p><img data-src="images/hadley.jpg" class="absolute" style="bottom: 10px; right: 10px; width: 100px; "></p>
+</section>
+
+<section id="websites" class="title-slide slide level1 center">
+<h1>Websites</h1>
+<ul>
+<li><p>Karl Broman (https://www.biostat.wisc.edu/~kbroman/), and particularly <a href="https://www.biostat.wisc.edu/~kbroman/presentations/graphs_MDPhD2014.pdf">this presentation</a></p></li>
+<li><p>course by Boemhke on github <a href="https://github.com/uc-r/Intro-R">github.com/uc-r/Intro-R</a></p></li>
+<li><p>the good people at RStudio have lots of help at <a href="https://resources.rstudio.com/">resources.rstudio.com/</a></p></li>
+<li><p><a href="https://cedricscherer.netlify.com/2019/08/05/a-ggplot2-tutorial-for-beautiful-plotting-in-r/">Cedric</a>.</p></li>
+<li><p><a href="https://www.r-graph-gallery.com/index.html">The R Graph Gallery</a> is pretty good and worth checking out</p></li>
+</ul>
+<p><img data-src="https://github.com/yihui/xaringan/releases/download/v0.0.2/karl-moustache.jpg" class="absolute" style="bottom: 10px; right: 10px; width: 100px; "></p>
+</section>
+
+<section id="blogs-and-podcasts" class="title-slide slide level1 center">
+<h1>Blogs and Podcasts</h1>
+<ul>
+<li><p><a href="www.simplystatistics.org">www.simplystatistics.org</a></p></li>
+<li><p><a href="http://varianceexplained.org/">varianceexplained.org</a></p></li>
+<li><p><a href="http://nssdeviations.com/">Not So Standard Deviations</a></p></li>
+<li><p><a href="https://github.com/thomasp85/ggplot2_workshop">Thomas Lin Pedersen video</a></p></li>
+<li><p><a href="https://www.youtube.com/@safe4democracy/streams">David Robinson’s screencasts</a></p></li>
+</ul>
+<p><img data-src="images/hillary.jpeg" class="absolute" style="bottom: 10px; right: 10px; width: 100px; "></p>
+</section>
+
+<section id="online-courses" class="title-slide slide level1 center">
+<h1>Online Courses</h1>
+<ul>
+<li><p>Coursera: <a href="https://www.coursera.org/specializations/jhu-data-science">Data Science from Johns Hopkins</a>. The course notes are on <a href="http://datasciencespecialization.github.io/">github</a></p></li>
+<li><p>edx.org <a href="https://www.edx.org/course/data-science-visualization">course from Irizarry</a></p></li>
+</ul>
+<p><img data-src="../images/rafael.jpg" class="absolute" style="bottom: 10px; right: 10px; width: 100px; "></p>
+</section>
+
+<section id="miscellaneous" class="title-slide slide level1 center">
+<h1>Miscellaneous</h1>
+<ul>
+<li><p><a href="https://www.meetup.com/DublinR/">R MeetUp</a></p></li>
+<li><p><a href="rweekly.org">RWeekly.org</a>, round up of events in the world of R</p></li>
+<li><p><a href="https://mastodon.social/tags/rstats">#Rstats on</a> <span style="text-decoration:line-through;">twitter</span> <a href="https://mastodon.social/tags/rstats">Mastodon</a></p></li>
+<li><p><a href="https://twitter.com/search?q=%23TidyTuesday&amp;src=typeahead_click">#TidyTuesday</a> on twitter</p></li>
+<li><p><a href="https://rstudio.com/resources/cheatsheets/">R Cheatsheets</a></p></li>
+<li><p>if you get stuck, google is your friend. Often sends you to stackoverflow.com or stackexchange.com</p></li>
+</ul>
+</section>
+
+<section>
+<section id="installing-r-and-rstudio" class="title-slide slide level1 center">
+<h1>Installing R and RStudio</h1>
+<ul>
+<li><p>first R from <a href="https://cran.r-project.org/">CRAN</a></p>
+<ul>
+<li><strong>R</strong> is the engine</li>
+</ul></li>
+<li><p>then RStudio from <a href="https://posit.co/download/rstudio-desktop/">Posit</a></p>
+<ul>
+<li><strong>RStudio</strong> is the cockpit</li>
+</ul></li>
+<li><p>alternative is to make an account at <a href="https://posit.cloud/">Posit Cloud</a></p>
+<ul>
+<li>give 25 hours per month</li>
+</ul></li>
+<li><p>R is case sensitive</p></li>
+<li><p><a href="https://learnr-examples.shinyapps.io/ex-setup-r/#section-welcome">This</a> is a nice tutorial suite to explain installing R and RStudio:</p></li>
+</ul>
+</section>
+<section id="rstudio-screen" class="slide level2">
+<h2>RStudio Screen</h2>
+<p><img data-src="images/rstudio.png" class="absolute" style="top: 50px; right: 10px; width: 70%; "></p>
+</section>
+<section id="using-rstudio" class="slide level2">
+<h2>Using RStudio</h2>
+<ul>
+<li>toolbar across the top
+<ul>
+<li>I don’t use this very much</li>
+</ul></li>
+<li>set of quick links below that
+<ul>
+<li>top left (green plus sign) is about the only one I use</li>
+</ul></li>
+<li>4 Panes
+<ul>
+<li>top left for files or looking at data</li>
+<li>bottom left for the console</li>
+<li>top right for <em>Environment</em> - tells what variables are stored</li>
+<li>bottom right for plots and help</li>
+</ul></li>
+</ul>
+</section>
+<section id="using-rstudio-continued" class="slide level2">
+<h2>Using RStudio (continued)</h2>
+<ul>
+<li>usual work flow is:
+<ul>
+<li>try commands out at the console (bottom left)</li>
+<li>when that works, store them in a file (top left)</li>
+<li>when sequence of commands works, put them into a document (also top left)</li>
+</ul></li>
+</ul>
+</section>
+<section id="extending-r" class="slide level2">
+<h2>Extending R</h2>
+<ul>
+<li>installing R just gives you <em>base</em> R</li>
+<li>beauty of this tool lies with <em>packages</em> 📦</li>
+<li>we’ll look at installing these from three sources:
+<ul>
+<li>CRAN</li>
+<li>Bioconductor</li>
+<li>github</li>
+</ul></li>
+</ul>
+</section>
+<section id="cran" class="slide level2">
+<h2>CRAN</h2>
+<ul>
+<li><a href="https://cran.r-project.org/">CRAN</a>
+<ul>
+<li>example, on console type <code>install.packages("palmerpenguins")</code></li>
+<li>this installs the <em>palmerpenguins</em> package (we’ll need this for this week’s quiz)</li>
+<li>over 20k packages on CRAN (see list <a href="http://cran.nexr.com/web/packages/available_packages_by_name.html">here</a>)</li>
+<li>sometimes esoteric (<a href="http://cran.nexr.com/web/packages/engsoccerdata/index.html">engsoccerdata</a>)</li>
+<li>sometimes cutting edge (<a href="http://cran.nexr.com/web/packages/keras/index.html">deep learning</a>)</li>
+<li>each package heavily curated and maintained</li>
+<li><a href="https://cran.r-project.org/">Task Views</a> good place to start looking</li>
+</ul></li>
+</ul>
+</section>
+<section id="bioconductor" class="slide level2">
+<h2>Bioconductor</h2>
+<ul>
+<li><a href="www.bioconductor.org">Bioconductor</a>
+<ul>
+<li>set of bioinformatics packages (lots of genomics)</li>
+<li>start with <code>install.packages("BiocManager")</code></li>
+<li>then <code>BiocManager::install("some_genomics_package")</code> to use</li>
+<li>list of packages <a href="http://bioconductor.org/packages/release/BiocViews.html">here</a></li>
+<li>about 3,000 packages, including genome builds</li>
+</ul></li>
+</ul>
+</section>
+<section id="github" class="slide level2">
+<h2>Github</h2>
+<ul>
+<li>github
+<ul>
+<li>packages in development</li>
+<li>start with <code>install.packages("devtools")</code></li>
+<li>then <code>devtools::install_github("developer_name/package_name")</code></li>
+<li>almost 80k packages <a href="http://rpkg.gepuro.net/">here</a></li>
+<li>the package <em>githubinstall</em> is useful to search these</li>
+</ul></li>
+</ul>
+</section>
+<section id="installing-packages" class="slide level2">
+<h2>Installing Packages</h2>
+<ul>
+<li>try <code>install.packages("scales")</code>
+<ul>
+<li>will add functions from someone else’s work so you can use it</li>
+<li>need to do this just once</li>
+<li>to actually make this available, type <code>library(scales)</code></li>
+<li>do this every time you start R and want to use <em>scales</em> package</li>
+</ul></li>
+<li>one package we’ll need is <em>tidyverse</em>, <code>install.packages("tidyverse")</code>
+<ul>
+<li>this might take a few minutes because such a large collection of packages</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2">
+
+<ol type="1">
+<li>Using the Console</li>
+<li>Storing Values</li>
+<li>Fundamental Data Types</li>
+<li>The Dataframe - Rows <span class="math inline">\(\times\)</span> Columns</li>
+<li>Dataframe Columns</li>
+<li>Subsets of Dataframes</li>
+<li>Small Useful Functions</li>
+</ol>
+</section>
+<section id="using-the-console" class="slide level2">
+<h2>Using the Console</h2>
+<ul>
+<li>R is a calculator</li>
+<li>can type, say, <code>45 + 17</code> and get the answer back</li>
+<li><em>*</em> is multiply, <em>/</em> is divide</li>
+<li>get constants like <em>pi</em> for <span class="math inline">\(\pi\)</span></li>
+<li>can run functions from the console like, say, <code>sqrt(x=49)</code> (or just <code>sqrt(49)</code>)</li>
+<li>can get help on these functions by typing, say, <code>?sqrt</code></li>
+<li>to get list of help in the base package try <code>base::</code> and then press <em>tab</em></li>
+</ul>
+</section>
+<section id="storing-values" class="slide level2">
+<h2>Storing Values</h2>
+<ul>
+<li>results of calculations can be stored</li>
+<li>do this with <code>my_square_root_result &lt;- sqrt(49)</code></li>
+<li>the <code>&lt;-</code> reads as <em>gets</em> (can also us equals sign, <em>=</em>, but that’s sloppy)</li>
+<li>keyboard short cut for <em>&lt;-</em> is <em>alt</em> and <em>-</em> simultaneously</li>
+<li>full list of RStudio shortcuts in <em>Help</em> on the toolbar (ironically, of course, there is a keyboard shortcut for keyboard shortcuts help)</li>
+<li>list of stored values given in the <em>Environment</em> tab of RStudio</li>
+</ul>
+</section>
+<section id="fundamental-data-types" class="slide level2">
+<h2>Fundamental Data Types</h2>
+<ul>
+<li><em>numeric</em> (or <em>double</em>) is for numbers with decimals. Default for numbers.</li>
+<li><em>integer</em> for counting numbers. Type in <code>x &lt;- 72L</code> to get integer 72</li>
+<li><em>logical</em> gives <em>TRUE</em> and <em>FALSE</em></li>
+<li><em>character</em> gives text. Try typing <code>x &lt;- "I am Groot"</code>.
+<ul>
+<li>Equivalent is <code>x &lt;- 'I am Groot'</code></li>
+</ul></li>
+<li><em>complex</em> is for stuff like <em>14 + 3i</em>. I’ve never used these. Ironically <code>sqrt(-1)</code> gives an error rather than <em>i</em></li>
+<li><em>factor</em>. These deserve fuller explanation and get a slide of their own.</li>
+</ul>
+</section>
+<section id="factors" class="slide level2">
+<h2>Factors</h2>
+<ul>
+<li>super useful when only limited number of possible values for a variable</li>
+<li>examples like <em>female</em> / <em>male</em> or <em>Alabama</em> / <em>Alaska</em> / …. <em>Wyoming</em></li>
+<li>possible values are called <em>levels</em></li>
+<li>levels have an order, default is alphabetical but can adjust this</li>
+<li><em>forcats</em> package in the tidyverse deals with factors</li>
+<li>have big impact on figures
+<ul>
+<li>figures will look different depending on whether a variable is a factor or a character</li>
+<li>legend will be in the order of levels of a factor</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2">
+
+<ul>
+<li>can change between data types using the <em>as.</em> functions
+<ul>
+<li>e.g.&nbsp;<code>as.character()</code>, <code>as.numeric()</code></li>
+<li>check out all the function in <em>forcats</em> for dealing with factors</li>
+</ul></li>
+<li>can figure out the data type using the <code>class()</code> function</li>
+</ul>
+</section>
+<section id="data-frames" class="slide level2">
+<h2>Data Frames</h2>
+<ul>
+<li>these are the workhorse of R data types</li>
+<li>look like spreadsheets</li>
+<li>we’ll work with them a lot</li>
+<li>organised by <em>rows</em> (across) and <em>columns</em> (down)</li>
+<li>each column must have the same type</li>
+<li>can examine data frames using the <code>View()</code> function (note, capital “V”)</li>
+<li>can find column names using the <code>names()</code> function</li>
+<li>related concepts are <em>tibbles</em> and <em>data.tables</em></li>
+</ul>
+</section>
+<section id="subsets-of-data-frames" class="slide level2">
+<h2>Subsets of Data Frames</h2>
+<ul>
+<li>can access individual column elements by specifying the row and column position
+<ul>
+<li>e.g.&nbsp;<code>mtcars[2, 5]</code> is the 2nd row of the fifth column</li>
+</ul></li>
+<li>can access an entire row by leaving the column part blank
+<ul>
+<li>e.g.&nbsp;<code>mtcars[2, ]</code> is the whole 2nd row</li>
+</ul></li>
+<li>likewise get the entire column by leaving the row slot empty
+<ul>
+<li>e.g.&nbsp;<code>mtcars[,5]</code> is the entire 5th column</li>
+</ul></li>
+</ul>
+</section>
+<section id="subsets-of-data-frames-1" class="slide level2">
+<h2>Subsets of Data Frames</h2>
+<ul>
+<li>can also access columns using the dollar sign, <strong>$</strong>
+<ul>
+<li>e.g.&nbsp;<code>mtcars$cyl</code> gives the 2nd column, called <em>cyl</em><br>
+</li>
+<li>note <code>mtcars$cyl[2]</code> gives the second element of this</li>
+</ul></li>
+<li>can use a number range using <em>:</em> to get a bunch of values
+<ul>
+<li>e.g.&nbsp;<code>mtcars[1:4, 2:4]</code> takes a chunk of the mtcars data frame</li>
+</ul></li>
+</ul>
+</section>
+<section id="lists" class="slide level2">
+<h2>Lists</h2>
+<ul>
+<li><p>dataframes have constraints</p>
+<ul>
+<li><p>all columns must be the same type</p></li>
+<li><p>rows and columns must be the same length</p></li>
+</ul></li>
+<li><p><code>lists</code> are more general</p></li>
+<li><p>example, <code>list_data &lt;- list(c("Jan","Feb","Mar"), matrix(c(3,9,5,1,-2,8), nrow = 2),    list("green",12.3))</code></p></li>
+<li><p><code>list_data[[1]]</code> gives the three months, etc</p>
+<ul>
+<li>note the double square bracket,<code>[[ ]]</code></li>
+</ul></li>
+</ul>
+</section>
+<section id="some-useful-functions" class="slide level2">
+<h2>Some Useful Functions</h2>
+<ul>
+<li><code>c()</code> let’s you create a vector of quantities. Coerced to same type</li>
+<li><code>is.na()</code> to check if a missing value, <code>sum(is.na())</code> gives total of these</li>
+<li><code>dim()</code> gives number of rows / columns in data frame, also <code>length()</code></li>
+<li><code>class()</code> for nature of variable</li>
+<li><code>summary()</code>, <code>str()</code>, <code>glimpse()</code> show data frame parameters. Also <code>skim()</code> from the <em>skimr</em> package</li>
+<li>I use <code>%in%</code> quite a bit, checks if value is among a bunch of values
+<ul>
+<li><code>"August" %in% month.name</code></li>
+<li><code>"£" %in% letters</code></li>
+</ul></li>
+</ul>
+</section>
+<section id="some-useful-functions-1" class="slide level2">
+<h2>Some Useful Functions</h2>
+<ul>
+<li><code>Sys.date()</code>, <code>Sys.time()</code></li>
+<li><code>ls()</code> gives list of variables</li>
+<li><code>file.list()</code> gives list of files</li>
+<li><code>sessionInfo()</code> tells you what packages are loaded</li>
+<li><code>citation()</code> tells you about a package</li>
+<li><code>mean()</code> calculates mean of a vector, <code>sd()</code> the standard deviation</li>
+<li><code>complete.cases()</code> returns <code>TRUE</code> if there are no missing values in a row</li>
+</ul>
+</section>
+<section id="and-some-weird-characters" class="slide level2">
+<h2>And Some Weird Characters</h2>
+<ul>
+<li>get to use a lot of the keyboard in R
+<ul>
+<li>we’ve seen <code>$</code> to extract a column of a data frame</li>
+<li><code>()</code> are arguments to functions</li>
+<li><code>[]</code> are gateways to data frame elements</li>
+<li><code>%&gt;%</code> is called the pipe and is really cool. <em>Ctrl + Shift + M</em> shortcut</li>
+<li>some logical operators: <code>!</code> is NOT, <code>|</code> (or <code>||</code>) is OR, <code>&amp;</code> (or <code>&amp;&amp;</code>) is AND</li>
+</ul></li>
+</ul>
+</section></section>
+<section>
+<section id="workshop---week-one" class="title-slide slide level1 center">
+<h1>Workshop - Week One</h1>
+
+</section>
+<section id="perform-the-following-tasks" class="slide level2">
+<h2>Perform the Following Tasks:</h2>
+<div style="font-size: 50%; list-style-position: outside; padding-left: 0em;">
+<ol type="1">
+<li><p>multiply the numbers <span class="math inline">\(25\times \pi\)</span> and save the result to my_first_result</p></li>
+<li><p>make a vector of five numbers e.g.&nbsp;34.1, 54.4, 71.5, 93.8, 22.6 and save them to my_second_result</p></li>
+<li><p>multiply my_second_result by 7 and print the results</p></li>
+<li><p>print the <code>airquality</code> dataset</p></li>
+<li><p>examine the <code>airquality</code> dataset using <code>summary()</code>, <code>str()</code>, and <code>glimpse()</code>. For the latter you’ll need the <em>tidyverse</em> library.</p></li>
+<li><p>store the values of <code>Temp</code> from the <code>airquality</code> dataset in a new variable you can call <code>temperature</code></p></li>
+<li><p>calculate the <code>mean()</code> of <code>temperature</code></p></li>
+<li><p>calculate the standard deviation, <code>sd()</code>, of <code>temperature</code></p></li>
+<li><p>find the names of the columns in the <code>Puromycin</code> dataset</p></li>
+<li><p>look up the help for the <code>USJudgeRatings</code> dataset and find out what is meant by the “DECI” column name</p></li>
+<li><p>install and load up the package <em>dslabs</em>. Use <code>is.na()</code> and <code>sum()</code> to find the number of missing values in the <code>us_contagious_diseases</code> dataset</p></li>
+<li><p>what kind of variable is stored in <code>olive$area</code>?</p></li>
+<li><p>what are the levels of the factor in <code>olive$region</code>?</p></li>
+</ol>
+</div>
+</section>
+<section id="assignments---week-one" class="slide level2">
+<h2>Assignments - Week One</h2>
+<ol type="1">
+<li><p>Complete week one moodle quiz</p></li>
+<li><p>Complete <code>swirl()</code> exercises</p></li>
+</ol>
+<div style="font-size: 80%; margin-left: 150px;">
+<ul>
+<li><p><code>install.packages("swirl")</code></p></li>
+<li><p><code>library(swirl)</code></p></li>
+<li><p><code>install_course("R Programming E")</code></p></li>
+<li><p><code>swirl()</code></p></li>
+<li><p>choose course <em>R Programming E</em></p></li>
+<li><p>do the four exercises 1 (basic Building Blocks) to 4 (Vectors)</p></li>
+<li><p>email the results to eugene.hickey@associate.atu.ie</p></li>
+</ul>
+</div>
+<p><img src="images/atu-logo.png" class="slide-logo"></p>
+<div class="footer footer-default">
+<p><a href="https://vlesligo.atu.ie">Statistical Computing</a></p>
+</div>
+</section></section>
+    </div>
+  </div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="01-introduction_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="01-introduction_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="01-introduction_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="01-introduction_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="01-introduction_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="01-introduction_files/libs/revealjs/plugin/multiplex/socket.io.js"></script>
+  <script src="01-introduction_files/libs/revealjs/plugin/multiplex/multiplex.js"></script>
+  <script src="01-introduction_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="01-introduction_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="01-introduction_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="01-introduction_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="01-introduction_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': false,
+'previewLinksAuto': false,
+'smaller': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'multiplex': {"secret":"16822382838713738234","id":"785f476c5b600fe6","url":"https://reveal-multiplex.glitch.me/"},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: true,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'slide',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'fast',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1280,
+
+        height: 720,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
+    <script id="quarto-html-after-body" type="application/javascript">
+    window.document.addEventListener("DOMContentLoaded", function (event) {
+      const toggleBodyColorMode = (bsSheetEl) => {
+        const mode = bsSheetEl.getAttribute("data-mode");
+        const bodyEl = window.document.querySelector("body");
+        if (mode === "dark") {
+          bodyEl.classList.add("quarto-dark");
+          bodyEl.classList.remove("quarto-light");
+        } else {
+          bodyEl.classList.add("quarto-light");
+          bodyEl.classList.remove("quarto-dark");
+        }
+      }
+      const toggleBodyColorPrimary = () => {
+        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+        if (bsSheetEl) {
+          toggleBodyColorMode(bsSheetEl);
+        }
+      }
+      toggleBodyColorPrimary();  
+      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+      tabsets.forEach(function(tabset) {
+        const tabby = new Tabby('#' + tabset.id);
+      });
+      const clipboard = new window.ClipboardJS('.code-copy-button', {
+        target: function(trigger) {
+          return trigger.previousElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        // button target
+        const button = e.trigger;
+        // don't keep focus
+        button.blur();
+        // flash "checked"
+        button.classList.add('code-copy-button-checked');
+        var currentTitle = button.getAttribute("title");
+        button.setAttribute("title", "Copied!");
+        let tooltip;
+        if (window.bootstrap) {
+          button.setAttribute("data-bs-toggle", "tooltip");
+          button.setAttribute("data-bs-placement", "left");
+          button.setAttribute("data-bs-title", "Copied!");
+          tooltip = new bootstrap.Tooltip(button, 
+            { trigger: "manual", 
+              customClass: "code-copy-button-tooltip",
+              offset: [0, -8]});
+          tooltip.show();    
+        }
+        setTimeout(function() {
+          if (tooltip) {
+            tooltip.hide();
+            button.removeAttribute("data-bs-title");
+            button.removeAttribute("data-bs-toggle");
+            button.removeAttribute("data-bs-placement");
+          }
+          button.setAttribute("title", currentTitle);
+          button.classList.remove('code-copy-button-checked');
+        }, 1000);
+        // clear code selection
+        e.clearSelection();
+      });
+      function tippyHover(el, contentFn) {
+        const config = {
+          allowHTML: true,
+          content: contentFn,
+          maxWidth: 500,
+          delay: 100,
+          arrow: false,
+          appendTo: function(el) {
+              return el.closest('section.slide') || el.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'quarto-reveal',
+          placement: 'bottom-start'
+        };
+          config['offset'] = [0,0];
+          config['maxWidth'] = 700;
+        window.tippy(el, config); 
+      }
+      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+      for (var i=0; i<noterefs.length; i++) {
+        const ref = noterefs[i];
+        tippyHover(ref, function() {
+          // use id or data attribute instead here
+          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+          try { href = new URL(href).hash; } catch {}
+          const id = href.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          return note.innerHTML;
+        });
+      }
+      const findCites = (el) => {
+        const parentEl = el.parentElement;
+        if (parentEl) {
+          const cites = parentEl.dataset.cites;
+          if (cites) {
+            return {
+              el,
+              cites: cites.split(' ')
+            };
+          } else {
+            return findCites(el.parentElement)
+          }
+        } else {
+          return undefined;
+        }
+      };
+      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+      for (var i=0; i<bibliorefs.length; i++) {
+        const ref = bibliorefs[i];
+        const citeInfo = findCites(ref);
+        if (citeInfo) {
+          tippyHover(citeInfo.el, function() {
+            var popup = window.document.createElement('div');
+            citeInfo.cites.forEach(function(cite) {
+              var citeDiv = window.document.createElement('div');
+              citeDiv.classList.add('hanging-indent');
+              citeDiv.classList.add('csl-entry');
+              var biblioDiv = window.document.getElementById('ref-' + cite);
+              if (biblioDiv) {
+                citeDiv.innerHTML = biblioDiv.innerHTML;
+              }
+              popup.appendChild(citeDiv);
+            });
+            return popup.innerHTML;
+          });
+        }
+      }
+    });
+    </script>
+    <link rel="stylesheet" href="assets/syntax-highlight.css">
+    <link rel="stylesheet" href="../assets/fontawesome-free-6.1.1-web/css/all.min.css">
+    <script src="../assets/fontawesome-free-6.1.1-web/js/all.min.js"></script>
+    
+
+</body></html>

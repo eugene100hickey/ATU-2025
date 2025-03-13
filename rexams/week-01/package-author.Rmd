@@ -1,0 +1,63 @@
+```{r data generation, echo = FALSE, results = "hide", message=F, warning=F}
+library(exams)
+library(tidyverse)
+library(gt)
+library(RefManageR)
+library(showtext)
+
+font_add_google(name = "Caveat", family = "Caveat")
+showtext_auto()
+
+my_packages <- c("sf", "showtext", "rtoot", 
+                 "ggtext", "palmerpenguins", 
+                 "sen2r", "SPADAR", "beepr",
+                 "terra", "ggokabeito", "countrycode",
+                 "extrafont", "ggchicklet","qrcode") |> 
+  sample()
+author_name <- function(package = "sf") {
+  z <- citation(package) |> as.BibEntry() |> as.data.frame() |> pull(author)
+  z[1]
+}
+my_authors <- map_chr(my_packages, author_name)
+
+```
+
+
+Question
+========
+Who is the author(s)/maintainer(s) of the **`r my_packages[1]`** package?
+
+Answerlist
+----------
+* `r my_authors[1]`
+* `r my_authors[2]`
+* `r my_authors[3]`
+* `r my_authors[4]`
+* `r my_authors[5]`
+* `r my_authors[6]`
+* `r my_authors[7]`
+* `r my_authors[8]`
+
+
+Solution
+========
+Use the R command `citation("package name")` to find out. Make sure the package is installed on your system first using `install.packages("package name")`
+
+Answerlist
+----------
+* True
+* False
+* False
+* False
+* False
+* False
+* False
+* False
+
+
+Meta-information
+================
+exname: R package authors
+extype: schoice
+exsolution: 10000000
+exshuffle: 5

@@ -1,0 +1,55 @@
+```{r data generation, echo = FALSE, results = "hide", message=F, warning=F}
+library(exams)
+library(tidyverse)
+
+titanic <- Titanic |> 
+  as_tibble() |> 
+  janitor::clean_names() |> 
+  mutate(class = as.factor(class),
+         sex = as.factor(sex),
+         age = as.factor(age),
+         survived = as.factor(survived))
+
+
+repeat{
+  class <- levels(titanic$class) |>
+    sample(1)
+  age <- levels(titanic$age) |>
+    sample(1)
+  sex <- levels(titanic$sex) |>
+    sample(1)
+  survived <- levels(titanic$survived) |>
+    sample(1)
+  
+  z <- prop.table(Titanic)
+  
+  solution <- (z[class, sex, age, survived] /
+                 (z[class, sex, age, "Yes"] + z[class, sex, age, "No"])) |>
+    signif(3)
+  if (!is.na(solution) & solution < 1) {
+    break
+  }
+}
+
+```
+
+
+Question
+========
+The `Titanic` dataset contains tabular information on survival statistics from the sinking of the [Titanic](https://en.wikipedia.org/wiki/Titanic) in 1912. You  can see this table by typing _Titanic_ at the console.
+
+What proportion of `r sex |> tolower()`, `r class` class, `r ifelse(age == "Child", "children", "adult")` passengers `r ifelse(survived == "Yes", "survived", "perished in")` the sinking?
+
+
+Solution
+========
+Use the R command `prop.table(Titanic)` and then calculate the fraction of `Survived` "Yes" and "No".
+
+
+
+Meta-information
+================
+extype: num
+exsolution: `r solution`
+exname: titanic-table
+extol: `r solution*0.05`

@@ -1,0 +1,795 @@
+---
+title: "Data Visualisation"
+abstract: |
+ This is the fifth of a five part series of lectures as part of the data handling postgraduate module in Atlantic Technological University. 
+author: "Eugene Hickey"
+date: "June 2023"
+host: "Sligo Campus"
+institute: "Atlantic Technological University"
+output:
+  xaringan::moon_reader:
+    css: 
+      - default
+      - assets/custom.css
+      - assets/tachyons-addon.css
+      - assets/hygge.css
+    lib_dir: libs
+    includes:
+      in_header: favicon.html
+    seal: false
+    self_contained: true
+    nature:
+      highlightStyle: googlecode
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: "16:9"
+      beforeInit: "macros.js"
+      slideNumberFormat: |
+        <div class="progress-bar-container">
+          <div class="progress-bar" style="width: calc(%current% / %total% * 100%);">
+          </div>
+        </div>
+---
+
+class: title-slide, right, top
+background-image: url(images/flowers.JPG)
+background-position: 90% 75%, 75% 75%
+background-size:cover
+
+
+```{r setup, include = FALSE}
+library(tidyverse)
+
+rotating_text <- function(x, align = "top") {
+  glue::glue('
+<div style="overflow: hidden; height: 1.2em;">
+<ul class="content__container__list {align}" style="text-align: {align}">
+<li class="content__item">{x[1]}</li>
+<li class="content__item">{x[2]}</li>
+<li class="content__item">{x[3]}</li>
+<li class="content__item">{x[4]}</li>
+</ul>
+</div>')
+}
+
+fa_list <- function(x, incremental = FALSE) {
+  icons <- names(x)
+  fragment <- ifelse(incremental, "fragment", "")
+  items <- glue::glue('<li class="{fragment}"><span class="fa-li"><i class="{icons}"></i></span> {x}</li>')
+  paste('<ul class="fa-ul">', 
+        paste(items, collapse = "\n"),
+        "</ul>", sep = "\n")
+}
+
+```
+
+```{r meta, echo=FALSE, message=FALSE, warning=FALSE}
+library(metathis)
+meta() %>%
+  meta_general(
+    description = "Week 5 - Data Visualisation",
+    generator = "xaringan and remark.js"
+  ) %>% 
+  meta_name("github-repo" = "eugene100hickey/atu2023") %>% 
+  meta_social(
+    title = "Week 5 - Data Visualisation",
+    url = "https://atu-2023.netlify.app",
+    image = "https://github.com/eugene100hickey/blob/main/ice.png",
+    image_alt = "Week 5 - Data Visualisation",
+    og_type = "website",
+    og_author = "Eugene Hickey",
+    twitter_card_type = "summary_large_image",
+    twitter_creator = "@eugene100hickey"
+  )
+```
+
+.content-box-blue[
+
+<h2>`r rmarkdown::metadata$title`</h2>
+
+<h3>  👨‍💻 `r rmarkdown::metadata$author` @ `r rmarkdown::metadata$institute` 👨‍💻 </h3>
+
+`r rotating_text(c('<i class="fa-solid fa-envelope"></i> eugene.hickey@tudublin.ie', '<i class="fa-brands fa-mastodon"></i> @eugene100hickey', '<i class="fa-brands fa-github"></i> github.com/eugene100hickey', '<i class="fa-solid fa-globe"></i> www.fizzics.ie'))`
+
+
+]
+------------------------------------------------------------------------
+
+
+
+
+```{r setup1, include = FALSE}
+options(htmltools.dir.version = FALSE)
+library(tidyverse)
+library(scales)
+library(gapminder)
+library(flipbookr)
+library(stars)
+library(ggalt)
+library(patchwork)
+# library(ggrepel)
+# library(glue)
+# library(waffle)
+# library(treemapify)
+library(ggridges)
+library(lubridate)
+library(boxoffice)
+# library(knitr)
+# library(xaringanExtra)
+library(ggtext)
+# library(hrbrthemes)
+# library(sf)
+# library(cartogram)
+# library(tmap)
+
+```
+
+```{r ink-free}
+#| cache: false
+#| echo: false
+sysfonts::font_add("Ink Free", regular = "fonts/Inkfree.ttf")
+showtext::showtext_auto()
+```
+
+---
+
+## Graphics Key Feature of R 
+
+- Graphics are important, overlooked, and inconsistent
+   - the last mile of data analysis
+   
+- Need to tell a story
+
+- Can be misleading, almost always by accident
+
+- Choice of colours / fonts
+
+- Keep it simple - reduce amount of ink
+
+- Increasing number of options for showcasing your data
+
+---
+
+## Kernel of graphics in R is  `ggplot`
+
+- `ggplot` is easy to make publication-ready  
+
+- easier to make sequence of visualisations  
+
+- fits in nicely with the rest of the tidyverse
+
+---
+
+
+# Lots of addin packages for ggplot
+
+
+`r read_csv("data/my-packages.csv")$packages`
+
+---
+
+## Basic Picture of ggplot
+
+
+.content-box-yellow[
+
+- aesthetics
+    - values that each individual observation (row) has
+    - will be different for each observation
+- atrributes
+    - values that are shared between all points
+    - decide to make everything mint green
+- layers
+    - each visualisation is built sequentially
+    - add features in layers, one on top of the last
+    - examples: add a plot title, change an axis scale....]
+
+
+---
+```{r ggplot-example, echo = F, message = F, warning = F, cache = T, fig.height=6, include = F}
+
+palmerpenguins::penguins %>% drop_na() %>% 
+  ggplot() +
+  aes(x = flipper_length_mm) +
+  scale_x_continuous(breaks = seq(170, 230, by = 20)) +
+  aes(y = bill_length_mm) + 
+  geom_point(size = 3, show.legend = F) +
+  aes(colour = species) +
+  scale_color_manual(values = c("black", "blue", "grey70")) +
+  ggalt::geom_encircle(size = 5, show.legend = FALSE) +
+  labs(title = "Chinstraps have Short Flippers",
+       subtitle = "<span style = 'color:black;'>Adelie</span>, <span style = 'color:blue;'>Chinstrap</span>, and <span style = 'color:#B0B0B0;'>Gentoo</span> penguins",
+       x = "Flipper Length (mm)",
+       y = "Bill Length (mm)",
+       caption = "@Data from Palmer Penguins") +
+  theme_minimal() + 
+  theme(text = element_text(family = "Ink Free", size = 18)) +
+  theme(plot.subtitle = element_markdown(size = 18)) + 
+  facet_grid(~sex)
+
+```
+
+`r chunk_reveal("ggplot-example")`
+
+
+```{r theme, cache = F, echo = FALSE}
+my_colour = "firebrick4"
+ggplot2::theme_set(ggplot2::theme_minimal())
+ggplot2::theme_update(text = ggplot2::element_text(family = "Ink Free", 
+                                 size = 20, 
+                                 colour = my_colour),
+             axis.text = ggplot2::element_text(colour = my_colour),
+             rect = element_rect(colour = my_colour),
+             line = element_line(colour = my_colour))
+caption = "@DataVis_2023 Eugene"
+
+my_ordinal_date <- function(dates){
+     dayy <- day(dates)
+     suff <- case_when(dayy %in% c(11,12,13) ~ "th",
+                       dayy %% 10 == 1 ~ 'st',
+                       dayy %% 10 == 2 ~ 'nd',
+                       dayy %% 10 == 3 ~'rd',
+                       TRUE ~ "th")
+     paste0(dayy, suff)
+}
+```
+
+---
+
+## Graphics can be Fun
+
+
+---
+
+```{r rollercoaster, echo=FALSE, message=FALSE, warning=FALSE, out.height="600", out.width="800"}
+library(tidyverse)
+library(imager)
+library(grid)
+library(showtext)
+
+font_add(family = "Ink Free", regular = here::here("week-05", "assets", "ComingSoon-Regular.ttf"))
+showtext_auto()
+
+#data
+tx_injuries <- readr::read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-09-10/tx_injuries.csv")
+
+#Cleaning the age column, the one I'll be using
+injuries <- tx_injuries%>%
+  mutate(age = as.numeric(age))%>%
+  filter(age != "NA")
+
+
+#creating dataframe with density as I want to plot with geom_line
+inj_dens <- density(injuries$age)
+df <- data.frame(x=inj_dens$x, y=inj_dens$y)%>%filter(x>= 0)
+
+#Second data frame that will be used to create "fake gridlines"
+#I'm basically taking the density df and selecting every 20th row
+#this will create the "structure" of the rollercoaster
+df2 <- df[seq(1, nrow(df), 20), ]
+
+img1 <- load.image(here::here("week-05", "images", "roller.png"))
+g1 <- rasterGrob(img1, interpolate=FALSE)
+
+img2 <- load.image(here::here("week-05", "images", "roller2.png"))
+g2 <- rasterGrob(img2, interpolate=FALSE)
+
+img3 <- load.image(here::here("week-05", "images", "roller3.png"))
+g3 <- rasterGrob(img3, interpolate=FALSE)
+
+#plotting!
+roller <- df %>%
+  ggplot(aes(x,y))+
+  geom_line(color = "#e44fb7", size = 1.5)+
+  scale_x_continuous(breaks = seq(0, 70, by = 10))+
+  scale_y_continuous(limits = c(0, 0.03))+
+  theme_minimal() +
+  theme(
+    plot.background = element_rect(fill = "black"),
+    panel.grid = element_blank(),
+    plot.margin = unit(c(1.2, 0.5, 0.5, 0.5), "cm"),
+    #adds some space around
+    text = element_text(
+      color = "white",
+      size = 24,
+      family = "Ink Free",
+      face = "bold"
+    ),
+    axis.text = element_text(color = "white"),
+    axis.title.y = element_blank(),
+    axis.text.y = element_blank(),
+    plot.caption = element_text(
+      color = "#ec99d3",
+      size = 9,
+      family = "Arial"
+    ),
+    plot.title = element_text(
+      face = "bold",
+      hjust = 0.5,
+      color = "white",
+      size = 14,
+      vjust = 2,
+      family = "Ink Free"
+    ),
+    #vjust to move it towards margins
+    panel.spacing = unit(2, "lines")
+  ) +
+  labs(
+    title = "Age distribution of Amusement Park injuries in Texas",
+    y = "Density",
+    x = "Age of injured person",
+    caption = "#tidytuesday by @ariamsita, data: data.world"
+  )
+ 
+roller
+```
+---
+
+```{r rollertext, echo=FALSE, message=FALSE, warning=FALSE, out.height="600", out.width="800"}
+roller <- roller + 
+  #The two annotations: one curve and one text for each
+  geom_curve(x = 13, y = 0.028, xend = 18, yend = 0.029, color = "#ec99d3",
+             curvature = -0.2,  arrow = arrow(length = unit(0.1, "inches"))) +
+  annotate(
+    "text",
+    x = 28.5,
+    y = 0.029,
+    label = "There is a peak in \ninjuries among \nchildren aged around 10",
+    color = "white",
+    size = 3
+  ) +
+  geom_curve(
+    x = 32,
+    y = 0.017,
+    xend = 43,
+    yend = 0.019,
+    color = "#ec99d3",
+    curvature = -0.2,
+    arrow = arrow(length = unit(0.1, "inches"))
+  ) +
+  annotate(
+    "text",
+    x = 56,
+    y = 0.019,
+    label = "From age 35 onwards, \ninjuries sharply decrease \n(probably attendance to \namusement parks too!)",
+    color = "white",
+    size = 3
+  )
+roller  
+  
+```
+
+---
+
+```{r rollerwagons, echo=FALSE, message=FALSE, warning=FALSE, out.height="600", out.width="800"}
+roller +
+    #Now adding the wagons:
+  annotation_custom(g1, xmin=4.5, xmax=14, ymin=0.025, ymax=0.031) +
+  annotation_custom(g2, xmin=31, xmax=39, ymin=0.013, ymax=0.020) +
+  annotation_custom(g3, xmin=74, xmax=84, ymin=-0.0015, ymax=0.005)  + 
+  geom_linerange(data = df2, aes(x =x, ymin = 0, ymax = y),
+                 color = 'grey80', alpha = 0.8, linewidth=1.5) + #the gridlines+
+  geom_line(color = "#e44fb7", size = 1.5) #x is age, y is density
+
+```
+
+
+---
+
+# Picturing Data Different Ways with ggplot
+
+### We're going to set out some of the options for looking at data
+
+### these depend on what kind of data you have
+
+### and what you want to investigate
+
+Lots of these come from [Top 50 Visualizations in R](http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html#5.%20Composition)
+
+- Show the data
+
+- Use ink sparingly
+
+- Title should tell the story
+
+- Don't try to show too much
+
+- Start with grey
+
+---
+
+<ol>
+<li> Visualising Amounts
+<li> Visualising Proportions
+<li><span style="color: red;"> Visualising Distributions </span>
+<li><span style="color: red;"> Visualising Relationships </span>
+<li><span style="color: blue;"> Visualising Time Series </span>
+<li><span style="color: blue;"> Visualising Groups </span>
+<li><span style="color: blue;"> Visualising Networks </span>
+<li><span style="color: blue;"> Visualising Spatial Data </span>
+
+Items in <span style="color: red;">red</span> we'll cover this today. In <span style="color: blue;">blue</span> will have to wait for a future workshop.
+
+---
+class: inverse
+
+# Visualising Amounts
+
+- barplot
+- dot plot
+- lollipop plot
+
+---
+
+```{r barplot2, eval=FALSE, echo = T, include=F, message=F, warning=F}
+diamonds %>% 
+  ggplot(aes(cut)) + 
+  geom_bar(fill = "firebrick4") + 
+  ggtitle("Proportion of Cuts of Diamonds") + 
+  labs(caption = "@Data tidyverse") +
+  coord_flip() +
+  theme(axis.text.x = element_blank()) + 
+  theme(axis.title = element_blank()) + 
+  theme(title = element_text(face = "bold"))
+```
+
+`r chunk_reveal("barplot2")`
+
+
+---
+
+
+```{r data, cache = F, echo=T, message=FALSE, warning=FALSE}
+boxoffice_date <- Sys.Date()-7
+movies <- boxoffice(boxoffice_date) %>% 
+  mutate(gross = gross / 1e6,
+         movie_name = movie,
+         movie = abbreviate(movie))
+sf <- stamp("Sunday, 8th January, 1999")
+boxoffice_date_string <- sf(boxoffice_date)
+```
+
+---
+
+
+
+```{r box-office, eval=FALSE, echo = T, include=F, message=F, warning=F}
+movies %>% mutate(movie = fct_reorder(movie, gross)) %>% 
+  slice_head(n=10) %>% 
+  ggplot(aes(movie, gross)) + 
+  geom_col(fill = "firebrick4") + 
+  scale_y_continuous(breaks = scales::breaks_extended(8), 
+                     labels = scales::label_dollar(scale = 1)) + 
+  labs(title = glue::glue("Box Office {boxoffice_date_string}"),
+       caption = "@Data from BoxOfficeMojo",
+       y = "Gross (Million$)") +
+  theme(axis.title.y = element_blank()) +
+  coord_flip()
+```
+
+`r chunk_reveal("box-office")`
+
+---
+
+```{r}
+library(gt)
+movies |> 
+  select(movie_name, movie) |> 
+  head(10) |> 
+  gt::gt() |> 
+  cols_label(movie_name = md("Movie Title"),
+             movie = md("Abbreviated Title"))
+```
+
+---
+
+```{r colplot-gapminder, eval=FALSE, echo = T, include=F}
+dslabs::gapminder %>% 
+  filter(year == "2007") %>% 
+  group_by(continent) %>% 
+  summarise(life_exp_2007 = mean(life_expectancy)) %>%
+  ggplot(aes(continent, life_exp_2007, xend = continent, yend = life_exp_2007)) + 
+  coord_flip() +
+  labs(caption = "@Data Gapminder (WHO)",
+       y = "Life Expectancy in 2007", 
+       x = "") +
+  geom_col(fill = "firebrick4") + #ROTATE
+  geom_point(colour = "firebrick4", size = 4) + #ROTATE
+  geom_segment(size = 2, colour = "firebrick4", y = 0) + geom_point(colour = "firebrick4", size = 4) + #ROTATE
+  labs(x = "")
+  
+```
+
+`r chunk_reveal("colplot-gapminder", break_type = "rotate")`
+
+---
+
+
+```{r lollypop-gapminder, eval=FALSE, echo = T, include=F}
+dslabs::gapminder %>% 
+  filter(year == "2007") %>% 
+  group_by(continent) %>% 
+  summarise(life_exp_2007 = mean(life_expectancy)) %>%
+  mutate(continent = fct_reorder(continent, life_exp_2007)) %>% 
+  ggplot(aes(continent, life_exp_2007)) + 
+  geom_point(colour = "firebrick4", size = 10) + 
+  geom_segment(aes(x = continent, xend = continent, y = 0, yend = life_exp_2007),
+               size = 2, colour = "firebrick4") +
+  coord_flip() +
+  labs(caption = "@Data Gapminder (WHO)",
+       y = "Life Expectancy in 2007",
+       x = "")
+```
+
+`r chunk_reveal("lollypop-gapminder")`
+
+---
+class: inverse
+
+## Summary of Amounts
+
+- have categorical variable and a count / quantity
+- geom_bar() does a count, does some processing for you
+- geom_col() when you have quantities already
+- dot plot with geom_point() doesn't have to include origin
+- lollypop same as geom_col() but with less ink. Uses geom_point() and geom_segment()
+- coord_flip() useful, especially when text labels are long
+- important to get order of categorical variable right, fct_reorder() useful
+
+---
+
+
+# Visualising Distributions
+
+- histograms
+- density plots
+- boxplot
+- violin plot
+- ridge plots
+
+---
+
+
+```{r basketball, cache = T, echo = T, message=F, warning=F}
+basketball <- read_csv("https://raw.githubusercontent.com/eugene100hickey/ATU-2023/main/week-05/data/basketball.csv")
+```
+
+---
+
+```{r histogram, echo = T, include=F}
+basketball %>% 
+  ggplot(aes(weight)) + 
+  geom_histogram(fill = "firebrick4", 
+                 bins = 50) + 
+  labs(x = "weight (kg)", 
+       y = "",
+       caption = "@Data from Kaggle",
+       title = "Weight of NBA Players")
+```
+
+`r chunk_reveal("histogram")`
+
+---
+
+```{r histogram-dodge, echo = T, fig.height=6, include = FALSE}
+basketball %>% 
+  ggplot(aes(weight, 
+             fill = position)) + 
+  geom_histogram(bins = 20, 
+                 position = "dodge") + 
+  labs(x = "weight (kg)", 
+       y = "",
+       caption = "@Data from Kaggle", 
+       title = "Weight of NBA Players by\nPosition")
+```
+
+`r chunk_reveal("histogram-dodge")`
+
+---
+
+```{r density, echo = T, fig.height=6, include = FALSE}
+basketball %>% 
+  ggplot(aes(weight, 
+             col = position)) + 
+  stat_density(geom = "line", 
+               position = "identity") + 
+  labs(x = "weight (kg)", 
+       y = "",
+       caption = "@Data from Kaggle", 
+       title = "Weight of NBA Players by\nPosition") +
+  geom_rug()
+```
+
+`r chunk_reveal("density")`
+
+---
+
+
+```{r boxplots, echo = T, fig.height=6, include = FALSE}
+basketball %>% 
+   ggplot(aes(x = position, 
+              y = weight, 
+              colour = position)) +
+   geom_boxplot(show.legend = F) + 
+   labs(y = "weight (kg)", 
+        x = "position",
+        caption = "@Data from Kaggle", 
+        title = "Weight of NBA Players by\nPosition") +
+  geom_jitter(size = 0.4, 
+              alpha = 0.2, 
+              show.legend = F)
+```
+
+`r chunk_reveal("boxplots")`
+
+```{r violins, echo = T, fig.height=6, include = FALSE}
+basketball %>% 
+   ggplot(aes(x = position, 
+              y = weight, 
+              colour = position)) + 
+   geom_violin(show.legend = F) + 
+   labs(x = "position",
+        y = "weight (kg)",
+        caption = "@Data from Kaggle", 
+        title = "Weight of NBA Players by\nPosition") +
+   geom_jitter(size = 0.4, 
+               alpha = 0.2, 
+               show.legend = F)
+```
+
+`r chunk_reveal("violins")`
+
+---
+
+```{r ridges, echo = T, fig.height=6, include = FALSE, message=FALSE, warning=FALSE}
+gapminder::gapminder %>% 
+  ggplot(aes(x = lifeExp, 
+             y = factor(year))) +
+  geom_density_ridges(fill = "firebrick4", 
+                      colour = "firebrick4", 
+                      alpha = 0.4) +
+  theme_ridges() +
+  labs(x = "Life Expectancy (years)",
+       y = "", 
+       caption = "@Data Gapminder (WHO)")
+```
+
+`r chunk_reveal("ridges")`
+
+---
+class: inverse
+
+## Summary of Distributions
+
+- hugely important
+- great way to explore your data / introduce it to others
+- make sure you show you data when possible
+    - use *geom_rug()*
+    - use *geom_jitter()*
+    - if lots of points, then use *alpha* to mute them
+    
+---
+
+class: inverse
+
+# Visualising Relationships
+
+- scatter plots
+    - encircling
+    - jittering
+    - using colour / size / shape 
+    - fitting lines
+    - histograms and boxplots on the axes (and geom_rug())
+- line plots
+- correlation
+
+
+---
+
+```{r encircleplot, echo = T, fig.height=4, include = FALSE}
+
+dslabs::stars %>% 
+  ggplot(aes(temp, 
+             magnitude, 
+             col = type)) + 
+  geom_point(show.legend = F) +
+  geom_encircle(data = dslabs::stars %>% 
+                  dplyr::filter(type == "B" | (type == "M" & magnitude > 9)), 
+                show.legend = F) +
+  scale_x_log10() + 
+  annotate("text", 
+           x = c(15000, 5000), 
+           y = c(-4, 14), 
+           label = c("Type B Stars", "Faint Type M Stars"), 
+           col = c("blue", "olivedrab3"), 
+           family = "Ink Free", 
+           size = 4, 
+           fontface = 2) + 
+  scale_color_viridis_d()
+```
+
+`r chunk_reveal("encircleplot")`
+
+---
+
+```{r jitter, echo = T, fig.height=5, fig.width=12}
+scatter <- HistData::Galton %>% 
+  ggplot(aes(parent, child)) +
+  geom_point()
+jittered <- HistData::Galton %>% 
+  ggplot(aes(parent, child)) + geom_jitter(width = 0.4, height = 0.4)
+scatter + plot_spacer() + jittered 
+```
+
+
+---
+
+### Workshop Week 5:
+
+<ol>
+<li> you have a dataset with the counties of Ireland in one column and their populations in a second column. To produce a bar chart, should you use *geom_col()* or *geom_bar()*?
+<li> make a bar chart of the number of counties in each of the five US midwest states. Use the *midwest* dataset from *ggplot2*
+<li> make a bar chart of the number of each species of pengiun from the *penguins* dataset in *palmerpenguins* (you can *install.packages("palmerpenguins")* from CRAN)
+<li> make a bar chart of the 12 *Carnivora* total sleep times from the *msleep* dataset in *ggplot2*
+<li> make a lollipop plot of the 12 *Primates* total sleep times from the *msleep* dataset in *ggplot2*
+<li> install the *boxoffice* package. Use the following commands to downloads box office receipts from this day last week:
+
+```
+boxoffice_date <- Sys.Date()-7
+movies <- boxoffice(boxoffice_date) %>% 
+     mutate(gross = gross / 1e3,
+            movie_name = movie,
+            movie = abbreviate(movie)) %>% 
+     head()
+```
+Plot a pie chart of gross receipt for these top six films (see the [R Graph Gallery](https://r-graph-gallery.com/piechart-ggplot2.html))
+
+
+---
+
+## Assignment - Week Five
+
+You are tasked with reproducing the following figure:
+
+```{r plot, echo = F, message = F, warning=F, fig.height=6}
+library(tidyverse)
+library(dslabs)
+
+death_prob %>% 
+  ggplot(aes(age, prob, col = sex)) + 
+  geom_point() + 
+  scale_y_log10() + 
+  labs(title = "Probability of Death within 1 Year by Age and Sex\nin the United States in 2015", x = "Age in Years", y = "Probability of Death", caption = "@Data from DSLabs")
+```
+
+---
+
+## Procedure
+
+- You'll need the _tidyverse_ library and the _dslabs_ library (install from CRAN by _install.packages("dslabs")_)
+- Get the dataset using _data("death_prob")_
+- You'll need to call ggplot setting _data = death_prob_
+- There are three aesthetics; for _age_, _prob_, and _sex_
+- Add the graph title, the axes labels, and add a caption
+- The y axis should be plotted on a log scale
+- There are also extra marks for improving the figure with your own ideas
+- You can save your plot using _ggsave("my-first-assignment.png")_ at the console or in your .R file, or by clicking _Export_ in the plots pane of RStudio
+
+---
+
+## Marking
+
+<ol>
+<li> Correct call to _ggplot_ to set up the figure framework
+**(2 marks)**
+<li> Correct _geom_ to insert the points 
+**(2 marks)**
+<li> Inserting the _title_, _axes labels_, and _caption_ 
+**(2 marks)**
+<li> Making the y-axis on a log scale using _scale_y_log10_ 
+**(2 marks)**
+<li> Your improvement 
+**(2 marks)**
+
+Upload your work (the image and your code) to moodle at [Week Five Assignment - death_prob](https://vlesligo.atu.ie/mod/assign/view.php?id=1092783). The deadline is midnight
+on Wednesday 14th June 2023.

@@ -1,0 +1,93 @@
+```{r data generation, echo = FALSE, results = "hide", message=F, warning=F}
+library(exams)
+library(tidyverse)
+library(dslabs)
+library(gt)
+library(showtext)
+
+font_add_google(name = "Caveat", family = "Caveat")
+showtext_auto()
+
+repeat{
+  my_continents <- levels(gapminder$continent)
+  my_year <- gapminder$year |> 
+    unique() |> 
+    sample(1)
+  
+  z <- gapminder |> 
+    filter(year == my_year) |> 
+    group_by(continent) |> 
+    summarise(continent_pop = (sum(population)/1e6) |> signif(3),
+              life_exp = mean(life_expectancy) |> signif(3)) |> 
+    ungroup()
+  
+  cont_numbers <- 1:5
+  cont_answers <- glue::glue("##ANSWER{cont_numbers}##")
+  life_numbers <- 6:10
+  life_answers <- glue::glue("##ANSWER{life_numbers}##")
+  
+  my_table <- tibble(my_continents, cont_answers, life_answers)
+  solution <- c(z$continent_pop, z$life_exp)
+  break
+  {
+    sum(is.na(z) == 0)
+  }
+}
+```
+
+
+Question
+========
+Install the `dslabs` package if you haven't already (`install.packages("dslabs")`).
+
+This should give you access to the `gapminder` dataset on which this question is based (try `head(gapminder)` to have a peek at it).
+
+Filter for the year __`r my_year`__.
+
+Use `group_by()` and `summarise()` to calculate the total population for each continent in the year `r my_year` in millions (so divide by `1e6`) and the mean life expectancy (just average the values of the countries, don't worry about different populations of each country). Fill out the table below.
+
+```{r echo=FALSE}
+my_table %>% 
+  gt() %>% 
+  cols_label(my_continents = "Continents",
+             cont_answers = md("Population"), 
+             life_answers = md("Life Expectancy")) %>% 
+  cols_align(align = "center") %>% 
+  tab_options(column_labels.background.color = "cornflowerblue", 
+              table.font.names = "Caveat",
+              table.font.style = "oblique",
+              column_labels.font.weight = "bold",
+              column_labels.vlines.width = 1,
+              column_labels.vlines.color = "darkblue",
+              column_labels.vlines.style = "solid",
+              table_body.vlines.width = 1,
+              table_body.vlines.color = "darkblue",
+              table_body.vlines.style = "solid"
+              )
+```
+
+
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(rep("", length(solution)), markup = "markdown")
+```
+
+
+Solution
+========
+
+Use `filter(year == `r my_year`)` followed by `    group_by(continent)` and `summarise(continent_pop = (sum(population)/1e6) |> signif(3), life_exp = mean(life_expectancy) |> signif(3))`.
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(c(glue::glue("{solution}")), markup = "markdown")
+```
+
+
+Meta-information
+================
+extype: cloze
+exsolution: `r paste(solution, collapse = "|")`
+exclozetype: num|num|num|num|num|num|num|num|num|num
+exname: gapminder-group
+extol: 0.02
+exextra[numwidth,logical]: TRUE

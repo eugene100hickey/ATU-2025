@@ -1,0 +1,87 @@
+```{r data generation, echo = FALSE, results = "hide", message=F, warning=F}
+library(exams)
+library(tidyverse)
+library(gt)
+library(showtext)
+
+font_add_google(name = "Caveat", family = "Caveat")
+showtext_auto()
+
+z <- read_rds("https://github.com/eugene100hickey/ATU-2023/blob/main/rexams/data/ABAData?raw=true")
+
+genes <- unique(z$hgnc_symbol) |> 
+  sample(2)
+
+z1 <- z |> 
+  filter(hgnc_symbol %in% genes) |> 
+  group_by(hgnc_symbol, age) |> 
+  summarise(gene_signal = mean(signal))
+
+solution <- z1$gene_signal |> signif(3)
+
+ages <- levels(z1$age)
+gene1_numbers <- 1:5
+gene1_answers <- glue::glue("##ANSWER{gene1_numbers}##")
+gene2_numbers <- 6:10
+gene2_answers <- glue::glue("##ANSWER{gene2_numbers}##")
+
+my_table <- tibble(ages, gene1_answers, gene2_answers)
+
+#  pivot_wider(names_from = "hgnc_symbol", values_from = "gene_signal")
+```
+
+
+Question
+========
+Run the code line below to read in a data frame called `brain_gene_expression`. 
+
+`brain_gene_expression <- read_rds("https://github.com/eugene100hickey/ATU-2023/blob/main/rexams/data/ABAData?raw=true") |> 
+  filter(hgnc_symbol %in% c("`r {genes[1]}`", "`r {genes[2]}`"))`
+
+Use `group_by()` and `summarise()` to calculate the mean gene expression for each gene for each age category. Use this to fill out the table below.
+
+```{r echo=FALSE}
+my_table %>% 
+  gt() %>% 
+  cols_label(ages = "Age Category",
+             gene1_answers = glue::glue("Mean Expression for {genes[1]}"), 
+             gene2_answers = glue::glue("Mean Expression for {genes[2]}")) %>% 
+  cols_align(align = "center") %>% 
+  tab_options(column_labels.background.color = "cornflowerblue", 
+              table.font.names = "Caveat",
+              table.font.style = "oblique",
+              column_labels.font.weight = "bold",
+              column_labels.vlines.width = 1,
+              column_labels.vlines.color = "darkblue",
+              column_labels.vlines.style = "solid",
+              table_body.vlines.width = 1,
+              table_body.vlines.color = "darkblue",
+              table_body.vlines.style = "solid"
+              )
+```
+
+
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(rep("", length(solution)), markup = "markdown")
+```
+
+
+Solution
+========
+
+Use `group_by(hgnc_symbol, age) |> summarise(gene_signal = mean(signal))`
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(c(glue::glue("{solution}")), markup = "markdown")
+```
+
+
+Meta-information
+================
+extype: cloze
+exsolution: `r paste(solution, collapse = "|")`
+exclozetype: num|num|num|num|num|num|num|num|num|num
+exname: stocks
+extol: 0.05
+exextra[numwidth,logical]: TRUE

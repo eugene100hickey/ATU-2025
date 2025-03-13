@@ -1,0 +1,65 @@
+```{r data generation, echo = FALSE, results = "hide", message=F, warning=F}
+library(exams)
+library(tidyverse)
+library(lubridate)
+
+my_formats <- c("%y %m %d", 
+                "%A %b %d %Y",
+                "%D",
+                "%Y %m %d",
+                "%b %d %m",
+                "%y %d %m",
+                "%Y %d %B",
+                "%y %B %d",
+                "%Y %B %d",
+                "%y %b %d")
+
+pat <- "19/09/2023" |> as.Date(format = "%d/%m/%Y")
+
+index <- sample(1:10, 1)
+other_index <- c(1:10)[!(1:10 %in% index)]
+answer <- format(pat, my_formats[index])
+correct_format <- my_formats[index]
+
+other_answers <- my_formats[other_index] |> 
+  sample(5)
+
+solution <- c(correct_format, other_answers)
+
+```
+
+
+Question
+========
+The official way of presenting the date for _International Speak Like a Pirate Day_ this year is `r pat`. Which of the format strings below would represent this as `r answer`?
+
+Answerlist
+----------
+* `r solution[1]`
+* `r solution[2]`
+* `r solution[3]`
+* `r solution[4]`
+* `r solution[5]`
+* `r solution[6]`
+
+
+Solution
+========
+Use the R command `format("`r pat`", my_formats)` where `my_format` is a string specifier like `"%y %m %y"`.
+
+Answerlist
+----------
+* True
+* False
+* False
+* False
+* False
+* False
+
+
+Meta-information
+================
+exname: R lubridate
+extype: schoice
+exsolution: 100000
+exshuffle: 5

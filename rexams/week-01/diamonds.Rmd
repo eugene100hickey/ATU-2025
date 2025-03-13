@@ -1,0 +1,63 @@
+```{r data generation, echo = FALSE, results = "hide", message=F, warning=F}
+library(exams)
+library(tidyverse)
+
+my_diamonds <- diamonds |> 
+  select(where(is.numeric))
+parameters <- names(my_diamonds)
+index <- sample(1:length(parameters), 1)
+function_index <- sample(1:6, 1)
+
+my_diamonds <- my_diamonds |> pull(parameters[index])
+my_functions <- c("mean", "max", "min", "median", "sd", "range")
+
+solution <- case_when(
+  function_index == 1 ~ mean(my_diamonds),
+  function_index == 2 ~ max(my_diamonds),
+  function_index == 3 ~ min(my_diamonds),
+  function_index == 4 ~ median(my_diamonds),
+  function_index == 5 ~ sd(my_diamonds),
+  function_index == 6 ~ max(my_diamonds)-min(my_diamonds)
+) |> signif(3)
+
+ph_mean <- rnorm(1, 8, 1) |> signif(3)
+ph_sd <- rnorm(1, 2, 1) |> abs() |> signif(3)
+repeat{
+  ph_lower <- rnorm(1, 8, 1) |> signif(3)
+  ph_higher <- rnorm(1, 8, 1) |> signif(3)
+  if(ph_higher > ph_lower){
+    break
+  }
+}
+
+
+solution <- (pnorm(ph_higher, ph_mean, ph_sd) - pnorm(ph_lower, ph_mean, ph_sd)) |> signif(3)
+
+
+```
+
+
+Question
+========
+Below is an excerpt from the diamonds dataset of the `tidyverse` package:
+
+```{r}
+library(tidyverse)
+head(diamonds)
+```
+
+Calculate the `r my_functions[function_index]` for the `r parameters[index]` of this dataset.
+
+
+Solution
+========
+Use the R command `r my_functions[function_index]`(diamonds$`r parameters[index]`)
+
+
+
+Meta-information
+================
+extype: num
+exsolution: `r solution %>% signif(3)`
+exname: diamonds
+extol: `r solution*0.05`

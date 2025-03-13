@@ -1,0 +1,35 @@
+```{r data generation, echo = FALSE, results = "hide", message=F, warning=F}
+library(exams)
+library(tidyverse)
+
+
+drug_num <- 20:100 |> 
+  sample(1)
+drug_prob <- seq(0.4, 0.8, by = 0.05) |> 
+  sample(1)
+drug_q <- seq(0.2, 0.8, by = 0.05) |> 
+  sample(1)
+
+
+
+solution <- qbinom(drug_q, size = drug_num, prob = drug_prob) |> 
+  signif(3)
+```
+
+
+Question
+========
+In a series of drug trials, each trial has `r drug_num` patients. The drug has a `r drug_prob*100`% success rate. For `r drug_q*100`% of the trials we can expect between 0-`N` patients to recover, calculate the value for `N`.
+
+
+Solution
+========
+Use `qbinom(p = `r drug_q`, size = `r drug_num`, prob = `r drug_prob`, lower.tail=TRUE)`.
+
+
+Meta-information
+================
+extype: num
+exsolution: `r solution`
+exname: pbinom
+extol: `r solution*0.02`

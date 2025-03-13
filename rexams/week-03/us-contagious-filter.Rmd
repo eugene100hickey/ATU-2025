@@ -1,0 +1,50 @@
+```{r data generation, echo = FALSE, results = "hide", message=F, warning=F}
+library(exams)
+library(tidyverse)
+library(dslabs)
+
+repeat{
+  my_year <- unique(dslabs::us_contagious_diseases$year) |> 
+    sample(1)
+  my_disease <- levels(dslabs::us_contagious_diseases$disease) |> 
+    sample(1)
+  
+  z <- dslabs::us_contagious_diseases |> 
+    select(disease, state, year, count) |> 
+    filter(year == my_year,
+           disease == my_disease)
+  
+  solution <- sum(z$count, na.rm = T) %>% signif(3)
+  
+  if(!is.na(solution) & solution > 0 ){
+    break
+  }
+}
+```
+
+
+Question
+========
+Below is an excerpt from the `us_contagious_diseases` dataset of the `dslabs` package (if not already installed, use `install.packages("dslabs")`):
+
+```{r}
+library(tidyverse)
+library(dslabs)
+head(us_contagious_diseases)
+```
+
+Calculate the total number of cases in the entire US of `r my_disease` in the year `r my_year`.
+
+
+Solution
+========
+Filter for the year and disease using us_contagious_disease |> filter(year == "`r my_year`", disease == "`r my_disease`") and then sum the `count` column.
+
+
+
+Meta-information
+================
+extype: num
+exsolution: `r solution`
+exname: us-contagious
+extol: `r solution*0.05`

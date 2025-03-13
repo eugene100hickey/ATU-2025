@@ -1,0 +1,88 @@
+```{r data generation, echo = FALSE, results = "hide", message=F, warning=F}
+library(exams)
+library(tidyverse)
+library(gt)
+library(showtext)
+
+font_add_google(name = "Caveat", family = "Caveat")
+showtext_auto()
+stock_soln <- 50
+std_conc <- c(2, 4, 6, 8)
+total_vol <- rep(20, length(std_conc))
+stock_vol <- std_conc*total_vol / stock_soln
+water_vol <- total_vol - stock_vol
+
+
+sol <- c(stock_vol, water_vol)
+lab <- c("Standard Conc. (ppm)", 
+         "Volume Stock Added (mL)", 
+         "Volume deionised water added (mL)", 
+         "Total volume (mL)")
+stock_numbers <- 1:4
+stock_answers <- glue::glue("##ANSWER{stock_numbers}##")
+water_numbers <- 5:8
+water_answers <- glue::glue("##ANSWER{water_numbers}##")
+
+my_table <- tibble(std_conc, stock_answers, water_answers, total_vol)
+```
+
+
+Question
+========
+
+Calculate the amount of stock solution and de-ionised water required to make up the following solutions. The concentration of the stock solution is `r stock_soln` ppm.
+How much of the stock standard to add to a certain volume flask. I put units in the top row so answers are numbers only. Stock solution is eg 50ppm.  
+
+
+```{r echo = F}
+my_table %>% 
+  gt() %>% 
+  cols_label(std_conc = "Standard Conc. (ppm)",
+             stock_answers = "Volume Stock Added (mL)", 
+             water_answers ="Volume deionised water added (mL)", 
+             total_vol = "Total volume (mL)") %>% 
+  cols_align(align = "center") %>% 
+  tab_options(column_labels.background.color = "cornflowerblue", 
+              table.font.names = "Caveat",
+              table.font.style = "oblique",
+              column_labels.font.weight = "bold",
+              column_labels.vlines.width = 1,
+              column_labels.vlines.color = "darkblue",
+              column_labels.vlines.style = "solid",
+              table_body.vlines.width = 1,
+              table_body.vlines.color = "darkblue",
+              table_body.vlines.style = "solid"
+              )
+```
+
+
+<!-- |$Standard\\Concentration\:(ppm)$|$Volume\:of\\Stock\:Added\:(mL)$|$Volume\:deionised\\Water\:Added\: (mL)$|$Total\\Volume\:(mL)$| -->
+<!-- |:---------------:|:------------------:|:----------------:|:--------------------:| -->
+<!-- | `r std_conc[1]` | \#\#ANSWER1\#\# | \#\#ANSWER5\#\# |  `r total_vol[1]`  | -->
+<!-- | `r std_conc[2]` | \#\#ANSWER2\#\# | \#\#ANSWER6\#\# |  `r total_vol[2]`  | -->
+<!-- | `r std_conc[3]` | \#\#ANSWER3\#\# | \#\#ANSWER7\#\# |  `r total_vol[3]`  | -->
+<!-- | `r std_conc[4]` | \#\#ANSWER4\#\# | \#\#ANSWER8\#\# |  `r total_vol[4]`  |  -->
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(rep("", length(sol)), markup = "markdown")
+```
+
+
+Solution
+========
+
+Using the information from the text, we can directly calculate the following joint probabilities:
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(c(glue::glue("{stock_vol} {lab[2]}"), glue::glue("{water_vol} {lab[3]}")), markup = "markdown")
+```
+
+
+Meta-information
+================
+extype: cloze
+exsolution: `r paste(sol, collapse = "|")`
+exclozetype: num|num|num|num|num|num|num|num
+exname: stocks
+extol: 0.05
+exextra[numwidth,logical]: TRUE

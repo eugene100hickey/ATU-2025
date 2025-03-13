@@ -1,0 +1,55 @@
+```{r data generation, echo = FALSE, results = "hide", message=F, warning=F}
+library(exams)
+library(tidyverse)
+
+dplyr_verbs <- c("mutate()", "arrange()", "group_by()", 
+                 "summarise()", "filter()", "select()", 
+                 "left_join()", "inner_join()", "anti_join()",
+                 "pivot_wider()","pivot_longer()")
+
+non_verbs <- c("choose()", "cast()", "melt()", "reshape()", 
+               "recast()", "fill()", "copy()", "transform()")
+
+my_non_verb <- non_verbs |> sample(1)
+my_dplyr <- dplyr_verbs |> sample(5)
+
+solution <- c(my_non_verb, my_dplyr)
+
+```
+
+
+Question
+========
+Which of the verbs below is __not__ a member of the `dplyr` family of functions?
+
+
+Answerlist
+----------
+* `r solution[1]`
+* `r solution[2]`
+* `r solution[3]`
+* `r solution[4]`
+* `r solution[5]`
+* `r solution[6]`
+
+
+Solution
+========
+At the console, type `?dplyr::` then _tab_ to see the list of `dplyr` functions.
+
+Answerlist
+----------
+* True
+* False
+* False
+* False
+* False
+* False
+
+
+Meta-information
+================
+exname: R dplyr verbs
+extype: schoice
+exsolution: 100000
+exshuffle: 5

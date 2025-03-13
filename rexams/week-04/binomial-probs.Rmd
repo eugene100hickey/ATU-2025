@@ -1,0 +1,41 @@
+```{r data generation, echo = FALSE, results = "hide", message=F, warning=F}
+library(exams)
+library(tidyverse)
+
+repeat{
+  class_size <- 20:40 |> 
+    sample(1)
+  pass_rate <- seq(0.4, 0.8, by = 0.05) |> 
+    sample(1)
+  pass_numbers <- (class_size*pass_rate |> round(0) - 5):(class_size*pass_rate |> round(0) + 2) |> 
+    sample(1)
+  solution <- pbinom(q = pass_numbers-1, size = class_size,  prob = pass_rate, lower.tail = F) |> 
+  signif(3)
+  if((class_size - pass_numbers) > 4){
+    if((pass_numbers >  4)){
+      if(solution > 0.1){
+        break
+      }
+    }
+  }
+}
+```
+
+
+Question
+========
+In a class of __`r class_size`__ students, there is a pass rate of __`r pass_rate`__ in a given exam. Calculate the probability that at least __`r pass_numbers`__ students pass the exam. Give your answer as a probabilty between 0 and 1, and give it to three significant figures.
+
+
+
+Solution
+========
+Because it is _at least_ in the question, we need to use `r pass_numbers` - 1, and `lower.tail = FALSE`. So use `pbinom(q = `r pass_numbers-1`, size = `r class_size`,  prob = `r pass_rate`, lower.tail = F)`.
+
+
+Meta-information
+================
+extype: num
+exsolution: `r solution`
+exname: pbinom
+extol: `r solution*0.02`

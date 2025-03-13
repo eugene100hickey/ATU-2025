@@ -1,0 +1,61 @@
+```{r data generation, echo = FALSE, results = "hide", message=F, warning=F}
+library(exams)
+library(tidyverse)
+library(dslabs)
+
+my_region <- levels(murders$region) |> 
+  sample(1)
+my_number <- sample(1:9, 1)
+
+z <- murders |> 
+  mutate(ratio = total / population) |> 
+  filter(region == my_region) |> 
+  arrange(desc(ratio))
+
+answer_state <- z$state[my_number]
+
+other_states <- z$state[z$state != answer_state] |> 
+  sample(5)
+
+solution <- c(answer_state, other_states)
+
+```
+
+
+Question
+========
+Install the `dslabs` package if you haven't already (`install.packages("dslabs")`. The `murders` dataset contains a list of US states by region with their number of murders and population.
+
+Use `mutate()` to create a new variable of the ratio of murders to population. Use `filter()` to keep just the states from the __`r my_region`__. Arrange the ratio of murders to population in descending order. Finally, choose the state in the __`r scales::label_ordinal()(my_number)`__ position. 
+
+
+Answerlist
+----------
+* `r solution[1]`
+* `r solution[2]`
+* `r solution[3]`
+* `r solution[4]`
+* `r solution[5]`
+* `r solution[6]`
+
+
+Solution
+========
+Use the R command `mutate(ratio = total / population)` followed by `filter(region == "`r my_region`")`, and then `arrange(desc(ratio))`.
+
+Answerlist
+----------
+* True
+* False
+* False
+* False
+* False
+* False
+
+
+Meta-information
+================
+exname: R murder arrange
+extype: schoice
+exsolution: 100000
+exshuffle: 5

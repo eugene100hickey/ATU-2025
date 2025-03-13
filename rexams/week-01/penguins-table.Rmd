@@ -1,0 +1,44 @@
+```{r data generation, echo = FALSE, results = "hide", message=F, warning=F}
+library(exams)
+library(tidyverse)
+library(palmerpenguins)
+
+species <- levels(penguins$species) |> 
+  sample(1)
+islands <- levels(penguins$island) |> 
+  sample(1)
+sex <- levels(penguins$sex) |> 
+  sample(1)
+
+z <- table(penguins$species, penguins$island, penguins$sex)
+
+solution <- z[species, islands, sex]
+
+```
+
+
+Question
+========
+Below is an excerpt from the penguins dataset of the `palmerpenguins` package (if not already installed, use `install.packages("palmerpenguins")`):
+
+```{r}
+library(tidyverse)
+library(palmerpenguins)
+head(penguins)
+```
+
+How many `r species` penguins of `r sex` sex were found on `r islands`?
+
+
+Solution
+========
+Use the R command `table(penguins$species, penguins$island, penguins$sex)`
+
+
+
+Meta-information
+================
+extype: num
+exsolution: `r solution`
+exname: penguins-table
+extol: `r solution*0.01`

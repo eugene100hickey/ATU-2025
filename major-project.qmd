@@ -1,0 +1,281 @@
+---
+title: "Major Project - Quantitative"
+format:
+  html:
+    logo: images/atu-logo.png
+    theme: yeti
+    embed-resources: true
+    smooth-scroll: true
+    fontcolor: black
+    toc: true
+    toc-location: left
+    toc-title: Summary
+    toc-depth: 3
+css: assets/custom.css
+---
+
+Guidelines for Major Projectin Quantitive Data Handling
+
+Deadline: September 1st 2023
+
+Length: 9 pages maximum, not including figures and tables
+
+Contents
+
+1.  Describe your research project in less than 100 words *(20 marks)*
+
+2.  Give an except of your data (first ten rows) *(10 marks)*
+
+3.  Produce a table describing each column on the data *(10 marks)*
+
+4.  Produce a summary of your data using a function like `summary()`, `str()`, `dplyr::glimpse()`, or `skimr::skim()` *(10 marks)*
+
+5.  Produce some summary statistics using `group_by()` and `summarise()` *(10 marks)*
+
+6.  Produce some confidence intervals *(10 marks)*
+
+7.  Produce some hypothesis reports *(10 marks)*
+
+8.  Produce some data visualisations *(10 marks)*
+
+9.  Summarise your report in less than 100 words *(10 marks)*
+
+### This could be useful
+
+It is possible to create the entire report all within R, integrating all the data, tables, and graphics without having to cut, paste, or insert anything. The utility that does this is called [quatro](https://quarto.org/docs/get-started/hello/rstudio.html){target="_blank"}. In fact, this document is written in `quarto` and you can see the code that produced it at [this link](https://github.com/eugene100hickey/ATU-2023/blob/main/major-project.qmd){target="_blank"}.
+
+The tables here were produced using the [gt](https://gt.rstudio.com/){target="_blank"} package. It's a bit like `ggplot2` for tables. Like `quarto`, it takes a bit of getting used to, but it makes very nice data tables.
+
+The easiest way to make a pdf from this is to make a html file first and then print to pdf (quarto can do pdf's directly, but then you need Latex installed).
+
+## Example Report
+
+Below is an example report using our `palmerpenguins::penguins` dataset.
+
+### 1. Data Description
+
+Data were collected and made available by [Dr. Kristen Gorman](https://www.uaf.edu/cfos/people/faculty/detail/kristen-gorman.php){target="_blank"} and the [Palmer Station, Antarctica LTER](https://pallter.marine.rutgers.edu/){target="_blank"}, a member of the [Long Term Ecological Research Network](https://lternet.edu/){target="_blank"}. It includes Size measurements for adult foraging Adélie, Chinstrap, and Gentoo penguins observed on islands in the Palmer Archipelago near Palmer Station, Antarctica.
+
+### 2. Data Excerpt
+
+```{r penguin-table}
+#| echo: true
+#| message: false
+#| warning: false
+
+library(tidyverse)
+library(palmerpenguins)
+library(gt)
+
+
+penguins |> 
+  slice_sample(n = 8) |> 
+  drop_na() |> 
+  gt::gt() |> 
+  gt::cols_label(bill_length_mm = html("Bill Length<br>(mm)"),
+                 bill_depth_mm = html("Bill Depth<br>(mm)"),
+                 flipper_length_mm = html("Flipper Length<br>(mm)"),
+                 body_mass_g = html("Weight<br>(g)"))
+
+```
+
+```{r theme-clean}
+#| echo: false
+#| message: false
+#| warning: false
+
+sysfonts::font_add("Fuzzy Bubbles", regular = "week-05/assets/ComingSoon-Regular.ttf")
+showtext::showtext_auto()
+theme_clean <- function() {
+  theme_minimal(base_family = "Fuzzy Bubbles") +
+    theme(panel.grid.minor = element_blank(),
+          text = element_text(size = 26, family = "Fuzzy Bubbles"),
+          plot.title = element_text(size = 32, family = "Fuzzy Bubbles"),
+          plot.background = element_rect(fill = "white", color = NA),
+          axis.text = element_text(size = 24),
+          axis.title = element_text(face = "bold", size = 32),
+          strip.text = element_text(face = "bold", size = rel(0.8), hjust = 0),
+          strip.background = element_rect(fill = "grey80", color = NA),
+          legend.text = element_text(size = 16))
+}
+
+```
+
+**some text describing what is shown in the table above**
+
+------------------------------------------------------------------------
+
+### 3. Data Codebook
+
+```{r codebook-data}
+#| echo: false
+
+z <- tribble(~column, ~description,
+             "species", "a factor denoting penguin species (Adélie, Chinstrap and Gentoo)",
+             "island", "a factor denoting island in Palmer Archipelago, Antarctica (Biscoe, Dream or Torgersen)",
+             "bill_length_mm", "a number denoting bill length (millimeters)",
+             "bill_depth_mm", "a number denoting bill depth (millimeters)",
+             "flipper_length_mm", "an integer denoting flipper length (millimeters)",
+             "body_mass_g", "an integer denoting body mass (grams)",
+             "sex", "a factor denoting penguin sex (female, male)",
+             "year", "an integer denoting the study year (2007, 2008, or 2009)"
+)
+```
+
+```{r codebook-table}
+#| echo: false
+gt(z)
+```
+
+**some text describing what is shown in the table above**
+
+### 4. Data Summary
+
+```{r data-summary}
+penguins |> skimr::skim()
+```
+
+**some text describing what is shown in the table above**
+
+\newpage
+
+### 5. Summary Statistics
+
+```{r data-summary-table}
+#| message: false
+penguins |>
+  group_by(island, sex, species) |>
+  summarise(
+    mean_flipper_length_mm = mean(flipper_length_mm, na.rm = T) |> signif(3),
+    mean_body_mass_g = mean(body_mass_g, na.rm = T) |> signif(3),
+    mean_bill_length_mm = mean(bill_length_mm, na.rm = T) |> signif(3),
+    mean_bill_depth_mm = mean(bill_depth_mm, na.rm = T) |> signif(3)
+  ) |>
+  drop_na() |>
+  ungroup() |>
+  gt::gt(rowname_col = "species",
+         groupname_col = "sex") |>
+  gt::cols_label(
+    mean_bill_length_mm = html("Mean Bill Length<br>(mm)"),
+    mean_bill_depth_mm = html("Mean Bill Depth<br>(mm)"),
+    mean_flipper_length_mm = html("Mean Flipper Length<br>(mm)"),
+    mean_body_mass_g = html("Mean Weight<br>(g)")
+  ) |>
+  tab_options(row_group.as_column = TRUE)
+```
+
+**some text describing what is shown in the table above**
+
+\newpage
+
+### 6. Confidence Intervals for Flipper Length and Body Weight
+
+```{r conf-int}
+#| echo: true
+#| message: false
+
+penguins |>
+  group_by(sex, species) |>
+  summarise(
+    flipper1 = t.test(flipper_length_mm)$conf[1] |> signif(3),
+    flipper2 = t.test(flipper_length_mm)$conf[2] |> signif(3),
+    body1 = (t.test(body_mass_g)$conf[1]/1e3) |> signif(3),
+    body2 = (t.test(body_mass_g)$conf[2]/1e3) |> signif(3),
+  ) |>
+  drop_na() |>
+  ungroup() |>
+  gt::gt(rowname_col = "species",
+         groupname_col = "sex") |>
+  tab_spanner(label = "Flipper Length 95% Confidence Interval", columns = c(flipper1, flipper2)) |> 
+  tab_spanner(label = "Body Weight 95% Confidence Interval", columns = c(body1, body2)) |> 
+  gt::cols_label(
+    flipper1 = html("Lower (mm)"),
+    flipper2 = html("Higher (mm)"),
+    body1 = html("Lower (kg)"),
+    body2 = html("Higher (kg)")
+  ) |> 
+  data_color(
+    columns = c(flipper1, body1),
+    palette = colorRampPalette(c("#fff4e0", "#dbe8bc"))(10)
+  ) |> 
+  data_color(
+    columns = c(flipper2, body2),
+    palette = colorRampPalette(c("#ffcccb", "#ff817e"))(10)
+  ) |>
+  tab_options(row_group.as_column = TRUE)
+```
+
+**some text describing what is shown in the table above**
+
+\newpage
+
+### 7. Hypothesis Tests
+
+###  Is **bill depth** different for _female_ and _male_ penguins?
+
+```{r}
+t.test(bill_depth_mm ~ sex, data = penguins)
+```
+
+### Has **bill depth** changed from _2007_ to _2009_?
+
+```{r}
+t.test(body_mass_g ~ year, data = penguins |> filter(year != 2008))
+```
+
+**some text describing the results above**
+
+### 8. Data Visualisations
+
+```{r bar-plot}
+#| message: false
+#| warning: false
+
+penguins |> 
+  ggplot(aes(species |> fct_infreq(), fill = species)) +
+  geom_bar(show.legend = F) +
+  scale_fill_viridis_d() +
+  labs(x = "", y = "",
+       title = "Number of Penguins in Dataset") +
+  coord_flip() +
+  theme_clean()
+```
+
+\newpage
+
+```{r ridges}
+#| message: false
+#| warning: false
+
+penguins |> 
+  ggplot(aes(x = body_mass_g, y = as.factor(year))) +
+  ggridges::geom_density_ridges(alpha = 0.6) +
+  labs(title = "Penguins don't seem to be getting heavier",
+       y = "",
+       x = "Penguin Weight (g)",
+       caption = "Data from @Palmerpenguins") +
+  theme_clean()
+```
+
+```{r dots}
+#| message: false
+#| warning: false
+
+penguins |> 
+  ggplot(aes(x = bill_length_mm, y = bill_depth_mm, colour = species)) +
+  geom_point(size = 3, alpha= 0.6) +
+  labs(title = "<span style = 'color:#440154;'>Adelie</span> Penguins have Short, Deep Bills",
+       x = "Bill Length (mm)",
+       y = "Bill Depth (mm)",
+       caption = "Data from @Palmerpenguins") +
+  scale_color_viridis_d() +
+  theme_clean() +
+  theme(legend.position = "top", legend.title=element_blank(),
+        legend.text = element_text(size=28), plot.title = ggtext::element_markdown(color="gray50"))
+```
+
+**some text describing the figures above**
+
+### 9. Report Summary
+
+**some text describing the overall results for the project presented here**

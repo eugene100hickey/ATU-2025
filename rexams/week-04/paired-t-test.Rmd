@@ -1,0 +1,47 @@
+```{r data generation, echo = FALSE, results = "hide", message=F, warning=F}
+library(exams)
+library(tidyverse)
+library(dslabs)
+
+repeat{
+  year1 <- 1960:2013 |> 
+    sample(1)
+  repeat{
+    year2 <- 1960:2013 |> 
+      sample(1) 
+    if(year2 != year1){
+      break
+    }
+  }
+  x <- gapminder |> 
+    filter(year == year1) |> 
+    pull(fertility)
+  y <- gapminder |> 
+    filter(year == year2) |> 
+    pull(fertility)
+  solution <- wilcox.test(x, y, paired = T, var.equal = T)$statistic
+  
+  if(solution > 0.1 & solution < 500){
+    break
+  }
+}
+```
+
+
+Question
+========
+If not done already, install the `dslabs` package from _CRAN_ (use `install.packages("dslabs")`). Use `View()` or `glimpse()` to examine the `gapminder` data. Use `?gapminder` to see a discription of this data. We want to investigate changes in __fertility__ between the years __`r year1`__ and __`r year2`__ . Use `filter()` and `pull()` to make two vectors of the fertility values for these years. Note, the 185 countries will be in the same order in both vectors, so this is a _paired_ test. Also note that the values won't be normally distributed so we won't use a _t test_. Calculate the __Wilcoxon test statistic__ using `wilcox.test()` for the null hypothesis that the `fertility` from the year __`r year1`__ is the same as the `fertility` from the year __`r year2`__. Give your answer to three significant figures.
+
+
+
+Solution
+========
+Make the vectors using `gapminder |> filter(year == `r year1`) |> pull(fertility)` etc.Get the Wilcoxon test statistic using `wilcox.test(x, y, paired = T, var.equal = T)$statistic`.
+
+
+Meta-information
+================
+extype: num
+exsolution: `r solution`
+exname: pbinom
+extol: `r solution*0.02`

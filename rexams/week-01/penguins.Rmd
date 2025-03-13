@@ -1,0 +1,52 @@
+```{r data generation, echo = FALSE, results = "hide", message=F, warning=F}
+library(exams)
+library(tidyverse)
+library(palmerpenguins)
+
+my_diamonds1 <- penguins |> 
+  select(where(is.numeric))
+parameters <- names(my_diamonds1)
+index <- sample(1:length(parameters), 1)
+function_index <- sample(1:6, 1)
+
+my_diamonds <- my_diamonds1 |> pull(parameters[index])
+my_functions <- c("mean", "max", "min", "median", "sd", "range")
+
+solution <- case_when(
+  function_index == 1 ~ mean(my_diamonds, na.rm = T),
+  function_index == 2 ~ max(my_diamonds, na.rm = T),
+  function_index == 3 ~ min(my_diamonds, na.rm = T),
+  function_index == 4 ~ median(my_diamonds, na.rm = T),
+  function_index == 5 ~ sd(my_diamonds, na.rm = T),
+  function_index == 6 ~ max(my_diamonds, na.rm = T)-min(my_diamonds, na.rm = T)
+) |> signif(3)
+
+
+```
+
+
+Question
+========
+Below is an excerpt from the penguins dataset of the `palmerpenguins` package (if not already installed, use `install.packages("palmerpenguins")`):
+
+```{r}
+library(tidyverse)
+library(palmerpenguins)
+head(penguins)
+```
+
+Calculate the `r my_functions[function_index]` for the `r parameters[index]` of this dataset.
+
+
+Solution
+========
+Use the R command `r my_functions[function_index]`(penguins$`r parameters[index]`)
+
+
+
+Meta-information
+================
+extype: num
+exsolution: `r solution %>% signif(3)`
+exname: penguinstats
+extol: `r solution*0.05`

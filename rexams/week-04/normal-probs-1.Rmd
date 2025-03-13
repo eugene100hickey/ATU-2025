@@ -1,0 +1,28 @@
+```{r data generation, echo = FALSE, results = "hide", message=F, warning=F}
+library(exams)
+library(tidyverse)
+
+rain_mean <- rnorm(1, 161, 15) |> signif(2)
+rain_sd <- rnorm(1, 15, 5) |> abs() |> signif(2)
+rain <- rnorm(1, 161, 15) |> signif(2)
+
+
+solution <- pnorm(rain, mean = rain_mean, sd = rain_sd, lower.tail = FALSE) |> signif(3)
+```
+
+Question
+========
+Average annual rainfall in the North Coast of California is `r rain_mean`cm with a standard deviation of `r rain_sd`cm. Calculate the probability of a year having more than `r rain`cm of rain.
+
+
+
+Solution
+========
+Use pnorm(q = `r rain`, mean = `r rain_mean`, sd = `r rain_sd`, lower.tail = FALSE)
+
+Meta-information
+================
+extype: num
+exsolution: `r solution`
+exname: normal_probs_1
+extol: `r solution*0.02`

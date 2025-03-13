@@ -1,0 +1,73 @@
+```{r data generation, echo = FALSE, results = "hide", message=F, warning=F}
+library(exams)
+library(tidyverse)
+library(gt)
+library(agridat)
+
+my_year <- 1970:1971 |> 
+  sample(1)
+
+my_loc <- table(australia.soybean$loc) |> 
+  names() |> 
+  sample(1)
+
+quant <- 5:10 |> 
+  sample(1)
+
+my_data <- australia.soybean |> 
+  filter(year == my_year, loc == my_loc)
+my_quant <- names(my_data)[quant]
+my_variable <- my_data[,quant]
+conf_int <- t.test(my_variable)$`conf.int` |> signif(3)
+
+water_numbers <- 1:2
+conf_int_answer <- glue::glue("##ANSWER{water_numbers}##")
+
+my_table <- tibble(interval = c("Lower Interval", "Higher Interval"), conf_int_answer)
+```
+
+
+Question
+========
+<font size="+10">Install the `agridat` package from _CRAN_ (use `install.packages("agridat")`). Load up the `australia.soybean` data therein. 
+
+This contains yield and other traits of 58 varieties of soybeans, grown in four locations across two years in Australia.  
+
+For the year __`r my_year`__ and location __`r my_loc`__, calculate the 95% confidence interval for the _`mean`_ of __`r my_quant`__ using a _t test_. </font>
+
+
+```{r echo = F}
+my_table %>% 
+  gt() %>% 
+  cols_label(interval = "95% Bounds",
+             conf_int_answer = "Confidence Interval for Mean") %>% 
+  cols_align(align = "center") %>% 
+  tab_options(column_labels.background.color = "cornflowerblue", 
+              table.font.names = "Caveat",
+              table.font.style = "oblique",
+              table.font.size = 40,
+              column_labels.font.weight = "bold",
+              column_labels.vlines.width = 1,
+              column_labels.vlines.color = "darkblue",
+              column_labels.vlines.style = "solid",
+              table_body.vlines.width = 1,
+              table_body.vlines.color = "darkblue",
+              table_body.vlines.style = "solid"
+              )
+```
+
+
+Solution
+========
+Use `australia.soybean |> filter(year == `r my_year`, loc == `r my_loc`)` and then `t.test()`
+
+
+
+Meta-information
+================
+extype: cloze
+exsolution: `r paste(conf_int, collapse = "|")`
+exclozetype: num|num
+exname: conf_int
+extol: 0.05
+exextra[numwidth,logical]: TRUE

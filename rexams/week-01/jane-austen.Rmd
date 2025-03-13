@@ -1,0 +1,38 @@
+```{r data generation, echo = FALSE, results = "hide", message=F, warning=F}
+library(exams)
+library(tidyverse)
+library(janeaustenr)
+
+book <- austen_books()$book |> 
+  levels() |> 
+  sample(1)
+
+solution <- case_when(
+  book == "Sense & Sensibility" ~ nchar(sensesensibility) |> sum(),
+  book == "Pride & Prejudice" ~ nchar(prideprejudice) |> sum(),
+  book == "Mansfield Park" ~ nchar(mansfieldpark) |> sum(),
+  book == "Emma" ~ nchar(emma) |> sum(),
+  book == "Northanger Abbey" ~ nchar(northangerabbey) |> sum(),
+  book == "Persuasion" ~ nchar(persuasion) |> sum()
+  )
+
+```
+
+
+Question
+========
+The `janeaustenr` package contains the text of several Jane Austern novels, (if not already installed, use `install.packages("janeaustenr")`). Calculate the number of letters in the book __`r book`__.
+
+
+Solution
+========
+Use the R command `nchar(book_name) |> sum()`.
+
+
+
+Meta-information
+================
+extype: num
+exsolution: `r solution`
+exname: jane-austen
+extol: `r solution*0.01`
