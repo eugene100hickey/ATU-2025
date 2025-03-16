@@ -38,15 +38,15 @@ editor: visual
 ## Recordings
 
 ::: {style="font-size: 130%; list-style-position: outside; padding-left: 0em;"}
--   [Week One - May 10<sup>th</sup>](https://youtu.be/JzhEz_H8XDM){target="_blank"}
+-   [Week One - April 5<sup>th</sup>](https://youtu.be/JzhEz_H8XDM){target="_blank"}
 
--   [Week Two - May 17<sup>th</sup>](https://youtu.be/c7ZyBYEn0-c){target="_blank"}
+-   [Week Two - April 12<sup>th</sup>](https://youtu.be/c7ZyBYEn0-c){target="_blank"}
 
--   [Week 3 - May 24<sup>th</sup>](https://youtu.be/lSqtheuoYPA){target="_blank"}
+-   [Week 3 - April 26<sup>th</sup>](https://youtu.be/lSqtheuoYPA){target="_blank"}
 
--   [Week 4 - May 31<sup>st</sup>](https://youtu.be/doYCmy2Pa1U){target="_blank"}
+-   [Week 4 - May ??<sup>st</sup>](https://youtu.be/doYCmy2Pa1U){target="_blank"}
 
--   [Week 5 - June 7<sup>th</sup>](https://youtu.be/1mEU_2McRjU){target="_blank"}
+-   [Week 5 - May ??<sup>th</sup>](https://youtu.be/1mEU_2McRjU){target="_blank"}
 
 -   [Week 4 - Quiz](https://youtu.be/5MEm0D1s3FY){target="_blank"}
 
