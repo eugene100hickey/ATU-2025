@@ -1,9 +1,9 @@
 ---
 pagetitle: "Introduction to Statistical Computing - dplyr"
 abstract: |
- This is the fourth of a five part series of lectures as part of the data handling postgraduate module in Atlantic Technological University. 
+ This is the second of a five part series of lectures as part of the data handling postgraduate module in Atlantic Technological University. 
 author: "Eugene Hickey"
-date: "May 2023"
+date: "April 2025"
 host: "Sligo Campus"
 institute: "Atlantic Technological University"
 strip-comments: true
@@ -94,12 +94,12 @@ theme_clean <- function() {
 
 ------------------------------------------------------------------------
 
-## Week Four - Statistical Inference
+## Week Two - Statistical Inference
 
 ::: {style="font-size: 100%;"}
 -   Time we did some statistics on our data
 
--   This ties in nicely with John's half of our course
+-   This ties in nicely with Emma's half of our course
 
 -   We'll look at this from three perspectives
 
@@ -652,14 +652,14 @@ my_data |>
 ::: {.column width="50%"}
 ```{r}
 #| echo: true
-t.test(weight ~ group, data = my_data)
+t.test(x = before, y = after)
 ```
 :::
 
 ::: {.column width="50%"}
 ```{r}
 #| echo: true
-t.test(weight ~ group, data = my_data, paired = TRUE)
+t.test(x = before, y = after, paired = TRUE)
 ```
 :::
 :::

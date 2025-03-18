@@ -3,7 +3,7 @@ pagetitle: "Introduction to Statistical Computing - dplyr"
 abstract: |
  This is the third of a five part series of lectures as part of the data handling postgraduate module in Atlantic Technological University. 
 author: "Eugene Hickey"
-date: "May 2023"
+date: "May 2025"
 host: "Sligo Campus"
 institute: "Atlantic Technological University"
 strip-comments: true
