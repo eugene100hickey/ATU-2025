@@ -1,5 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Fuzzy+Bubbles:wght@400;700&display=swap');
 
+.reveal .slide-logo {
+  height: 75px !important;
+  width: 150px!important;
+  max-width: unset !important;
+  max-height: unset !important;
+}
+
 #title-slide {
   font-size: 30px!important;
 }
