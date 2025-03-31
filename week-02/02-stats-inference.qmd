@@ -664,7 +664,7 @@ t.test(x = before, y = after, paired = TRUE)
 :::
 :::
 
-# Workshop - Week Four
+# Workshop - Week Two
 
 ## Perform the Following Tasks:
 
@@ -678,7 +678,7 @@ t.test(x = before, y = after, paired = TRUE)
 
 3.  Perform a hypothesis test that female and male bisons are the same weight.
 
-## Assignments - Week Four
+## Assignments - Week Two
 
 1.  Complete week two moodle quiz
 

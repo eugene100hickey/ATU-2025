@@ -1,9 +1,9 @@
 ---
 pagetitle: "Introduction to Statistical Computing"
 abstract: |
- This is the second of a six part series of lectures as part of the data handling postgraduate module in Atlantic Technological University. 
+ This is the fourth of a five part series of lectures as part of the data handling postgraduate module in Atlantic Technological University. 
 author: "Eugene Hickey"
-date: "May 2023"
+date: "May 2025"
 host: "Sligo Campus"
 institute: "Atlantic Technological University"
 strip-comments: true
@@ -72,7 +72,7 @@ fa_list <- function(x, incremental = FALSE) {
 
 ------------------------------------------------------------------------
 
-##  Week Two - Getting and Cleaning Data
+##  Week Four - Getting and Cleaning Data
 
 - R only any good when it has data to work with, and lots of it
 
@@ -353,7 +353,7 @@ extract_tables(organ_transplant, output = "data.frame") |> pluck(1) |> gt::gt()
     
 - to figure out the elements part, the Chrome Extension called *Selector Gadget* is very useful. Could also look at the page source by [Ctrl+U]{.underline}
 
-# Workshop - Week Two
+# Workshop - Week Four
 
 ## Perform the Following Tasks:
 
@@ -377,9 +377,9 @@ extract_tables(organ_transplant, output = "data.frame") |> pluck(1) |> gt::gt()
 
 :::
 
-## Assignments - Week Two
+## Assignments - Week Four
 
-1.  Complete week two moodle quiz
+1.  Complete week four moodle quiz
 
 2.  Complete `swirl()` exercises
 
