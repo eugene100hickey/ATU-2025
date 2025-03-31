@@ -16,7 +16,7 @@ css: assets/custom.css
 
 Guidelines for Major Projectin Quantitive Data Handling
 
-Deadline: September 1st 2023
+Deadline: September 1st 2025
 
 Length: 9 pages maximum, not including figures and tables
 
