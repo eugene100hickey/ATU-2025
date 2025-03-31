@@ -133,11 +133,11 @@ fa_list <- function(x, incremental = FALSE) {
 
 1)  Introduction to Statistical Computing & R - *Saturday April 5th*
 
-2)  Getting and Cleaning Data - *Saturday April 12th*
+2)  Statistical Inference - *Saturday April 12th*
 
 3)  Manipulating Data - *Saturday April 26th*
 
-4)  Statistical Inference - *Saturday May ??*
+4)  Getting and Cleaning Data - *Saturday May ??*
 
 5)  Data Visualisation - *Saturday June ??*
 
@@ -168,12 +168,12 @@ fa_list <- function(x, incremental = FALSE) {
     -   based on this weeks lecture
 -   [Exercises to be done within R]{style="color: darkred; font-weight: bold;"}
     -   these are called `swirl()`
-    -   results get emailed to me automatically
+    -   email results to me (screenshot of final page is fine)
 :::
 
 ::: {.column width="40%"}
 -   [Project at end of course]{style="color: darkred; font-weight: bold;"}
-    -   somewhat optional, can either do one on John's section or on this part, or a combination
+    -   somewhat optional, can either do one on Emma's section or on this part, or a combination
     -   best to do something associated with your research that can be useful beyond this module
 :::
 :::

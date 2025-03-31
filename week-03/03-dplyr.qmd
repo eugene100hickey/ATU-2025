@@ -310,7 +310,7 @@ gapminder::gapminder %>%
 - we've used it extensively so far, and can go even further
 - basic idea is that you send the output from one line into the first (unnamed) argument of the next
 - keyboard shortcut, one worth knowing, is Ctrl + Shift + M
-- if you're really interested, other pipes such as the T-pipe(%T%) and the dollar pipe (%$%)
+- if you're really interested, other pipes such as the T-pipe (%T%) and the dollar pipe (%$%)
 
 ---
 
@@ -524,7 +524,5 @@ polls_us_election_2016 %>%
 
 ![](images/swirl.png){.absolute top="20" right="0" width="400" height="300"}
 
-
-:::
 
 

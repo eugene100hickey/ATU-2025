@@ -21,11 +21,11 @@ editor: visual
 ::: {style="font-size: 130%; list-style-position: outside; padding-left: 0em;"}
 [**Week One - Introduction to Statistical Computing**](https://atu-2025.netlify.app/week-01/#/title){target="_blank"}
 
-[**Week Two - Getting and Cleaning data**](https://atu-2025.netlify.app/week-02/#/title){target="_blank"}
+[**Week Two - Statistical Inference**](https://atu-2025.netlify.app/week-02/#/title){target="_blank"}
 
 [**Week Three - Manipulating Data**](https://atu-2025.netlify.app/week-03/#/title){target="_blank"}
 
-[**Week Four - Statistical Inference**](https://atu-2025.netlify.app/week-04/#/title){target="_blank"}
+[**Week Four - Getting and Cleaning Data**](https://atu-2025.netlify.app/week-04/#/title){target="_blank"}
 
 [**Week Five - Data Visualisation**](https://atu-2025.netlify.app/week-05/05-data-viz.html){target="_blank"}
 :::
@@ -38,21 +38,21 @@ editor: visual
 ## Recordings
 
 ::: {style="font-size: 130%; list-style-position: outside; padding-left: 0em;"}
--   [Week One - April 5<sup>th</sup>](https://youtu.be/JzhEz_H8XDM){target="_blank"}
+<!-- -   [Week One - April 5<sup>th</sup>](https://youtu.be/JzhEz_H8XDM){target="_blank"} -->
 
--   [Week Two - April 12<sup>th</sup>](https://youtu.be/c7ZyBYEn0-c){target="_blank"}
+<!-- -   [Week Two - April 12<sup>th</sup>](https://youtu.be/c7ZyBYEn0-c){target="_blank"} -->
 
--   [Week 3 - April 26<sup>th</sup>](https://youtu.be/lSqtheuoYPA){target="_blank"}
+<!-- -   [Week 3 - April 26<sup>th</sup>](https://youtu.be/lSqtheuoYPA){target="_blank"} -->
 
--   [Week 4 - May ??<sup>st</sup>](https://youtu.be/doYCmy2Pa1U){target="_blank"}
+<!-- -   [Week 4 - May ??<sup>st</sup>](https://youtu.be/doYCmy2Pa1U){target="_blank"} -->
 
--   [Week 5 - May ??<sup>th</sup>](https://youtu.be/1mEU_2McRjU){target="_blank"}
+<!-- -   [Week 5 - May ??<sup>th</sup>](https://youtu.be/1mEU_2McRjU){target="_blank"} -->
 
--   [Week 4 - Quiz](https://youtu.be/5MEm0D1s3FY){target="_blank"}
+<!-- -   [Week 4 - Quiz](https://youtu.be/5MEm0D1s3FY){target="_blank"} -->
 
--   [Data Visualisation](https://youtu.be/yJEvsJXm7mw){target="_blank"}
+<!-- -   [Data Visualisation](https://youtu.be/yJEvsJXm7mw){target="_blank"} -->
 
--   [Data Viz Workshop](https://youtu.be/FbO35Y42tQE){target="_blank"}
+<!-- -   [Data Viz Workshop](https://youtu.be/FbO35Y42tQE){target="_blank"} -->
 :::
 ::::
 :::::::::
