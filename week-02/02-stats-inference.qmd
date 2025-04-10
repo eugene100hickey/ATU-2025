@@ -325,7 +325,7 @@ tibble(x = seq(0, 1, by = 0.01), y = qbinom(seq(0, 1, by = 0.01), 8, 0.5)) |>
 
     -   it returns a **number of successes**
 
-    -   gives us the positon of some *quantile*
+    -   gives us the position of some *quantile*
 
 ## `rbinom()`
 
@@ -363,12 +363,12 @@ m <- 1.5
 dev <- 0.2
 ```
 
-A human liver has an average mass of `r p`kg with a standard deviation of `r dev`kg.
+A human liver has an average mass of `r m`kg with a standard deviation of `r dev`kg.
 
 ```{r norm-1}
 #| echo: false
 x = seq(0, 3, by = 0.01)
-tibble(x = x, y = dnorm(x, mean = 1.5, sd = 0.2)) |> 
+tibble(x = x, y = dnorm(x, mean = m, sd = dev)) |> 
   ggplot(aes(x, y))  + 
   geom_point(size = 2, colour = "firebrick4") + 
   geom_line(alpha = 0.5, colour = "firebrick4") +
@@ -695,7 +695,7 @@ t.test(x = before, y = after, paired = TRUE)
 
 -   choose course *Statistical Inference*
 
--   do the four exercises 1 (Introduction), 7 (CommonDistros), 9 (T Confidence Intervals), and 10 (Hypothesis Testing)
+-   do the three exercises 1 (Introduction), 9 (T Confidence Intervals), and 10 (Hypothesis Testing)
 
 -   email a screen shot of the end of each lesson to eugene.hickey\@associate.atu.ie
 
