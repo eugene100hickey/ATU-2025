@@ -6,6 +6,9 @@ author: "Eugene Hickey"
 date: "June 2023"
 host: "Sligo Campus"
 institute: "Atlantic Technological University"
+include-in-header:
+  - text: |
+      <link rel = "shortcut icon" href = "images/atu-logo.png" />
 output:
   xaringan::moon_reader:
     css: 

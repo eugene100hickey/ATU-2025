@@ -30,6 +30,9 @@ format:
       <script src="assets/fontawesome-free-6.1.1-web/js/all.min.js"></script>
 callout-icon: false
 output-file: index.html
+include-in-header:
+  - text: |
+      <link rel = "shortcut icon" href = "images/atu-logo.png" />
 execute:
   echo: true
 ---

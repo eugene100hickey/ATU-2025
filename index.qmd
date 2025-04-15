@@ -6,6 +6,9 @@ format:
     logo: images/atu-logo.png
     footer: "[Statistical Computing](https://vlesligo.atu.ie)"
 editor: visual
+include-in-header:
+  - text: |
+      <link rel = "shortcut icon" href = "images/atu-logo.png" />
 ---
 
 ::: {style="font-size: 250%; list-style-position: outside; padding-left: 0em;"}
