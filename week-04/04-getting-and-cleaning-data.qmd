@@ -1,5 +1,5 @@
 ---
-pagetitle: "Introduction to Statistical Computing"
+pagetitle: "Introduction to Statistical Computing <br> Getting & Cleaning Data"
 abstract: |
  This is the fourth of a five part series of lectures as part of the data handling postgraduate module in Atlantic Technological University. 
 author: "Eugene Hickey"

@@ -43,7 +43,7 @@ include-in-header:
 ::: {style="font-size: 130%; list-style-position: outside; padding-left: 0em;"}
 -   [Week One Summary- April 5<sup>th</sup>](https://youtu.be/rlMQnBaWprw){target="_blank"}
 
-<!-- -   [Week Two - April 12<sup>th</sup>](https://youtu.be/c7ZyBYEn0-c){target="_blank"} -->
+-   [Week Two Summary- April 12<sup>th</sup>](https://youtu.be/d5tOcWPuWI0){target="_blank"}
 
 <!-- -   [Week 3 - April 26<sup>th</sup>](https://youtu.be/lSqtheuoYPA){target="_blank"} -->
 
