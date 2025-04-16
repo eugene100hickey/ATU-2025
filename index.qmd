@@ -30,7 +30,7 @@ include-in-header:
 
 [**Week Four - Getting and Cleaning Data**](https://atu-2025.netlify.app/week-04/#/title){target="_blank"}
 
-[**Week Five - Data Visualisation**](https://atu-2025.netlify.app/week-05/05-data-viz.html){target="_blank"}
+[**Week Five - Data Visualisation**](https://atu-2025.netlify.app/week-05/){target="_blank"}
 :::
 :::::
 
