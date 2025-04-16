@@ -86,14 +86,16 @@ showtext_auto()
 theme_clean <- function() {
     theme_minimal(base_family = my_font) +
         theme(panel.grid.minor = element_blank(),
-              text = element_text(size = 32, family = my_font),
+              text = element_text(size = 36, family = my_font),
               plot.background = element_rect(fill = "white", color = NA),
-              axis.text = element_text(size = 32),
-              axis.title = element_text(face = "bold", size = 28),
+              axis.text = element_text(size = 36),
+              axis.title = element_text(face = "bold", size = 36),
               strip.text = element_text(face = "bold", size = rel(0.8), hjust = 0),
               strip.background = element_rect(fill = "grey80", color = NA),
-              legend.text = element_text(size = 36))
+              legend.text = element_text(size = 44))
 }
+theme_set(theme_clean())
+
 ```
 
 ::: title-box
@@ -204,14 +206,13 @@ palmerpenguins::penguins %>% drop_na() %>%
        x = "Flipper Length (mm)",
        y = "Bill Length (mm)",
        caption = "@Data from Palmer Penguins") +
-  theme_minimal() + 
-  theme(text = element_text(family = "Ink Free", size = 18)) +
-  theme(plot.subtitle = element_markdown(size = 18)) + 
+  theme(text = element_text(family = "Ink Free", size = 32)) +
+  theme(plot.subtitle = element_markdown(size = 40)) + 
   facet_grid(~sex)
 
 ```
 
-`r flipbookr:::chunq_reveal("flipbookexample", title = "ggplot Runthrough", lcolw = "40", rcolw = "60", chunk_options = "fig.height = 10, fig.width = 10", smallcode = TRUE)`
+`r flipbookr:::chunq_reveal("flipbookexample", title = "ggplot Runthrough", lcolw = "40", rcolw = "60", chunk_options = "fig.height = 8, fig.width = 10", smallcode = TRUE)`
 
 ```{r theme, cache = F, echo = FALSE}
 my_colour = "firebrick4"
@@ -291,7 +292,7 @@ roller <- df %>%
     #adds some space around
     text = element_text(
       color = "white",
-      size = 24,
+      size = 32,
       family = "Ink Free",
       face = "bold"
     ),
@@ -334,9 +335,9 @@ roller <- roller +
     "text",
     x = 28.5,
     y = 0.029,
-    label = "There is a peak in \ninjuries among \nchildren aged around 10",
+    label = "There is a peak in injuries among children aged around 10",
     color = "white",
-    size = 3
+    size = 5
   ) +
   geom_curve(
     x = 32,
@@ -351,9 +352,9 @@ roller <- roller +
     "text",
     x = 56,
     y = 0.019,
-    label = "From age 35 onwards, \ninjuries sharply decrease \n(probably attendance to \namusement parks too!)",
+    label = "From age 35 onwards, injuries sharply decrease (probably attendance to amusement parks too!)",
     color = "white",
-    size = 3
+    size = 5
   )
 roller  
   
@@ -435,12 +436,14 @@ diamonds %>%
   ggtitle("Proportion of Cuts of Diamonds") + 
   labs(caption = "@Data tidyverse") +
   coord_flip() +
+  theme_clean() +
+  theme(text = element_text(size = 40)) + 
   theme(axis.text.x = element_blank()) + 
   theme(axis.title = element_blank()) + 
   theme(title = element_text(face = "bold"))
 ```
 
-`r flipbookr:::chunq_reveal("barplot2", title = "Bar Plots", lcolw = "40", rcolw = "60", chunk_options = "fig.height = 10, fig.width = 10", smallcode = TRUE)`
+`r flipbookr:::chunq_reveal("barplot2", title = "Bar Plots", lcolw = "40", rcolw = "60", chunk_options = "fig.height = 8, fig.width = 10", smallcode = TRUE)`
 
 ---
 
@@ -468,6 +471,7 @@ movies %>% mutate(movie = fct_reorder(movie, gross)) %>%
   slice_head(n=10) %>% 
   ggplot(aes(movie, gross)) + 
   geom_col(fill = "firebrick4") + 
+  theme_clean() + 
   scale_y_continuous(breaks = scales::breaks_extended(8), 
                      labels = scales::label_dollar(scale = 1)) + 
   labs(title = glue::glue("Box Office {boxoffice_date_string}"),
@@ -477,7 +481,7 @@ movies %>% mutate(movie = fct_reorder(movie, gross)) %>%
   coord_flip()
 ```
 
-`r flipbookr:::chunq_reveal("box-office", title = "Movie Barplot", lcolw = "40", rcolw = "60", chunk_options = "fig.height = 10, fig.width = 10", smallcode = TRUE)`
+`r flipbookr:::chunq_reveal("box-office", title = "Movie Barplot", lcolw = "40", rcolw = "60", chunk_options = "fig.height = 8, fig.width = 10", smallcode = TRUE)`
 
 ---
 
@@ -516,7 +520,7 @@ dslabs::gapminder %>%
 ```
 
 
-`r flipbookr:::chunq_reveal("colplot-gapminder", title = "Column Plot", lcolw = "40", rcolw = "60", chunk_options = "fig.height = 10, fig.width = 10", smallcode = TRUE, break_type = "rotate")`
+`r flipbookr:::chunq_reveal("colplot-gapminder", title = "Column Plot", lcolw = "40", rcolw = "60", chunk_options = "fig.height = 8, fig.width = 10", smallcode = TRUE, break_type = "rotate")`
 
 
 ---
@@ -543,7 +547,7 @@ dslabs::gapminder %>%
 ```
 
 
-`r flipbookr:::chunq_reveal("lollypop-gapminder", title = "Lollypop Plot", lcolw = "40", rcolw = "60", chunk_options = "fig.height = 10, fig.width = 10", smallcode = TRUE)`
+`r flipbookr:::chunq_reveal("lollypop-gapminder", title = "Lollypop Plot", lcolw = "40", rcolw = "60", chunk_options = "fig.height = 8, fig.width = 10", smallcode = TRUE)`
 
 
 ## Summary of Amounts
@@ -597,7 +601,7 @@ basketball %>%
 ```
 
 
-`r flipbookr:::chunq_reveal("histogram1", title = "Histogram", lcolw = "40", rcolw = "60", chunk_options = "fig.height = 10, fig.width = 10", smallcode = TRUE)`
+`r flipbookr:::chunq_reveal("histogram1", title = "Histogram", lcolw = "40", rcolw = "60", chunk_options = "fig.height = 8, fig.width = 10", smallcode = TRUE)`
 
 ---
 
@@ -614,7 +618,7 @@ basketball %>%
 ```
 
 
-`r flipbookr:::chunq_reveal("histogram-dodge", title = "Histogram", lcolw = "40", rcolw = "60", chunk_options = "fig.height = 10, fig.width = 10", smallcode = TRUE)`
+`r flipbookr:::chunq_reveal("histogram-dodge", title = "Histogram", lcolw = "40", rcolw = "60", chunk_options = "fig.height = 8, fig.width = 10", smallcode = TRUE)`
 
 ---
 
@@ -632,7 +636,7 @@ basketball %>%
 ```
 
 
-`r flipbookr:::chunq_reveal("density1", title = "Density Plot", lcolw = "40", rcolw = "60", chunk_options = "fig.height = 10, fig.width = 10", smallcode = TRUE)`
+`r flipbookr:::chunq_reveal("density1", title = "Density Plot", lcolw = "40", rcolw = "60", chunk_options = "fig.height = 8, fig.width = 10", smallcode = TRUE)`
 
 ---
 
@@ -653,7 +657,7 @@ basketball %>%
 ```
 
 
-`r flipbookr:::chunq_reveal("boxplots", title = "Boxplot", lcolw = "40", rcolw = "60", chunk_options = "fig.height = 10, fig.width = 10", smallcode = TRUE)`
+`r flipbookr:::chunq_reveal("boxplots", title = "Boxplot", lcolw = "40", rcolw = "60", chunk_options = "fig.height = 8, fig.width = 10", smallcode = TRUE)`
 
 ```{r violins, echo = T, fig.height=6, include = FALSE}
 basketball %>% 
@@ -671,7 +675,7 @@ basketball %>%
 ```
 
 
-`r flipbookr:::chunq_reveal("violins", title = "Violin Plot", lcolw = "40", rcolw = "60", chunk_options = "fig.height = 10, fig.width = 10", smallcode = TRUE)`
+`r flipbookr:::chunq_reveal("violins", title = "Violin Plot", lcolw = "40", rcolw = "60", chunk_options = "fig.height = 8, fig.width = 10", smallcode = TRUE)`
 
 ---
 
@@ -689,7 +693,7 @@ gapminder::gapminder %>%
 ```
 
 
-`r flipbookr:::chunq_reveal("ridges", title = "Ridge Plot", lcolw = "40", rcolw = "60", chunk_options = "fig.height = 10, fig.width = 10", smallcode = TRUE)`
+`r flipbookr:::chunq_reveal("ridges", title = "Ridge Plot", lcolw = "40", rcolw = "60", chunk_options = "fig.height = 8, fig.width = 10", smallcode = TRUE)`
 
 
 ## Summary of Distributions
@@ -746,7 +750,7 @@ dslabs::stars %>%
 ```
 
 
-`r flipbookr:::chunq_reveal("encircleplot", title = "Encircle", lcolw = "40", rcolw = "60", chunk_options = "fig.height = 10, fig.width = 10", smallcode = TRUE)`
+`r flipbookr:::chunq_reveal("encircleplot", title = "Encircle", lcolw = "40", rcolw = "60", chunk_options = "fig.height = 8, fig.width = 10", smallcode = TRUE)`
 
 ---
 
@@ -803,6 +807,8 @@ death_prob %>%
 
 ## Procedure
 
+::: {style="font-size: 90%;"}
+
 - You'll need the _tidyverse_ library and the _dslabs_ library (install from CRAN by _install.packages("dslabs")_)
 
 - Get the dataset using _data("death_prob")_
@@ -819,6 +825,7 @@ death_prob %>%
 
 - You can save your plot using _ggsave("my-first-assignment.png")_ at the console or in your .R file, or by clicking _Export_ in the plots pane of RStudio
 
+:::
 
 ## Marking
 
