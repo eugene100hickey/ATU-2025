@@ -378,6 +378,10 @@ band_members |> left_join(band_instruments) |> gt::gt() |> gt::tab_options(table
 ##
 
 ![](images/untidy.png)
+##
+
+![](images/tidy.png)
+
 ## Working with Excel
 
 ::: {style="font-size: 80%;"}
