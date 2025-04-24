@@ -537,6 +537,7 @@ dslabs::gapminder %>%
   summarise(life_exp_2007 = mean(life_expectancy)) %>%
   mutate(continent = fct_reorder(continent, life_exp_2007)) %>% 
   ggplot(aes(continent, life_exp_2007)) + 
+  theme_clean() + 
   geom_point(colour = "firebrick4", size = 10) + 
   geom_segment(aes(x = continent, xend = continent, y = 0, yend = life_exp_2007),
                size = 2, colour = "firebrick4") +

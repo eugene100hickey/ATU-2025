@@ -14,7 +14,7 @@ my_formats <- c("%y %m %d",
                 "%Y %B %d",
                 "%y %b %d")
 
-pat <- "19/09/2023" |> as.Date(format = "%d/%m/%Y")
+pat <- "19/09/2025" |> as.Date(format = "%d/%m/%Y")
 
 index <- sample(1:10, 1)
 other_index <- c(1:10)[!(1:10 %in% index)]
@@ -31,7 +31,7 @@ solution <- c(correct_format, other_answers)
 
 Question
 ========
-The official way of presenting the date for _International Speak Like a Pirate Day_ this year is `r pat`. Which of the format strings below would represent this as `r answer`?
+The official way of representing the date for _International Speak Like a Pirate Day_ this year is `r pat`. Which of the format strings below would represent this as `r answer`?
 
 Answerlist
 ----------
@@ -45,7 +45,7 @@ Answerlist
 
 Solution
 ========
-Use the R command `format("`r pat`", my_formats)` where `my_format` is a string specifier like `"%y %m %y"`.
+Use the R command `format(as.Date("`r pat`", my_format))` where `my_format` is a string specifier like `"%y %m %y"`.
 
 Answerlist
 ----------

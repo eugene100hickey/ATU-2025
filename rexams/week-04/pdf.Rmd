@@ -3,8 +3,9 @@ library(exams)
 library(tidyverse)
 library(tabulizer)
 
-file_base <- "https://github.com/eugene100hickey/cao-pdf/raw/master/data/"
-directory_base <- "C:/Users/ehickey/OneDrive - Technological University Dublin/Desktop/Academic/SciencePG/ATU-2023/week-02/data/"
+file_base <- "https://raw.githubusercontent.com/eugene100hickey/cao-pdf/master/data/"
+directory_base <- "C:/Users/ehickey/OneDrive - Technological University Dublin/Desktop/Academic/SciencePG/ATU-2025/week-02/data/"
+directory_base <- file_base
 
 repeat{
   my_college <- tribble(~code, ~name,
