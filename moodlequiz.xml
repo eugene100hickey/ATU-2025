@@ -9,9 +9,9 @@
 </question>
 
 
-<question type="numerical">
+<question type="multichoice">
 <name>
-<text> R01 Q1 : rexams_week-04_excel </text>
+<text> R01 Q1 : rexams_week-03_lubridate </text>
 </name>
 <questiontext format="html">
 <text><![CDATA[
@@ -38,26 +38,82 @@
 }
 </style>
 <p>
-<p>Open the sheet <strong><em>countries</em></strong> from the file at <strong>https://github.com/eugene100hickey/ATU-2025/blob/main/rexams/data/excel-example.xlsx?raw=true</strong> using <code>rio::import("https://github.com/eugene100hickey/ATU-2025/blob/main/rexams/data/excel-example.xlsx?raw=true", which = "countries")</code> (or else you can download the file to your computer and open with <code>read_excel()</code>). How many rows are there in this file?</p>
+<p>The official way of representing the date for <em>International Speak Like a Pirate Day</em> this year is 2025-09-19 (i.e. Friday, September 19, 2025). Which of the format strings below would represent this as 25 19 09?</p>
 </p>]]></text>
 </questiontext>
 <generalfeedback format="html">
 <text><![CDATA[<p>
-<p>Use <code>excel_sheets()</code>, followed by <code>read_excel()</code>, and then <code>nrow()</code>.</p>
+<p>Use the R command <code>format(as.Date("2025-09-19", my_format))</code> where <code>my_format</code> is a string specifier like <code>"%y %m %y"</code>.</p>
+<ul>
+<li> False </li>
+<li> True </li>
+<li> False </li>
+<li> False </li>
+<li> False </li>
+</ul>
 </p>]]></text>
 </generalfeedback>
 <penalty>0</penalty>
 <defaultgrade>1</defaultgrade>
-<answer fraction="100" format="moodle_auto_format">
-<text>195</text>
-<tolerance>3.9</tolerance>
+<shuffleanswers>false</shuffleanswers>
+<single>true</single>
+<answernumbering>abc</answernumbering>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+%Y %d %B
+</p>]]></text>
+<feedback format="html">
+<text><![CDATA[<p>
+False
+</p>]]></text>
+</feedback>
+</answer>
+<answer fraction="100" format="html">
+<text><![CDATA[<p>
+%y %d %m
+</p>]]></text>
+<feedback format="html">
+<text><![CDATA[<p>
+True
+</p>]]></text>
+</feedback>
+</answer>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+%D
+</p>]]></text>
+<feedback format="html">
+<text><![CDATA[<p>
+False
+</p>]]></text>
+</feedback>
+</answer>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+%Y %B %d
+</p>]]></text>
+<feedback format="html">
+<text><![CDATA[<p>
+False
+</p>]]></text>
+</feedback>
+</answer>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+%Y %m %d
+</p>]]></text>
+<feedback format="html">
+<text><![CDATA[<p>
+False
+</p>]]></text>
+</feedback>
 </answer>
 </question>
 
 
-<question type="numerical">
+<question type="multichoice">
 <name>
-<text> R02 Q1 : rexams_week-04_excel </text>
+<text> R02 Q1 : rexams_week-03_lubridate </text>
 </name>
 <questiontext format="html">
 <text><![CDATA[
@@ -84,26 +140,82 @@
 }
 </style>
 <p>
-<p>Open the sheet <strong><em>skillpad</em></strong> from the file at <strong>https://github.com/eugene100hickey/ATU-2025/blob/main/rexams/data/excel-example.xlsx?raw=true</strong> using <code>rio::import("https://github.com/eugene100hickey/ATU-2025/blob/main/rexams/data/excel-example.xlsx?raw=true", which = "skillpad")</code> (or else you can download the file to your computer and open with <code>read_excel()</code>). How many rows are there in this file?</p>
+<p>The official way of representing the date for <em>International Speak Like a Pirate Day</em> this year is 2025-09-19 (i.e. Friday, September 19, 2025). Which of the format strings below would represent this as 2025 19 September?</p>
 </p>]]></text>
 </questiontext>
 <generalfeedback format="html">
 <text><![CDATA[<p>
-<p>Use <code>excel_sheets()</code>, followed by <code>read_excel()</code>, and then <code>nrow()</code>.</p>
+<p>Use the R command <code>format(as.Date("2025-09-19", my_format))</code> where <code>my_format</code> is a string specifier like <code>"%y %m %y"</code>.</p>
+<ul>
+<li> True </li>
+<li> False </li>
+<li> False </li>
+<li> False </li>
+<li> False </li>
+</ul>
 </p>]]></text>
 </generalfeedback>
 <penalty>0</penalty>
 <defaultgrade>1</defaultgrade>
-<answer fraction="100" format="moodle_auto_format">
-<text>2192</text>
-<tolerance>43.84</tolerance>
+<shuffleanswers>false</shuffleanswers>
+<single>true</single>
+<answernumbering>abc</answernumbering>
+<answer fraction="100" format="html">
+<text><![CDATA[<p>
+%Y %d %B
+</p>]]></text>
+<feedback format="html">
+<text><![CDATA[<p>
+True
+</p>]]></text>
+</feedback>
+</answer>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+%y %B %d
+</p>]]></text>
+<feedback format="html">
+<text><![CDATA[<p>
+False
+</p>]]></text>
+</feedback>
+</answer>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+%y %b %d
+</p>]]></text>
+<feedback format="html">
+<text><![CDATA[<p>
+False
+</p>]]></text>
+</feedback>
+</answer>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+%Y %m %d
+</p>]]></text>
+<feedback format="html">
+<text><![CDATA[<p>
+False
+</p>]]></text>
+</feedback>
+</answer>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+%b %d %m
+</p>]]></text>
+<feedback format="html">
+<text><![CDATA[<p>
+False
+</p>]]></text>
+</feedback>
 </answer>
 </question>
 
 
-<question type="numerical">
+<question type="multichoice">
 <name>
-<text> R03 Q1 : rexams_week-04_excel </text>
+<text> R03 Q1 : rexams_week-03_lubridate </text>
 </name>
 <questiontext format="html">
 <text><![CDATA[
@@ -130,26 +242,82 @@
 }
 </style>
 <p>
-<p>Open the sheet <strong><em>Sheet3</em></strong> from the file at <strong>https://github.com/eugene100hickey/ATU-2025/blob/main/rexams/data/excel-example.xlsx?raw=true</strong> using <code>rio::import("https://github.com/eugene100hickey/ATU-2025/blob/main/rexams/data/excel-example.xlsx?raw=true", which = "Sheet3")</code> (or else you can download the file to your computer and open with <code>read_excel()</code>). How many rows are there in this file?</p>
+<p>The official way of representing the date for <em>International Speak Like a Pirate Day</em> this year is 2025-09-19 (i.e. Friday, September 19, 2025). Which of the format strings below would represent this as 2025 19 September?</p>
 </p>]]></text>
 </questiontext>
 <generalfeedback format="html">
 <text><![CDATA[<p>
-<p>Use <code>excel_sheets()</code>, followed by <code>read_excel()</code>, and then <code>nrow()</code>.</p>
+<p>Use the R command <code>format(as.Date("2025-09-19", my_format))</code> where <code>my_format</code> is a string specifier like <code>"%y %m %y"</code>.</p>
+<ul>
+<li> True </li>
+<li> False </li>
+<li> False </li>
+<li> False </li>
+<li> False </li>
+</ul>
 </p>]]></text>
 </generalfeedback>
 <penalty>0</penalty>
 <defaultgrade>1</defaultgrade>
-<answer fraction="100" format="moodle_auto_format">
-<text>2325</text>
-<tolerance>46.5</tolerance>
+<shuffleanswers>false</shuffleanswers>
+<single>true</single>
+<answernumbering>abc</answernumbering>
+<answer fraction="100" format="html">
+<text><![CDATA[<p>
+%Y %d %B
+</p>]]></text>
+<feedback format="html">
+<text><![CDATA[<p>
+True
+</p>]]></text>
+</feedback>
+</answer>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+%A %b %d %Y
+</p>]]></text>
+<feedback format="html">
+<text><![CDATA[<p>
+False
+</p>]]></text>
+</feedback>
+</answer>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+%y %b %d
+</p>]]></text>
+<feedback format="html">
+<text><![CDATA[<p>
+False
+</p>]]></text>
+</feedback>
+</answer>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+%D
+</p>]]></text>
+<feedback format="html">
+<text><![CDATA[<p>
+False
+</p>]]></text>
+</feedback>
+</answer>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+%b %d %m
+</p>]]></text>
+<feedback format="html">
+<text><![CDATA[<p>
+False
+</p>]]></text>
+</feedback>
 </answer>
 </question>
 
 
-<question type="numerical">
+<question type="multichoice">
 <name>
-<text> R04 Q1 : rexams_week-04_excel </text>
+<text> R04 Q1 : rexams_week-03_lubridate </text>
 </name>
 <questiontext format="html">
 <text><![CDATA[
@@ -176,26 +344,82 @@
 }
 </style>
 <p>
-<p>Open the sheet <strong><em>brexit</em></strong> from the file at <strong>https://github.com/eugene100hickey/ATU-2025/blob/main/rexams/data/excel-example.xlsx?raw=true</strong> using <code>rio::import("https://github.com/eugene100hickey/ATU-2025/blob/main/rexams/data/excel-example.xlsx?raw=true", which = "brexit")</code> (or else you can download the file to your computer and open with <code>read_excel()</code>). How many rows are there in this file?</p>
+<p>The official way of representing the date for <em>International Speak Like a Pirate Day</em> this year is 2025-09-19 (i.e. Friday, September 19, 2025). Which of the format strings below would represent this as Sept 19 09?</p>
 </p>]]></text>
 </questiontext>
 <generalfeedback format="html">
 <text><![CDATA[<p>
-<p>Use <code>excel_sheets()</code>, followed by <code>read_excel()</code>, and then <code>nrow()</code>.</p>
+<p>Use the R command <code>format(as.Date("2025-09-19", my_format))</code> where <code>my_format</code> is a string specifier like <code>"%y %m %y"</code>.</p>
+<ul>
+<li> False </li>
+<li> False </li>
+<li> False </li>
+<li> False </li>
+<li> True </li>
+</ul>
 </p>]]></text>
 </generalfeedback>
 <penalty>0</penalty>
 <defaultgrade>1</defaultgrade>
-<answer fraction="100" format="moodle_auto_format">
-<text>127</text>
-<tolerance>2.54</tolerance>
+<shuffleanswers>false</shuffleanswers>
+<single>true</single>
+<answernumbering>abc</answernumbering>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+%y %B %d
+</p>]]></text>
+<feedback format="html">
+<text><![CDATA[<p>
+False
+</p>]]></text>
+</feedback>
+</answer>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+%D
+</p>]]></text>
+<feedback format="html">
+<text><![CDATA[<p>
+False
+</p>]]></text>
+</feedback>
+</answer>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+%Y %d %B
+</p>]]></text>
+<feedback format="html">
+<text><![CDATA[<p>
+False
+</p>]]></text>
+</feedback>
+</answer>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+%y %b %d
+</p>]]></text>
+<feedback format="html">
+<text><![CDATA[<p>
+False
+</p>]]></text>
+</feedback>
+</answer>
+<answer fraction="100" format="html">
+<text><![CDATA[<p>
+%b %d %m
+</p>]]></text>
+<feedback format="html">
+<text><![CDATA[<p>
+True
+</p>]]></text>
+</feedback>
 </answer>
 </question>
 
 
-<question type="numerical">
+<question type="multichoice">
 <name>
-<text> R05 Q1 : rexams_week-04_excel </text>
+<text> R05 Q1 : rexams_week-03_lubridate </text>
 </name>
 <questiontext format="html">
 <text><![CDATA[
@@ -222,26 +446,82 @@
 }
 </style>
 <p>
-<p>Open the sheet <strong><em>employees</em></strong> from the file at <strong>https://github.com/eugene100hickey/ATU-2025/blob/main/rexams/data/excel-example.xlsx?raw=true</strong> using <code>rio::import("https://github.com/eugene100hickey/ATU-2025/blob/main/rexams/data/excel-example.xlsx?raw=true", which = "employees")</code> (or else you can download the file to your computer and open with <code>read_excel()</code>). How many rows are there in this file?</p>
+<p>The official way of representing the date for <em>International Speak Like a Pirate Day</em> this year is 2025-09-19 (i.e. Friday, September 19, 2025). Which of the format strings below would represent this as 2025 19 September?</p>
 </p>]]></text>
 </questiontext>
 <generalfeedback format="html">
 <text><![CDATA[<p>
-<p>Use <code>excel_sheets()</code>, followed by <code>read_excel()</code>, and then <code>nrow()</code>.</p>
+<p>Use the R command <code>format(as.Date("2025-09-19", my_format))</code> where <code>my_format</code> is a string specifier like <code>"%y %m %y"</code>.</p>
+<ul>
+<li> False </li>
+<li> False </li>
+<li> True </li>
+<li> False </li>
+<li> False </li>
+</ul>
 </p>]]></text>
 </generalfeedback>
 <penalty>0</penalty>
 <defaultgrade>1</defaultgrade>
-<answer fraction="100" format="moodle_auto_format">
-<text>1000</text>
-<tolerance>20</tolerance>
+<shuffleanswers>false</shuffleanswers>
+<single>true</single>
+<answernumbering>abc</answernumbering>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+%A %b %d %Y
+</p>]]></text>
+<feedback format="html">
+<text><![CDATA[<p>
+False
+</p>]]></text>
+</feedback>
+</answer>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+%y %b %d
+</p>]]></text>
+<feedback format="html">
+<text><![CDATA[<p>
+False
+</p>]]></text>
+</feedback>
+</answer>
+<answer fraction="100" format="html">
+<text><![CDATA[<p>
+%Y %d %B
+</p>]]></text>
+<feedback format="html">
+<text><![CDATA[<p>
+True
+</p>]]></text>
+</feedback>
+</answer>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+%y %B %d
+</p>]]></text>
+<feedback format="html">
+<text><![CDATA[<p>
+False
+</p>]]></text>
+</feedback>
+</answer>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+%b %d %m
+</p>]]></text>
+<feedback format="html">
+<text><![CDATA[<p>
+False
+</p>]]></text>
+</feedback>
 </answer>
 </question>
 
 
-<question type="numerical">
+<question type="multichoice">
 <name>
-<text> R06 Q1 : rexams_week-04_excel </text>
+<text> R06 Q1 : rexams_week-03_lubridate </text>
 </name>
 <questiontext format="html">
 <text><![CDATA[
@@ -268,26 +548,82 @@
 }
 </style>
 <p>
-<p>Open the sheet <strong><em>skillpad</em></strong> from the file at <strong>https://github.com/eugene100hickey/ATU-2025/blob/main/rexams/data/excel-example.xlsx?raw=true</strong> using <code>rio::import("https://github.com/eugene100hickey/ATU-2025/blob/main/rexams/data/excel-example.xlsx?raw=true", which = "skillpad")</code> (or else you can download the file to your computer and open with <code>read_excel()</code>). How many rows are there in this file?</p>
+<p>The official way of representing the date for <em>International Speak Like a Pirate Day</em> this year is 2025-09-19 (i.e. Friday, September 19, 2025). Which of the format strings below would represent this as 25 September 19?</p>
 </p>]]></text>
 </questiontext>
 <generalfeedback format="html">
 <text><![CDATA[<p>
-<p>Use <code>excel_sheets()</code>, followed by <code>read_excel()</code>, and then <code>nrow()</code>.</p>
+<p>Use the R command <code>format(as.Date("2025-09-19", my_format))</code> where <code>my_format</code> is a string specifier like <code>"%y %m %y"</code>.</p>
+<ul>
+<li> False </li>
+<li> False </li>
+<li> True </li>
+<li> False </li>
+<li> False </li>
+</ul>
 </p>]]></text>
 </generalfeedback>
 <penalty>0</penalty>
 <defaultgrade>1</defaultgrade>
-<answer fraction="100" format="moodle_auto_format">
-<text>2192</text>
-<tolerance>43.84</tolerance>
+<shuffleanswers>false</shuffleanswers>
+<single>true</single>
+<answernumbering>abc</answernumbering>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+%Y %d %B
+</p>]]></text>
+<feedback format="html">
+<text><![CDATA[<p>
+False
+</p>]]></text>
+</feedback>
+</answer>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+%Y %m %d
+</p>]]></text>
+<feedback format="html">
+<text><![CDATA[<p>
+False
+</p>]]></text>
+</feedback>
+</answer>
+<answer fraction="100" format="html">
+<text><![CDATA[<p>
+%y %B %d
+</p>]]></text>
+<feedback format="html">
+<text><![CDATA[<p>
+True
+</p>]]></text>
+</feedback>
+</answer>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+%D
+</p>]]></text>
+<feedback format="html">
+<text><![CDATA[<p>
+False
+</p>]]></text>
+</feedback>
+</answer>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+%b %d %m
+</p>]]></text>
+<feedback format="html">
+<text><![CDATA[<p>
+False
+</p>]]></text>
+</feedback>
 </answer>
 </question>
 
 
-<question type="numerical">
+<question type="multichoice">
 <name>
-<text> R07 Q1 : rexams_week-04_excel </text>
+<text> R07 Q1 : rexams_week-03_lubridate </text>
 </name>
 <questiontext format="html">
 <text><![CDATA[
@@ -314,26 +650,82 @@
 }
 </style>
 <p>
-<p>Open the sheet <strong><em>Sheet3</em></strong> from the file at <strong>https://github.com/eugene100hickey/ATU-2025/blob/main/rexams/data/excel-example.xlsx?raw=true</strong> using <code>rio::import("https://github.com/eugene100hickey/ATU-2025/blob/main/rexams/data/excel-example.xlsx?raw=true", which = "Sheet3")</code> (or else you can download the file to your computer and open with <code>read_excel()</code>). How many rows are there in this file?</p>
+<p>The official way of representing the date for <em>International Speak Like a Pirate Day</em> this year is 2025-09-19 (i.e. Friday, September 19, 2025). Which of the format strings below would represent this as 2025 09 19?</p>
 </p>]]></text>
 </questiontext>
 <generalfeedback format="html">
 <text><![CDATA[<p>
-<p>Use <code>excel_sheets()</code>, followed by <code>read_excel()</code>, and then <code>nrow()</code>.</p>
+<p>Use the R command <code>format(as.Date("2025-09-19", my_format))</code> where <code>my_format</code> is a string specifier like <code>"%y %m %y"</code>.</p>
+<ul>
+<li> False </li>
+<li> False </li>
+<li> False </li>
+<li> False </li>
+<li> True </li>
+</ul>
 </p>]]></text>
 </generalfeedback>
 <penalty>0</penalty>
 <defaultgrade>1</defaultgrade>
-<answer fraction="100" format="moodle_auto_format">
-<text>2325</text>
-<tolerance>46.5</tolerance>
+<shuffleanswers>false</shuffleanswers>
+<single>true</single>
+<answernumbering>abc</answernumbering>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+%y %b %d
+</p>]]></text>
+<feedback format="html">
+<text><![CDATA[<p>
+False
+</p>]]></text>
+</feedback>
+</answer>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+%Y %d %B
+</p>]]></text>
+<feedback format="html">
+<text><![CDATA[<p>
+False
+</p>]]></text>
+</feedback>
+</answer>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+%b %d %m
+</p>]]></text>
+<feedback format="html">
+<text><![CDATA[<p>
+False
+</p>]]></text>
+</feedback>
+</answer>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+%Y %B %d
+</p>]]></text>
+<feedback format="html">
+<text><![CDATA[<p>
+False
+</p>]]></text>
+</feedback>
+</answer>
+<answer fraction="100" format="html">
+<text><![CDATA[<p>
+%Y %m %d
+</p>]]></text>
+<feedback format="html">
+<text><![CDATA[<p>
+True
+</p>]]></text>
+</feedback>
 </answer>
 </question>
 
 
-<question type="numerical">
+<question type="multichoice">
 <name>
-<text> R08 Q1 : rexams_week-04_excel </text>
+<text> R08 Q1 : rexams_week-03_lubridate </text>
 </name>
 <questiontext format="html">
 <text><![CDATA[
@@ -360,26 +752,82 @@
 }
 </style>
 <p>
-<p>Open the sheet <strong><em>countries</em></strong> from the file at <strong>https://github.com/eugene100hickey/ATU-2025/blob/main/rexams/data/excel-example.xlsx?raw=true</strong> using <code>rio::import("https://github.com/eugene100hickey/ATU-2025/blob/main/rexams/data/excel-example.xlsx?raw=true", which = "countries")</code> (or else you can download the file to your computer and open with <code>read_excel()</code>). How many rows are there in this file?</p>
+<p>The official way of representing the date for <em>International Speak Like a Pirate Day</em> this year is 2025-09-19 (i.e. Friday, September 19, 2025). Which of the format strings below would represent this as Friday Sept 19 2025?</p>
 </p>]]></text>
 </questiontext>
 <generalfeedback format="html">
 <text><![CDATA[<p>
-<p>Use <code>excel_sheets()</code>, followed by <code>read_excel()</code>, and then <code>nrow()</code>.</p>
+<p>Use the R command <code>format(as.Date("2025-09-19", my_format))</code> where <code>my_format</code> is a string specifier like <code>"%y %m %y"</code>.</p>
+<ul>
+<li> False </li>
+<li> False </li>
+<li> True </li>
+<li> False </li>
+<li> False </li>
+</ul>
 </p>]]></text>
 </generalfeedback>
 <penalty>0</penalty>
 <defaultgrade>1</defaultgrade>
-<answer fraction="100" format="moodle_auto_format">
-<text>195</text>
-<tolerance>3.9</tolerance>
+<shuffleanswers>false</shuffleanswers>
+<single>true</single>
+<answernumbering>abc</answernumbering>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+%y %m %d
+</p>]]></text>
+<feedback format="html">
+<text><![CDATA[<p>
+False
+</p>]]></text>
+</feedback>
+</answer>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+%Y %B %d
+</p>]]></text>
+<feedback format="html">
+<text><![CDATA[<p>
+False
+</p>]]></text>
+</feedback>
+</answer>
+<answer fraction="100" format="html">
+<text><![CDATA[<p>
+%A %b %d %Y
+</p>]]></text>
+<feedback format="html">
+<text><![CDATA[<p>
+True
+</p>]]></text>
+</feedback>
+</answer>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+%D
+</p>]]></text>
+<feedback format="html">
+<text><![CDATA[<p>
+False
+</p>]]></text>
+</feedback>
+</answer>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+%y %B %d
+</p>]]></text>
+<feedback format="html">
+<text><![CDATA[<p>
+False
+</p>]]></text>
+</feedback>
 </answer>
 </question>
 
 
-<question type="numerical">
+<question type="multichoice">
 <name>
-<text> R09 Q1 : rexams_week-04_excel </text>
+<text> R09 Q1 : rexams_week-03_lubridate </text>
 </name>
 <questiontext format="html">
 <text><![CDATA[
@@ -406,26 +854,82 @@
 }
 </style>
 <p>
-<p>Open the sheet <strong><em>mnist</em></strong> from the file at <strong>https://github.com/eugene100hickey/ATU-2025/blob/main/rexams/data/excel-example.xlsx?raw=true</strong> using <code>rio::import("https://github.com/eugene100hickey/ATU-2025/blob/main/rexams/data/excel-example.xlsx?raw=true", which = "mnist")</code> (or else you can download the file to your computer and open with <code>read_excel()</code>). How many rows are there in this file?</p>
+<p>The official way of representing the date for <em>International Speak Like a Pirate Day</em> this year is 2025-09-19 (i.e. Friday, September 19, 2025). Which of the format strings below would represent this as 2025 09 19?</p>
 </p>]]></text>
 </questiontext>
 <generalfeedback format="html">
 <text><![CDATA[<p>
-<p>Use <code>excel_sheets()</code>, followed by <code>read_excel()</code>, and then <code>nrow()</code>.</p>
+<p>Use the R command <code>format(as.Date("2025-09-19", my_format))</code> where <code>my_format</code> is a string specifier like <code>"%y %m %y"</code>.</p>
+<ul>
+<li> False </li>
+<li> False </li>
+<li> False </li>
+<li> True </li>
+<li> False </li>
+</ul>
 </p>]]></text>
 </generalfeedback>
 <penalty>0</penalty>
 <defaultgrade>1</defaultgrade>
-<answer fraction="100" format="moodle_auto_format">
-<text>800</text>
-<tolerance>16</tolerance>
+<shuffleanswers>false</shuffleanswers>
+<single>true</single>
+<answernumbering>abc</answernumbering>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+%D
+</p>]]></text>
+<feedback format="html">
+<text><![CDATA[<p>
+False
+</p>]]></text>
+</feedback>
+</answer>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+%Y %B %d
+</p>]]></text>
+<feedback format="html">
+<text><![CDATA[<p>
+False
+</p>]]></text>
+</feedback>
+</answer>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+%b %d %m
+</p>]]></text>
+<feedback format="html">
+<text><![CDATA[<p>
+False
+</p>]]></text>
+</feedback>
+</answer>
+<answer fraction="100" format="html">
+<text><![CDATA[<p>
+%Y %m %d
+</p>]]></text>
+<feedback format="html">
+<text><![CDATA[<p>
+True
+</p>]]></text>
+</feedback>
+</answer>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+%Y %d %B
+</p>]]></text>
+<feedback format="html">
+<text><![CDATA[<p>
+False
+</p>]]></text>
+</feedback>
 </answer>
 </question>
 
 
-<question type="numerical">
+<question type="multichoice">
 <name>
-<text> R10 Q1 : rexams_week-04_excel </text>
+<text> R10 Q1 : rexams_week-03_lubridate </text>
 </name>
 <questiontext format="html">
 <text><![CDATA[
@@ -452,26 +956,82 @@
 }
 </style>
 <p>
-<p>Open the sheet <strong><em>P_Troglodytes</em></strong> from the file at <strong>https://github.com/eugene100hickey/ATU-2025/blob/main/rexams/data/excel-example.xlsx?raw=true</strong> using <code>rio::import("https://github.com/eugene100hickey/ATU-2025/blob/main/rexams/data/excel-example.xlsx?raw=true", which = "P_Troglodytes")</code> (or else you can download the file to your computer and open with <code>read_excel()</code>). How many rows are there in this file?</p>
+<p>The official way of representing the date for <em>International Speak Like a Pirate Day</em> this year is 2025-09-19 (i.e. Friday, September 19, 2025). Which of the format strings below would represent this as 2025 September 19?</p>
 </p>]]></text>
 </questiontext>
 <generalfeedback format="html">
 <text><![CDATA[<p>
-<p>Use <code>excel_sheets()</code>, followed by <code>read_excel()</code>, and then <code>nrow()</code>.</p>
+<p>Use the R command <code>format(as.Date("2025-09-19", my_format))</code> where <code>my_format</code> is a string specifier like <code>"%y %m %y"</code>.</p>
+<ul>
+<li> False </li>
+<li> False </li>
+<li> False </li>
+<li> False </li>
+<li> True </li>
+</ul>
 </p>]]></text>
 </generalfeedback>
 <penalty>0</penalty>
 <defaultgrade>1</defaultgrade>
-<answer fraction="100" format="moodle_auto_format">
-<text>6309</text>
-<tolerance>126.18</tolerance>
+<shuffleanswers>false</shuffleanswers>
+<single>true</single>
+<answernumbering>abc</answernumbering>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+%Y %d %B
+</p>]]></text>
+<feedback format="html">
+<text><![CDATA[<p>
+False
+</p>]]></text>
+</feedback>
+</answer>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+%D
+</p>]]></text>
+<feedback format="html">
+<text><![CDATA[<p>
+False
+</p>]]></text>
+</feedback>
+</answer>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+%b %d %m
+</p>]]></text>
+<feedback format="html">
+<text><![CDATA[<p>
+False
+</p>]]></text>
+</feedback>
+</answer>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+%A %b %d %Y
+</p>]]></text>
+<feedback format="html">
+<text><![CDATA[<p>
+False
+</p>]]></text>
+</feedback>
+</answer>
+<answer fraction="100" format="html">
+<text><![CDATA[<p>
+%Y %B %d
+</p>]]></text>
+<feedback format="html">
+<text><![CDATA[<p>
+True
+</p>]]></text>
+</feedback>
 </answer>
 </question>
 
 
-<question type="numerical">
+<question type="multichoice">
 <name>
-<text> R11 Q1 : rexams_week-04_excel </text>
+<text> R11 Q1 : rexams_week-03_lubridate </text>
 </name>
 <questiontext format="html">
 <text><![CDATA[
@@ -498,26 +1058,82 @@
 }
 </style>
 <p>
-<p>Open the sheet <strong><em>employees</em></strong> from the file at <strong>https://github.com/eugene100hickey/ATU-2025/blob/main/rexams/data/excel-example.xlsx?raw=true</strong> using <code>rio::import("https://github.com/eugene100hickey/ATU-2025/blob/main/rexams/data/excel-example.xlsx?raw=true", which = "employees")</code> (or else you can download the file to your computer and open with <code>read_excel()</code>). How many rows are there in this file?</p>
+<p>The official way of representing the date for <em>International Speak Like a Pirate Day</em> this year is 2025-09-19 (i.e. Friday, September 19, 2025). Which of the format strings below would represent this as Sept 19 09?</p>
 </p>]]></text>
 </questiontext>
 <generalfeedback format="html">
 <text><![CDATA[<p>
-<p>Use <code>excel_sheets()</code>, followed by <code>read_excel()</code>, and then <code>nrow()</code>.</p>
+<p>Use the R command <code>format(as.Date("2025-09-19", my_format))</code> where <code>my_format</code> is a string specifier like <code>"%y %m %y"</code>.</p>
+<ul>
+<li> True </li>
+<li> False </li>
+<li> False </li>
+<li> False </li>
+<li> False </li>
+</ul>
 </p>]]></text>
 </generalfeedback>
 <penalty>0</penalty>
 <defaultgrade>1</defaultgrade>
-<answer fraction="100" format="moodle_auto_format">
-<text>1000</text>
-<tolerance>20</tolerance>
+<shuffleanswers>false</shuffleanswers>
+<single>true</single>
+<answernumbering>abc</answernumbering>
+<answer fraction="100" format="html">
+<text><![CDATA[<p>
+%b %d %m
+</p>]]></text>
+<feedback format="html">
+<text><![CDATA[<p>
+True
+</p>]]></text>
+</feedback>
+</answer>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+%y %B %d
+</p>]]></text>
+<feedback format="html">
+<text><![CDATA[<p>
+False
+</p>]]></text>
+</feedback>
+</answer>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+%D
+</p>]]></text>
+<feedback format="html">
+<text><![CDATA[<p>
+False
+</p>]]></text>
+</feedback>
+</answer>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+%Y %B %d
+</p>]]></text>
+<feedback format="html">
+<text><![CDATA[<p>
+False
+</p>]]></text>
+</feedback>
+</answer>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+%y %d %m
+</p>]]></text>
+<feedback format="html">
+<text><![CDATA[<p>
+False
+</p>]]></text>
+</feedback>
 </answer>
 </question>
 
 
-<question type="numerical">
+<question type="multichoice">
 <name>
-<text> R12 Q1 : rexams_week-04_excel </text>
+<text> R12 Q1 : rexams_week-03_lubridate </text>
 </name>
 <questiontext format="html">
 <text><![CDATA[
@@ -544,387 +1160,75 @@
 }
 </style>
 <p>
-<p>Open the sheet <strong><em>countries</em></strong> from the file at <strong>https://github.com/eugene100hickey/ATU-2025/blob/main/rexams/data/excel-example.xlsx?raw=true</strong> using <code>rio::import("https://github.com/eugene100hickey/ATU-2025/blob/main/rexams/data/excel-example.xlsx?raw=true", which = "countries")</code> (or else you can download the file to your computer and open with <code>read_excel()</code>). How many rows are there in this file?</p>
+<p>The official way of representing the date for <em>International Speak Like a Pirate Day</em> this year is 2025-09-19 (i.e. Friday, September 19, 2025). Which of the format strings below would represent this as Friday Sept 19 2025?</p>
 </p>]]></text>
 </questiontext>
 <generalfeedback format="html">
 <text><![CDATA[<p>
-<p>Use <code>excel_sheets()</code>, followed by <code>read_excel()</code>, and then <code>nrow()</code>.</p>
+<p>Use the R command <code>format(as.Date("2025-09-19", my_format))</code> where <code>my_format</code> is a string specifier like <code>"%y %m %y"</code>.</p>
+<ul>
+<li> False </li>
+<li> False </li>
+<li> False </li>
+<li> False </li>
+<li> True </li>
+</ul>
 </p>]]></text>
 </generalfeedback>
 <penalty>0</penalty>
 <defaultgrade>1</defaultgrade>
-<answer fraction="100" format="moodle_auto_format">
-<text>195</text>
-<tolerance>3.9</tolerance>
+<shuffleanswers>false</shuffleanswers>
+<single>true</single>
+<answernumbering>abc</answernumbering>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+%Y %m %d
+</p>]]></text>
+<feedback format="html">
+<text><![CDATA[<p>
+False
+</p>]]></text>
+</feedback>
 </answer>
-</question>
-
-
-<question type="numerical">
-<name>
-<text> R13 Q1 : rexams_week-04_excel </text>
-</name>
-<questiontext format="html">
-<text><![CDATA[
-<style type="text/css" rel="stylesheet">
-/* tables with alternating shading */
-.table_shade {
-    border-collapse: collapse;
-    border-spacing: 0;
-    border:1px solid #FFFFFF;
-    background-color: #FFFFFF;
-}
-.table_shade th {
-    border:1px solid #FFFFFF;
-    background: #D5D5D5;
-}
-.table_shade td {
-    border:1px solid #FFFFFF;
-}
-.table_shade .odd {
-    background: #EEEEEE;
-}
-.table_shade .even {
-    background: #FBFBFB;
-}
-</style>
-<p>
-<p>Open the sheet <strong><em>brexit</em></strong> from the file at <strong>https://github.com/eugene100hickey/ATU-2025/blob/main/rexams/data/excel-example.xlsx?raw=true</strong> using <code>rio::import("https://github.com/eugene100hickey/ATU-2025/blob/main/rexams/data/excel-example.xlsx?raw=true", which = "brexit")</code> (or else you can download the file to your computer and open with <code>read_excel()</code>). How many rows are there in this file?</p>
-</p>]]></text>
-</questiontext>
-<generalfeedback format="html">
+<answer fraction="0" format="html">
 <text><![CDATA[<p>
-<p>Use <code>excel_sheets()</code>, followed by <code>read_excel()</code>, and then <code>nrow()</code>.</p>
+%b %d %m
 </p>]]></text>
-</generalfeedback>
-<penalty>0</penalty>
-<defaultgrade>1</defaultgrade>
-<answer fraction="100" format="moodle_auto_format">
-<text>127</text>
-<tolerance>2.54</tolerance>
+<feedback format="html">
+<text><![CDATA[<p>
+False
+</p>]]></text>
+</feedback>
 </answer>
-</question>
-
-
-<question type="numerical">
-<name>
-<text> R14 Q1 : rexams_week-04_excel </text>
-</name>
-<questiontext format="html">
-<text><![CDATA[
-<style type="text/css" rel="stylesheet">
-/* tables with alternating shading */
-.table_shade {
-    border-collapse: collapse;
-    border-spacing: 0;
-    border:1px solid #FFFFFF;
-    background-color: #FFFFFF;
-}
-.table_shade th {
-    border:1px solid #FFFFFF;
-    background: #D5D5D5;
-}
-.table_shade td {
-    border:1px solid #FFFFFF;
-}
-.table_shade .odd {
-    background: #EEEEEE;
-}
-.table_shade .even {
-    background: #FBFBFB;
-}
-</style>
-<p>
-<p>Open the sheet <strong><em>brexit</em></strong> from the file at <strong>https://github.com/eugene100hickey/ATU-2025/blob/main/rexams/data/excel-example.xlsx?raw=true</strong> using <code>rio::import("https://github.com/eugene100hickey/ATU-2025/blob/main/rexams/data/excel-example.xlsx?raw=true", which = "brexit")</code> (or else you can download the file to your computer and open with <code>read_excel()</code>). How many rows are there in this file?</p>
-</p>]]></text>
-</questiontext>
-<generalfeedback format="html">
+<answer fraction="0" format="html">
 <text><![CDATA[<p>
-<p>Use <code>excel_sheets()</code>, followed by <code>read_excel()</code>, and then <code>nrow()</code>.</p>
+%y %d %m
 </p>]]></text>
-</generalfeedback>
-<penalty>0</penalty>
-<defaultgrade>1</defaultgrade>
-<answer fraction="100" format="moodle_auto_format">
-<text>127</text>
-<tolerance>2.54</tolerance>
+<feedback format="html">
+<text><![CDATA[<p>
+False
+</p>]]></text>
+</feedback>
 </answer>
-</question>
-
-
-<question type="numerical">
-<name>
-<text> R15 Q1 : rexams_week-04_excel </text>
-</name>
-<questiontext format="html">
-<text><![CDATA[
-<style type="text/css" rel="stylesheet">
-/* tables with alternating shading */
-.table_shade {
-    border-collapse: collapse;
-    border-spacing: 0;
-    border:1px solid #FFFFFF;
-    background-color: #FFFFFF;
-}
-.table_shade th {
-    border:1px solid #FFFFFF;
-    background: #D5D5D5;
-}
-.table_shade td {
-    border:1px solid #FFFFFF;
-}
-.table_shade .odd {
-    background: #EEEEEE;
-}
-.table_shade .even {
-    background: #FBFBFB;
-}
-</style>
-<p>
-<p>Open the sheet <strong><em>brexit</em></strong> from the file at <strong>https://github.com/eugene100hickey/ATU-2025/blob/main/rexams/data/excel-example.xlsx?raw=true</strong> using <code>rio::import("https://github.com/eugene100hickey/ATU-2025/blob/main/rexams/data/excel-example.xlsx?raw=true", which = "brexit")</code> (or else you can download the file to your computer and open with <code>read_excel()</code>). How many rows are there in this file?</p>
-</p>]]></text>
-</questiontext>
-<generalfeedback format="html">
+<answer fraction="0" format="html">
 <text><![CDATA[<p>
-<p>Use <code>excel_sheets()</code>, followed by <code>read_excel()</code>, and then <code>nrow()</code>.</p>
+%y %B %d
 </p>]]></text>
-</generalfeedback>
-<penalty>0</penalty>
-<defaultgrade>1</defaultgrade>
-<answer fraction="100" format="moodle_auto_format">
-<text>127</text>
-<tolerance>2.54</tolerance>
+<feedback format="html">
+<text><![CDATA[<p>
+False
+</p>]]></text>
+</feedback>
 </answer>
-</question>
-
-
-<question type="numerical">
-<name>
-<text> R16 Q1 : rexams_week-04_excel </text>
-</name>
-<questiontext format="html">
-<text><![CDATA[
-<style type="text/css" rel="stylesheet">
-/* tables with alternating shading */
-.table_shade {
-    border-collapse: collapse;
-    border-spacing: 0;
-    border:1px solid #FFFFFF;
-    background-color: #FFFFFF;
-}
-.table_shade th {
-    border:1px solid #FFFFFF;
-    background: #D5D5D5;
-}
-.table_shade td {
-    border:1px solid #FFFFFF;
-}
-.table_shade .odd {
-    background: #EEEEEE;
-}
-.table_shade .even {
-    background: #FBFBFB;
-}
-</style>
-<p>
-<p>Open the sheet <strong><em>skillpad</em></strong> from the file at <strong>https://github.com/eugene100hickey/ATU-2025/blob/main/rexams/data/excel-example.xlsx?raw=true</strong> using <code>rio::import("https://github.com/eugene100hickey/ATU-2025/blob/main/rexams/data/excel-example.xlsx?raw=true", which = "skillpad")</code> (or else you can download the file to your computer and open with <code>read_excel()</code>). How many rows are there in this file?</p>
-</p>]]></text>
-</questiontext>
-<generalfeedback format="html">
+<answer fraction="100" format="html">
 <text><![CDATA[<p>
-<p>Use <code>excel_sheets()</code>, followed by <code>read_excel()</code>, and then <code>nrow()</code>.</p>
+%A %b %d %Y
 </p>]]></text>
-</generalfeedback>
-<penalty>0</penalty>
-<defaultgrade>1</defaultgrade>
-<answer fraction="100" format="moodle_auto_format">
-<text>2192</text>
-<tolerance>43.84</tolerance>
-</answer>
-</question>
-
-
-<question type="numerical">
-<name>
-<text> R17 Q1 : rexams_week-04_excel </text>
-</name>
-<questiontext format="html">
-<text><![CDATA[
-<style type="text/css" rel="stylesheet">
-/* tables with alternating shading */
-.table_shade {
-    border-collapse: collapse;
-    border-spacing: 0;
-    border:1px solid #FFFFFF;
-    background-color: #FFFFFF;
-}
-.table_shade th {
-    border:1px solid #FFFFFF;
-    background: #D5D5D5;
-}
-.table_shade td {
-    border:1px solid #FFFFFF;
-}
-.table_shade .odd {
-    background: #EEEEEE;
-}
-.table_shade .even {
-    background: #FBFBFB;
-}
-</style>
-<p>
-<p>Open the sheet <strong><em>skillpad</em></strong> from the file at <strong>https://github.com/eugene100hickey/ATU-2025/blob/main/rexams/data/excel-example.xlsx?raw=true</strong> using <code>rio::import("https://github.com/eugene100hickey/ATU-2025/blob/main/rexams/data/excel-example.xlsx?raw=true", which = "skillpad")</code> (or else you can download the file to your computer and open with <code>read_excel()</code>). How many rows are there in this file?</p>
-</p>]]></text>
-</questiontext>
-<generalfeedback format="html">
+<feedback format="html">
 <text><![CDATA[<p>
-<p>Use <code>excel_sheets()</code>, followed by <code>read_excel()</code>, and then <code>nrow()</code>.</p>
+True
 </p>]]></text>
-</generalfeedback>
-<penalty>0</penalty>
-<defaultgrade>1</defaultgrade>
-<answer fraction="100" format="moodle_auto_format">
-<text>2192</text>
-<tolerance>43.84</tolerance>
-</answer>
-</question>
-
-
-<question type="numerical">
-<name>
-<text> R18 Q1 : rexams_week-04_excel </text>
-</name>
-<questiontext format="html">
-<text><![CDATA[
-<style type="text/css" rel="stylesheet">
-/* tables with alternating shading */
-.table_shade {
-    border-collapse: collapse;
-    border-spacing: 0;
-    border:1px solid #FFFFFF;
-    background-color: #FFFFFF;
-}
-.table_shade th {
-    border:1px solid #FFFFFF;
-    background: #D5D5D5;
-}
-.table_shade td {
-    border:1px solid #FFFFFF;
-}
-.table_shade .odd {
-    background: #EEEEEE;
-}
-.table_shade .even {
-    background: #FBFBFB;
-}
-</style>
-<p>
-<p>Open the sheet <strong><em>financials</em></strong> from the file at <strong>https://github.com/eugene100hickey/ATU-2025/blob/main/rexams/data/excel-example.xlsx?raw=true</strong> using <code>rio::import("https://github.com/eugene100hickey/ATU-2025/blob/main/rexams/data/excel-example.xlsx?raw=true", which = "financials")</code> (or else you can download the file to your computer and open with <code>read_excel()</code>). How many rows are there in this file?</p>
-</p>]]></text>
-</questiontext>
-<generalfeedback format="html">
-<text><![CDATA[<p>
-<p>Use <code>excel_sheets()</code>, followed by <code>read_excel()</code>, and then <code>nrow()</code>.</p>
-</p>]]></text>
-</generalfeedback>
-<penalty>0</penalty>
-<defaultgrade>1</defaultgrade>
-<answer fraction="100" format="moodle_auto_format">
-<text>351</text>
-<tolerance>7.02</tolerance>
-</answer>
-</question>
-
-
-<question type="numerical">
-<name>
-<text> R19 Q1 : rexams_week-04_excel </text>
-</name>
-<questiontext format="html">
-<text><![CDATA[
-<style type="text/css" rel="stylesheet">
-/* tables with alternating shading */
-.table_shade {
-    border-collapse: collapse;
-    border-spacing: 0;
-    border:1px solid #FFFFFF;
-    background-color: #FFFFFF;
-}
-.table_shade th {
-    border:1px solid #FFFFFF;
-    background: #D5D5D5;
-}
-.table_shade td {
-    border:1px solid #FFFFFF;
-}
-.table_shade .odd {
-    background: #EEEEEE;
-}
-.table_shade .even {
-    background: #FBFBFB;
-}
-</style>
-<p>
-<p>Open the sheet <strong><em>skillpad</em></strong> from the file at <strong>https://github.com/eugene100hickey/ATU-2025/blob/main/rexams/data/excel-example.xlsx?raw=true</strong> using <code>rio::import("https://github.com/eugene100hickey/ATU-2025/blob/main/rexams/data/excel-example.xlsx?raw=true", which = "skillpad")</code> (or else you can download the file to your computer and open with <code>read_excel()</code>). How many rows are there in this file?</p>
-</p>]]></text>
-</questiontext>
-<generalfeedback format="html">
-<text><![CDATA[<p>
-<p>Use <code>excel_sheets()</code>, followed by <code>read_excel()</code>, and then <code>nrow()</code>.</p>
-</p>]]></text>
-</generalfeedback>
-<penalty>0</penalty>
-<defaultgrade>1</defaultgrade>
-<answer fraction="100" format="moodle_auto_format">
-<text>2192</text>
-<tolerance>43.84</tolerance>
-</answer>
-</question>
-
-
-<question type="numerical">
-<name>
-<text> R20 Q1 : rexams_week-04_excel </text>
-</name>
-<questiontext format="html">
-<text><![CDATA[
-<style type="text/css" rel="stylesheet">
-/* tables with alternating shading */
-.table_shade {
-    border-collapse: collapse;
-    border-spacing: 0;
-    border:1px solid #FFFFFF;
-    background-color: #FFFFFF;
-}
-.table_shade th {
-    border:1px solid #FFFFFF;
-    background: #D5D5D5;
-}
-.table_shade td {
-    border:1px solid #FFFFFF;
-}
-.table_shade .odd {
-    background: #EEEEEE;
-}
-.table_shade .even {
-    background: #FBFBFB;
-}
-</style>
-<p>
-<p>Open the sheet <strong><em>Sheet3</em></strong> from the file at <strong>https://github.com/eugene100hickey/ATU-2025/blob/main/rexams/data/excel-example.xlsx?raw=true</strong> using <code>rio::import("https://github.com/eugene100hickey/ATU-2025/blob/main/rexams/data/excel-example.xlsx?raw=true", which = "Sheet3")</code> (or else you can download the file to your computer and open with <code>read_excel()</code>). How many rows are there in this file?</p>
-</p>]]></text>
-</questiontext>
-<generalfeedback format="html">
-<text><![CDATA[<p>
-<p>Use <code>excel_sheets()</code>, followed by <code>read_excel()</code>, and then <code>nrow()</code>.</p>
-</p>]]></text>
-</generalfeedback>
-<penalty>0</penalty>
-<defaultgrade>1</defaultgrade>
-<answer fraction="100" format="moodle_auto_format">
-<text>2325</text>
-<tolerance>46.5</tolerance>
+</feedback>
 </answer>
 </question>
 

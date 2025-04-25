@@ -31,7 +31,7 @@ solution <- c(correct_format, other_answers)
 
 Question
 ========
-The official way of representing the date for _International Speak Like a Pirate Day_ this year is `r pat`. Which of the format strings below would represent this as `r answer`?
+The official way of representing the date for _International Speak Like a Pirate Day_ this year is `r pat` (i.e. `r format(pat, "%A, %B %d, %Y")`). Which of the format strings below would represent this as `r answer`?
 
 Answerlist
 ----------

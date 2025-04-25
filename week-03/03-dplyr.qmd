@@ -88,7 +88,6 @@ theme_clean <- function() {
 }
 ```
 
-
 ::: title-box
 <h2>`r rmarkdown::metadata$pagetitle`</h2>
 
@@ -99,62 +98,60 @@ theme_clean <- function() {
 
 ------------------------------------------------------------------------
 
-##  Week Three - Manipulating Data
+## Week Three - Manipulating Data
 
 ::: {style="font-size: 80%;"}
+-   Once we get our data, we have to do stuff with it
 
-- Once we get our data, we have to do stuff with it    
+-   Often means recasting the shape of our data
 
-- Often means recasting the shape of our data
+-   The `dplyr` library is a key player here
 
-- The `dplyr` library is a key player here
+-   six verbs
 
-- six verbs   
-  
-    - `filter()` chooses some of the rows
-    
-    - `select()` chooses some of the columns
-    
-    - `mutate()` makes new columns
-    
-    - `arrange()` sorts the rows by some values
-    
-    - `group_by()` puts rows together
-    
-    - `summarise()` makes new rows based on `group_by()`
-    
+    -   `filter()` chooses some of the rows
+
+    -   `select()` chooses some of the columns
+
+    -   `mutate()` makes new columns
+
+    -   `arrange()` sorts the rows by some values
+
+    -   `group_by()` puts rows together
+
+    -   `summarise()` makes new rows based on `group_by()`
 :::
 
-## The Pipe - %>% 
+## The Pipe - %\>%
 
-- neat feature, takes a bit of getting used to 
-- but makes life way simpler and code more readable
-- chains operations together
-- read it in your head as _"and then..."_
-- alternatives are, well, ugly. And unforgiving.
-- also can look like this: `|>` or `| >`
-- keyboard shortcut `Ctrl` plus `SHFT` plus `m`
+-   neat feature, takes a bit of getting used to
+-   but makes life way simpler and code more readable
+-   chains operations together
+-   read it in your head as *"and then..."*
+-   alternatives are, well, ugly. And unforgiving.
+-   also can look like this: `|>` or `| >`
+-   keyboard shortcut `Ctrl` plus `SHFT` plus `m`
 
----
+------------------------------------------------------------------------
 
-## The Pipe - %>% continued
+## The Pipe - %\>% continued
 
-- we've used it extensively so far, and can go even further
-- basic idea is that you send the output from one line into the first (unnamed) argument of the next
-- keyboard shortcut, one worth knowing, is Ctrl + Shift + M
-- if you're really interested, other pipes such as the T-pipe (%T%) and the dollar pipe (%$%)
+-   we've used it extensively so far, and can go even further
+-   basic idea is that you send the output from one line into the first (unnamed) argument of the next
+-   keyboard shortcut, one worth knowing, is Ctrl + Shift + M
+-   if you're really interested, other pipes such as the T-pipe (%T%) and the dollar pipe (%\$%)
 
----
+------------------------------------------------------------------------
 
 ## filter
 
-- used to choose some rows from a dataframe
-- pass in the dataframe and some logical condition
-    - could be _==_ (note the double equals), for characters and _<_, _>_ for numerics
-    - also _<=_, _>=_, _!_ (for NOT)
-    - can use _between()_
-    - I like _%in%_
-- can have multiple logical conditions in the same filter
+-   used to choose some rows from a dataframe
+-   pass in the dataframe and some logical condition
+    -   could be *==* (note the double equals), for characters and *\<*, *\>* for numerics
+    -   also *\<=*, *\>=*, *!* (for NOT)
+    -   can use *between()*
+    -   I like *%in%*
+-   can have multiple logical conditions in the same filter
 
 ```{r libraries, message=F, warning=F, echo=FALSE}
 library(tidyverse)
@@ -164,13 +161,10 @@ library(kableExtra)
 library(dslabs)
 ```
 
----
+------------------------------------------------------------------------
 
-:::: {.columns}
-
+::::: columns
 ::: {.column width="50%"}
-
-
 ```{r filter_example}
 # you'll need the libraries: tidyverse, gapminder, and knitr
 gapminder::gapminder %>% 
@@ -179,78 +173,57 @@ gapminder::gapminder %>%
          year %in% c(1952:1964)) %>% 
   gt::gt()
 ```
-
-
 :::
 
 ::: {.column width="50%"}
-
 ![@Allison_Horst](images/dplyr_filter.jpg)
-
 :::
-
-::::
-
+:::::
 
 ## select()
 
-- used to pick out columns from a dataframe
-- pass in the dataframe and one or more columns
-    - can _deselect_ columns with a minus sign
-    
----
+-   used to pick out columns from a dataframe
+-   pass in the dataframe and one or more columns
+    -   can *deselect* columns with a minus sign
 
-:::: {.columns}
+------------------------------------------------------------------------
 
+::::: columns
 ::: {.column width="50%"}
-
 ```{r select1_example}
 gapminder::gapminder %>% 
   select(country, year, lifeExp) %>% 
   head() %>% 
   gt::gt()
 ```
-
 :::
 
 ::: {.column width="50%"}
-
-
-
 ```{r select2_example}
 gapminder::gapminder %>% 
   select(-c(continent, pop)) %>% 
   head() %>% gt::gt()
 ```
-
 :::
+:::::
 
-::::
+------------------------------------------------------------------------
 
----
-
-:::: {.columns}
-
+::::: columns
 ::: {.column width="50%"}
-
 ### mutate
 
-- makes new columns
-- same number of rows
-- pass in dataframe and instructions
-
+-   makes new columns
+-   same number of rows
+-   pass in dataframe and instructions
 :::
 
 ::: {.column width="50%"}
-
-
 ![@Allison_Horst](images/dplyr_mutate.png)
-
 :::
+:::::
 
-::::
-
----
+------------------------------------------------------------------------
 
 ```{r mutate_example}
 gapminder::gapminder %>% 
@@ -259,54 +232,43 @@ gapminder::gapminder %>%
   head() %>% gt::gt()
 ```
 
-
 ## arrange
 
-- used to order columns
-    - normally increasing, use _desc()_ to reverse
-    
----
+-   used to order columns
+    -   normally increasing, use *desc()* to reverse
 
-:::: {.columns}
+------------------------------------------------------------------------
 
+::::: columns
 ::: {.column width="50%"}
-
 ```{r arrange1_example}
 gapminder::gapminder %>% 
   select(country, year, pop) %>% 
   arrange(pop) %>% 
   head() %>% gt::gt()
 ```
-
 :::
 
 ::: {.column width="50%"}
-
 ```{r arrange2_example}
 gapminder::gapminder %>% 
   select(country, year, pop) %>% 
   arrange(desc(pop)) %>% 
   head() %>% gt::gt()
 ```
-
 :::
-
-::::
+:::::
 
 ## group_by and summarise
 
-- always(ish) go hand in hand
-- _group_by()_ reduces number of rows
-- _summarise()_ makes new columns
-- always use _ungroup()_ when you're finished
+-   always(ish) go hand in hand
+-   *group_by()* reduces number of rows
+-   *summarise()* makes new columns
+-   always use *ungroup()* when you're finished
 
-<center>
+<center><img src="images/group_by_ungroup.png" alt="@Allison_Horst" width="300" height="200"/></center>
 
-<img src = "images/group_by_ungroup.png" alt="@Allison_Horst" width="300" height="200"/>
-
-</center>
-
----
+------------------------------------------------------------------------
 
 ```{r group_by_example, fig.height=6, fig.width=10}
 gapminder::gapminder %>% 
@@ -316,68 +278,60 @@ gapminder::gapminder %>%
   geom_line() + geom_point() + theme_clean()
 ```
 
----
-
+------------------------------------------------------------------------
 
 ## a bit more dplyr
 
-- the function `distinct()`   
+-   the function `distinct()`
 
-    - gets rid of duplicate rows
-    
-- the function `rename()` changes names of columns
+    -   gets rid of duplicate rows
 
-- the function `relocate()` changes order of columns
+-   the function `rename()` changes names of columns
 
-- and `left_join()` links dataframes together (a.k.a. SQL)
+-   the function `relocate()` changes order of columns
+
+-   and `left_join()` links dataframes together (a.k.a. SQL)
 
 ## `left_join()`
 
-::: {.columns}
-
+:::::: columns
 ::: {.column width="30%"}
-
 ```{r}
 band_members |> gt::gt() |> gt::tab_options(table.font.size = 24)
 ```
-
 :::
 
 ::: {.column width="30%"}
-
 ```{r}
 band_instruments |> gt::gt() |> gt::tab_options(table.font.size = 24)
 ```
-
 :::
 
 ::: {.column width="30%"}
-
 ```{r}
 band_members |> left_join(band_instruments) |> gt::gt() |> gt::tab_options(table.font.size = 24)
 ```
-
 :::
-
-:::
+::::::
 
 # Wide and Long Dataframe Formats
 
-- `pivot_longer()` goes from wide to long
-- `pivot_wider()` goes from long to wide
+-   `pivot_longer()` goes from wide to long
+-   `pivot_wider()` goes from long to wide
 
----
+------------------------------------------------------------------------
 
 ## Tidy Data (the `tidyr` package)
 
-- idea of tidy data
-    - each variable must have it's own column
-    - each observation it's own row
-    - each value it's own cell
+-   idea of tidy data
+    -   each variable must have it's own column
+    -   each observation it's own row
+    -   each value it's own cell
 
-##
+## 
 
-![](images/untidy.png)
+![](images/untidy.png) 
+
 ##
 
 ![](images/tidy.png)
@@ -385,33 +339,30 @@ band_members |> left_join(band_instruments) |> gt::gt() |> gt::tab_options(table
 ## Working with Excel
 
 ::: {style="font-size: 80%;"}
+-   Avoid using multiple tables within one spreadsheet.
 
-- Avoid using multiple tables within one spreadsheet.
+-   Avoid spreading data across multiple tabs (but do use a new tab to record data cleaning or manipulations).
 
-- Avoid spreading data across multiple tabs (but do use a new tab to record data cleaning or manipulations).
+-   Record zeros as zeros.
 
-- Record zeros as zeros.
+-   Use an appropriate null value to record missing data.
 
-- Use an appropriate null value to record missing data.
+-   Don’t use formatting to convey information or to make your spreadsheet look pretty.
 
-- Don’t use formatting to convey information or to make your spreadsheet look pretty.
+-   Place comments in a separate column.
 
-- Place comments in a separate column.
+-   Record units in column headers.
 
-- Record units in column headers.
+-   Include only one piece of information in a cell.
 
-- Include only one piece of information in a cell.
+-   Avoid spaces, numbers and special characters in column headers.
 
-- Avoid spaces, numbers and special characters in column headers.
+-   Avoid special characters in your data.
 
-- Avoid special characters in your data.
-
-- Record metadata in a separate plain text file.
-
+-   Record metadata in a separate plain text file.
 :::
 
-
----
+------------------------------------------------------------------------
 
 ```{r pivot1}
 penguins %>% select(-body_mass_g) |> 
@@ -419,35 +370,35 @@ penguins %>% select(-body_mass_g) |>
   head() %>% gt::gt()
 ```
 
----
+------------------------------------------------------------------------
 
 ![@Allison_Horst](images/tidydata_1.jpg)
 
----
+------------------------------------------------------------------------
 
 ![@Allison_Horst](images/tidydata_2.jpg)
 
----
+------------------------------------------------------------------------
 
 ![@Allison_Horst](images/tidydata_3.jpg)
 
----
+------------------------------------------------------------------------
 
 ![@Allison_Horst](images/tidydata_4.jpg)
 
----
+------------------------------------------------------------------------
 
 ![@Allison_Horst](images/tidydata_5.jpg)
 
----
+------------------------------------------------------------------------
 
 ![@Allison_Horst](images/tidydata_6.jpg)
 
----
+------------------------------------------------------------------------
 
 ![@Allison_Horst](images/tidydata_7.jpg)
 
----
+------------------------------------------------------------------------
 
 ```{r pivot2}
 gapminder::gapminder %>% select(country, year, lifeExp) %>% 
@@ -455,15 +406,30 @@ gapminder::gapminder %>% select(country, year, lifeExp) %>%
   head(15) %>% gt::gt()
 ```
 
-
 # Workshop - Week Three
 
 ## Perform the Following Tasks:
 
 ::: {style="font-size: 50%; list-style-position: outside; padding-left: 0em;"}
-<b><p style="color:#DC143C">1</p></b>  Take the `us_contagious_diseases` dataset from the `dslabs` library. `filter()` the dataset for the disease _Smallpox_ in the state of _Wisconsin_. This should give you 25 rows. 
+<b>
 
-<b><p style="color:#DC143C">2</p></b>  Take the `research_funding_rates` dataset from the `dslabs` library. Use `select()` to print out the dataset with only the columns _discipline_, _success_rates_men_, and _success_rates_women_. The dataframe should look as below:
+<p style="color:#DC143C">
+
+1
+
+</p>
+
+</b> Take the `us_contagious_diseases` dataset from the `dslabs` library. `filter()` the dataset for the disease *Smallpox* in the state of *Wisconsin*. This should give you 25 rows.
+
+<b>
+
+<p style="color:#DC143C">
+
+2
+
+</p>
+
+</b> Take the `research_funding_rates` dataset from the `dslabs` library. Use `select()` to print out the dataset with only the columns *discipline*, *success_rates_men*, and *success_rates_women*. The dataframe should look as below:
 
 ```{r select_example, echo = F, message=F, warning=F}
 library(knitr)
@@ -475,14 +441,20 @@ research_funding_rates %>%
   kableExtra::kable_styling(stripe_color = "palegreen2",
                 bootstrap_options = "striped")
 ```
-
 :::
 
----
+------------------------------------------------------------------------
 
 ::: {style="font-size: 50%; list-style-position: outside; padding-left: 0em;"}
+<b>
 
-<b><p style="color:#DC143C">3</p></b>  Take the table from problem 2 and use `arrange(desc())` to modify it so that the rows are ordered by decreasing values of _applications_total_
+<p style="color:#DC143C">
+
+3
+
+</p>
+
+</b> Take the table from problem 2 and use `arrange(desc())` to modify it so that the rows are ordered by decreasing values of *applications_total*
 
 ```{r arrange_example, echo = F, message=F, warning=F}
 
@@ -493,14 +465,20 @@ research_funding_rates %>%
   kableExtra::kable_styling(stripe_color = "palegreen2",
                 bootstrap_options = "striped")
 ```
-      
 :::
 
----
+------------------------------------------------------------------------
 
 ::: {style="font-size: 50%; list-style-position: outside; padding-left: 0em;"}
+<b>
 
-<b><p style="color:#DC143C">4</p></b>  Again, take the `research_funding_rates` dataset from the `dslabs` library. Make a new column using `mutate()` that shows the difference in success rate between men and women for each discipline. Print out the dataset with only the columns _discipline_ and _gender_difference_, ordered by _success rate_gender_difference_. The dataframe should look as below:
+<p style="color:#DC143C">
+
+4
+
+</p>
+
+</b> Again, take the `research_funding_rates` dataset from the `dslabs` library. Make a new column using `mutate()` that shows the difference in success rate between men and women for each discipline. Print out the dataset with only the columns *discipline* and *gender_difference*, ordered by *success rate_gender_difference*. The dataframe should look as below:
 
 ```{r mutate_example1, echo = F, message=F, warning=F}
 
@@ -510,14 +488,20 @@ research_funding_rates |> mutate(gender_difference = success_rates_men - success
   kableExtra::kable_styling(stripe_color = "palegreen2",
                 bootstrap_options = "striped")
 ```
-
 :::
 
----
+------------------------------------------------------------------------
 
 ::: {style="font-size: 50%; list-style-position: outside; padding-left: 0em;"}
+<b>
 
-<b><p style="color:#DC143C">5</p></b>  Take the `polls_us_election_2016` dataset from the `dslabs` library. `group_by()` the _grade_ column and `summarise()` to calculate the average sample size for each grade. `arrange(desc())` the table in decreasing _average_sample_size_. The dataframe should look as below:
+<p style="color:#DC143C">
+
+5
+
+</p>
+
+</b> Take the `polls_us_election_2016` dataset from the `dslabs` library. `group_by()` the *grade* column and `summarise()` to calculate the average sample size for each grade. `arrange(desc())` the table in decreasing *average_sample_size*. The dataframe should look as below:
 
 ```{r group_example, echo = F, message=F, warning=F}
 polls_us_election_2016 %>% 
@@ -529,8 +513,6 @@ polls_us_election_2016 %>%
                 bootstrap_options = "striped")
 
 ```
-
-
 :::
 
 ## Assignments - Week Three
@@ -540,7 +522,6 @@ polls_us_election_2016 %>%
 2.  Complete `swirl()` exercises
 
 ::: {style="font-size: 70%; margin-left: 150px;"}
-
 -   `install.packages("swirl")`
 
 -   `library(swirl)`
@@ -551,8 +532,7 @@ polls_us_election_2016 %>%
 
 -   choose course *Getting and Cleaning Data*
 
--   do the exercises 2 (Grouping and Chaining with dplyr)
-<!--     - note, these only work properly after restarting RStudio (Ctrl+Shift+F10) so `tidyverse` isn't loaded -->
+-   do the exercise 2 (Grouping and Chaining with dplyr) <!--     - note, these only work properly after restarting RStudio (Ctrl+Shift+F10) so `tidyverse` isn't loaded -->
 
 -   email a screen shot of the end of the lesson to eugene.hickey\@associate.atu.ie
 
@@ -560,6 +540,3 @@ polls_us_election_2016 %>%
 :::
 
 ![](images/swirl.png){.absolute top="20" right="0" width="400" height="300"}
-
-
-

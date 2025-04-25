@@ -89,5 +89,5 @@ extype: cloze
 exsolution: `r paste(solution, collapse = "|")`
 exclozetype: num|num|num|num|num|num|num|num|num|num
 exname: gapminder-group
-extol: 0.02
+extol: 10
 exextra[numwidth,logical]: TRUE
