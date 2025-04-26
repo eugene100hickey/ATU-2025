@@ -532,7 +532,12 @@ polls_us_election_2016 %>%
 
 -   choose course *Getting and Cleaning Data*
 
--   do the exercise 2 (Grouping and Chaining with dplyr) <!--     - note, these only work properly after restarting RStudio (Ctrl+Shift+F10) so `tidyverse` isn't loaded -->
+-   do the exercises 2 (Grouping and Chaining with dplyr) and 4 (Dates and Times with lubridate)
+
+
+    - note, because of time zone issues, you might need a `skip()` command in the later around the 55% mark
+    
+<!--     - note, these only work properly after restarting RStudio (Ctrl+Shift+F10) so `tidyverse` isn't loaded -->
 
 -   email a screen shot of the end of the lesson to eugene.hickey\@associate.atu.ie
 
