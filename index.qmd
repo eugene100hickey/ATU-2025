@@ -11,9 +11,9 @@ include-in-header:
       <link rel = "shortcut icon" href = "images/atu-logo.png" />
 ---
 
-::: {style="font-size: 250%; list-style-position: outside; padding-left: 0em;"}
--   [Desciption of Major Quantitative Project](https://atu-2025.netlify.app/major-project.html){target="_blank"}
-:::
+<!-- ::: {style="font-size: 250%; list-style-position: outside; padding-left: 0em;"} -->
+<!-- -   [Desciption of Major Quantitative Project](https://atu-2025.netlify.app/major-project.html){target="_blank"} -->
+<!-- ::: -->
 
 ::::::::: columns
 ::::: {.column width="70%"}
