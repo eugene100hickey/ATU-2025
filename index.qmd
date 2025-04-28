@@ -12,7 +12,9 @@ include-in-header:
 ---
 
 <!-- ::: {style="font-size: 250%; list-style-position: outside; padding-left: 0em;"} -->
+
 <!-- -   [Desciption of Major Quantitative Project](https://atu-2025.netlify.app/major-project.html){target="_blank"} -->
+
 <!-- ::: -->
 
 ::::::::: columns
@@ -45,7 +47,7 @@ include-in-header:
 
 -   [Week Two Summary- April 12<sup>th</sup>](https://youtu.be/d5tOcWPuWI0){target="_blank"}
 
-<!-- -   [Week 3 - April 26<sup>th</sup>](https://youtu.be/lSqtheuoYPA){target="_blank"} -->
+-   [Week Three Summary - April 26<sup>th</sup>](){target="_blank"}
 
 <!-- -   [Week 4 - May ??<sup>st</sup>](https://youtu.be/doYCmy2Pa1U){target="_blank"} -->
 
