@@ -47,7 +47,7 @@ include-in-header:
 
 -   [Week Two Summary- April 12<sup>th</sup>](https://youtu.be/d5tOcWPuWI0){target="_blank"}
 
--   [Week Three Summary - April 26<sup>th</sup>](){target="_blank"}
+-   [Week Three Summary - April 26<sup>th</sup>](){target="_blank"} (to come Monday 28th afternoon)
 
 <!-- -   [Week 4 - May ??<sup>st</sup>](https://youtu.be/doYCmy2Pa1U){target="_blank"} -->
 
