@@ -12,8 +12,10 @@ start_date <- seq(from = min(stock_data$date), to = max(stock_data$date), "years
   sample(1)
 stop_date <- as.Date("2023-04-13")
 
-stock_data <- stock_data |> 
-  filter(date > start_date, date < stop_date)
+stock_data <- tq_get(stock_symbol, from = start_date, to = stop_date)
+
+# stock_data <- stock_data |> 
+#   filter(date > start_date, date < stop_date)
 
 solution <- stock_data |> 
   pull(close) |> 
@@ -29,7 +31,7 @@ Install the `tidyquant` package if you don't have it already. Find the stock sym
 
 Solution
 ========
-Use `tq_get("`r stock_symbol`") |> filter(date > "`r start_date`", date < "`r stop_date`")`, then `mean(my_stock_data$close)`.
+Use `tq_get("`r stock_symbol`", from = "`r start_date`", to = "`r stop_date`")`, then `mean(my_stock_data$close)`.
 
 
 
@@ -38,4 +40,4 @@ Meta-information
 extype: num
 exsolution: `r solution`
 exname: dow-jones
-extol: `r solution*0.002`
+extol: `r solution*0.02`

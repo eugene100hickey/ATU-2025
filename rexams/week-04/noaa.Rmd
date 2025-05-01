@@ -4,24 +4,39 @@ library(tidyverse)
 library(rnoaa)
 library(lubridate)
 
+options(noaakey = "QenEPThrcubzHrnKfxjumpGDKVICNYKb")
+
 irish_stations <- ncdc_stations(locationid = "FIPS:EI")$data
-index <- 1:nrow(irish_stations) |> sample(1)
-ghcnd <- irish_stations$id[index]
-station_name <- irish_stations$name[index]
-start_date <- seq(from = irish_stations$mindate[index] |> as.Date(), 
-                  to = irish_stations$maxdate[index] |> as.Date() %m-% years(1),
-                  "years") |> 
-  sample(1)
-end_date <- start_date  %m+% years(1)
 
-with_units <- ncdc(datasetid='GHCND', 
-                   stationid=ghcnd, 
-                   datatypeid='PRCP', 
-                   startdate = start_date, 
-                   enddate = end_date, 
-                   limit=500, 
-                   add_units = TRUE)$data
+```
 
+```{r data generation1, echo = FALSE, results = "hide", message=F, warning=F}
+
+repeat{
+  index <- 1:nrow(irish_stations) |> sample(1)
+  ghcnd <- irish_stations$id[index]
+  station_name <- irish_stations$name[index]
+  start_date <- seq(from = irish_stations$mindate[index] |> as.Date(), 
+                    to = irish_stations$maxdate[index] |> as.Date() %m-% years(2),
+                    "years") |> 
+    sample(1)
+  end_date <- start_date  %m+% years(1)
+  
+  with_units <- ncdc(datasetid='GHCND', 
+                     stationid=ghcnd, 
+                     datatypeid='PRCP', 
+                     startdate = start_date, 
+                     enddate = end_date, 
+                     limit=500, 
+                     add_units = TRUE)$data
+  
+  if("value" %in% names(with_units)){
+    break
+  }
+}
+```
+
+```{r solution, echo = FALSE, results = "hide", message=F, warning=F}
 
 solution <- with_units |> 
   pull(value) |> 
@@ -32,11 +47,11 @@ solution <- with_units |>
 
 Question
 ========
-Install the `rnoaa` package if you don't have it already. To use it, you'll need to register at __*https://www.ncdc.noaa.gov/cdo-web/token*__, they email you a token that you can place within your R session by `options(noaakey = "KEY_EMAILED_TO_YOU")` (see https://docs.ropensci.org/rnoaa/articles/rnoaa.html). 
+Install the `rnoaa` package if you don't have it already using `devtools::install_github("ropensci/rnoaa")`(you might need to install the package `devtools` first, in the usual way). Load the package with `library(rnoaa)`, ignoring the warning that it is about to be retired. To use it, you'll need to register at __*https://www.ncdc.noaa.gov/cdo-web/token*__, they email you a token that you can place within your R session by `options(noaakey = "KEY_EMAILED_TO_YOU")` (see https://docs.ropensci.org/rnoaa/articles/rnoaa.html). 
 
-We want to find the average rainfall in __`r station_name`__ for the year starting __`r start_date`__ through to __`r end_date`__.  
+We want to find the average daily rainfall in __`r station_name`__ for the year starting __`r start_date`__ through to __`r end_date`__.  
 
-You can access information about the Irish weather stations from `ncdc_stations(locationid = "FIPS:EI")$data`. Access rainfall data (called "PRCP") using the `ncdc()` command. Set the `stationid` to the appropriate _id_ value for `r station_name`. Set the `startdate` and `enddate` appropriately. The `datasetid` is _"GHCND"_, and the `datatypeid` is _"PRCP"_. The values returned are in tenths of mm, so expect an average value to be somewhere generally from 10 to 100. 
+You can access information about the Irish weather stations from `ncdc_stations(locationid = "FIPS:EI")$data`. Access rainfall data (called "PRCP") using the `ncdc()` command. Set the `stationid` to the appropriate _id_ value for `r station_name`. Set the `startdate` and `enddate` appropriately. Set the `limit = 500` (otherwise we only get 25 days of data) The `datasetid` is _"GHCND"_, and the `datatypeid` is _"PRCP"_. The values returned are in tenths of mm, so expect an average value to be somewhere generally from 10 to 100. 
 
 
 Solution

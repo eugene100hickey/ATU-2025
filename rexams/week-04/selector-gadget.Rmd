@@ -3,27 +3,23 @@ library(exams)
 library(tidyverse)
 
 
-year <- 2000:2022 |> 
-  sample(1)
-new_url <- glue::glue("https://www.imdb.com/search/title/?title_type=feature&year={year}-01-01,{year}-12-31")
+new_url <- "https://www.atu.ie/"
 
 answer_list <- tribble(~feature, ~node,
-                       "Movie Titles", ".lister-item-header a",
-                       "Number of Votes",".sort-num_votes-visible span:nth-child(2)",
-                       "Gross Takings ($)", ".ghost~ .text-muted+ span",
-                       "The Year for Each Movie", ".text-muted.unbold",
-                       "The Categories for Each Movie", ".genre",
-                       "The Directors", ".text-muted+ p a:nth-child(1)",
-                       "The Stars Actors in All the Movies", ".lister-item-content .ghost~ a",
-                       "The Star Ratings", ".ratings-imdb-rating strong",
-                       "The Movie Duration", ".runtime",
-                       "The Paragraph of Movie Summary", ".ratings-bar+ .text-muted"
+                       "Student Hub", ".menu-item-47 a",
+                       "Staff Hub", ".menu-item-48 a",
+                       "Events", ".menu-item-49 a",
+                       "Connect", ".menu-item-55 .has-menu",
+                       "Upcoming Events", ".m-b-1",
+                       "Research and Innovation", ".cell:nth-child(2) li:nth-child(1) .text",
+                       "IT Services", ".cell:nth-child(1) li:nth-child(3) .text",
+                       "Campus Locations", ".hide-for-small-only .text"
                        )
 
 
 
-index <- sample(1:10, 1)
-other_index <- c(1:10)[!(1:10 %in% index)]
+index <- sample(1:8, 1)
+other_index <- c(1:8)[!(1:8 %in% index)]
 question <- answer_list$feature[index]
 answer <- answer_list$node[index]
 
@@ -37,7 +33,7 @@ solution <- c(answer, other_answers)
 
 Question
 ========
-Examine the movie database webpage for __`r year`__ at __`r new_url`__. Which is the correct __css__ selector for __`r question`__? 
+Examine the ATU webpage for  __`r new_url`__. Which is the correct __css__ selector for __`r question`__? 
 
 Answerlist
 ----------

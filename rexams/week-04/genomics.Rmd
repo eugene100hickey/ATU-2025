@@ -25,11 +25,12 @@ enterovirus_seqs <- entrez_fetch(db="nuccore",
                                  id=enterovirus_search$ids[1], # c(2:9, 15:40)
                                  rettype="fasta")
 
-file_base <- "C:\\Users\\ehickey\\OneDrive - Technological University Dublin\\Desktop\\Academic\\Research\\R_Fun\\cristianinni/data/"
+my_temp_file <- tempfile(pattern = "file", tmpdir = tempdir(), fileext = "fasta")
 
-write(enterovirus_seqs, glue::glue("{file_base}{ntd$file_name}.fasta"), sep="\n")
 
-z <- read.fasta(file = glue::glue("{file_base}{ntd$file_name}.fasta"))[[1]]
+write(enterovirus_seqs, my_temp_file , sep="\n")
+
+z <- read.fasta(file = my_temp_file )[[1]]
 
 solution <- table(z)[dna]
 ```

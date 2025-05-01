@@ -117,14 +117,23 @@ fa_list <- function(x, incremental = FALSE) {
 
 ::: {style="font-size: 80%;"}
 - we'll harness two packages for this
+
     - `here`
-    - this package is useful for finding files on your computer
-    - makes locating files a lot more streamlined
-    - makes you code more portable
+    
+        + this package is useful for finding files on your computer
+        
+        + makes locating files a lot more streamlined
+        
+        + makes you code more portable
+        
     - `rio`
-    - this package is very streamlined for accessing data
-    - as well as excel and csv, will do a host of other formats: SPSS, minitab, Stata, matlab, **and compressed formats like zip files**
+    
+        + this package is very streamlined for accessing data
+        
+        + as well as excel and csv, will do a host of other formats: SPSS, minitab, json, xml, Stata, matlab, **and compressed formats like zip files**
+        
     - good at recognising file type automatically and leveraging appropriate function from other packages
+    
 
 :::
 
@@ -392,7 +401,7 @@ extract_tables(organ_transplant, output = "data.frame") |> pluck(1) |> gt::gt()
 
 -   choose course *R Programming E*
 
--   do the four exercises 5 (Missing Values) to 8 (Logic)
+-   do the three exercises 5 (Missing Values), 6 (Subsetting Vectors), and 7 (Matrices and Data Frames)
 
 -   email the results to eugene.hickey\@associate.atu.ie
 

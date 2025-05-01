@@ -11,7 +11,7 @@
 
 <question type="multichoice">
 <name>
-<text> R01 Q1 : rexams_week-03_lubridate </text>
+<text> R01 Q1 : rexams_week-04_selector-gadget </text>
 </name>
 <questiontext format="html">
 <text><![CDATA[
@@ -38,17 +38,17 @@
 }
 </style>
 <p>
-<p>The official way of representing the date for <em>International Speak Like a Pirate Day</em> this year is 2025-09-19 (i.e. Friday, September 19, 2025). Which of the format strings below would represent this as 25 19 09?</p>
+<p>Examine the ATU webpage for <strong>https://www.atu.ie/</strong>. Which is the correct <strong>css</strong> selector for <strong>Upcoming Events</strong>?</p>
 </p>]]></text>
 </questiontext>
 <generalfeedback format="html">
 <text><![CDATA[<p>
-<p>Use the R command <code>format(as.Date("2025-09-19", my_format))</code> where <code>my_format</code> is a string specifier like <code>"%y %m %y"</code>.</p>
+<p>Either use <code>Ctrl+U</code> to examine the html code for the webpage, or more simply, use the <strong><em>Selector Gagdet</em></strong> browser plugin.</p>
 <ul>
 <li> False </li>
+<li> False </li>
+<li> False </li>
 <li> True </li>
-<li> False </li>
-<li> False </li>
 <li> False </li>
 </ul>
 </p>]]></text>
@@ -60,7 +60,27 @@
 <answernumbering>abc</answernumbering>
 <answer fraction="0" format="html">
 <text><![CDATA[<p>
-%Y %d %B
+.cell:nth-child(1) li:nth-child(3) .text
+</p>]]></text>
+<feedback format="html">
+<text><![CDATA[<p>
+False
+</p>]]></text>
+</feedback>
+</answer>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+.menu-item-55 .has-menu
+</p>]]></text>
+<feedback format="html">
+<text><![CDATA[<p>
+False
+</p>]]></text>
+</feedback>
+</answer>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+.menu-item-48 a
 </p>]]></text>
 <feedback format="html">
 <text><![CDATA[<p>
@@ -70,7 +90,7 @@ False
 </answer>
 <answer fraction="100" format="html">
 <text><![CDATA[<p>
-%y %d %m
+.m-b-1
 </p>]]></text>
 <feedback format="html">
 <text><![CDATA[<p>
@@ -80,27 +100,7 @@ True
 </answer>
 <answer fraction="0" format="html">
 <text><![CDATA[<p>
-%D
-</p>]]></text>
-<feedback format="html">
-<text><![CDATA[<p>
-False
-</p>]]></text>
-</feedback>
-</answer>
-<answer fraction="0" format="html">
-<text><![CDATA[<p>
-%Y %B %d
-</p>]]></text>
-<feedback format="html">
-<text><![CDATA[<p>
-False
-</p>]]></text>
-</feedback>
-</answer>
-<answer fraction="0" format="html">
-<text><![CDATA[<p>
-%Y %m %d
+.hide-for-small-only .text
 </p>]]></text>
 <feedback format="html">
 <text><![CDATA[<p>
@@ -113,7 +113,7 @@ False
 
 <question type="multichoice">
 <name>
-<text> R02 Q1 : rexams_week-03_lubridate </text>
+<text> R02 Q1 : rexams_week-04_selector-gadget </text>
 </name>
 <questiontext format="html">
 <text><![CDATA[
@@ -140,15 +140,15 @@ False
 }
 </style>
 <p>
-<p>The official way of representing the date for <em>International Speak Like a Pirate Day</em> this year is 2025-09-19 (i.e. Friday, September 19, 2025). Which of the format strings below would represent this as 2025 19 September?</p>
+<p>Examine the ATU webpage for <strong>https://www.atu.ie/</strong>. Which is the correct <strong>css</strong> selector for <strong>IT Services</strong>?</p>
 </p>]]></text>
 </questiontext>
 <generalfeedback format="html">
 <text><![CDATA[<p>
-<p>Use the R command <code>format(as.Date("2025-09-19", my_format))</code> where <code>my_format</code> is a string specifier like <code>"%y %m %y"</code>.</p>
+<p>Either use <code>Ctrl+U</code> to examine the html code for the webpage, or more simply, use the <strong><em>Selector Gagdet</em></strong> browser plugin.</p>
 <ul>
-<li> True </li>
 <li> False </li>
+<li> True </li>
 <li> False </li>
 <li> False </li>
 <li> False </li>
@@ -160,9 +160,19 @@ False
 <shuffleanswers>false</shuffleanswers>
 <single>true</single>
 <answernumbering>abc</answernumbering>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+.menu-item-55 .has-menu
+</p>]]></text>
+<feedback format="html">
+<text><![CDATA[<p>
+False
+</p>]]></text>
+</feedback>
+</answer>
 <answer fraction="100" format="html">
 <text><![CDATA[<p>
-%Y %d %B
+.cell:nth-child(1) li:nth-child(3) .text
 </p>]]></text>
 <feedback format="html">
 <text><![CDATA[<p>
@@ -172,7 +182,7 @@ True
 </answer>
 <answer fraction="0" format="html">
 <text><![CDATA[<p>
-%y %B %d
+.menu-item-49 a
 </p>]]></text>
 <feedback format="html">
 <text><![CDATA[<p>
@@ -182,7 +192,7 @@ False
 </answer>
 <answer fraction="0" format="html">
 <text><![CDATA[<p>
-%y %b %d
+.cell:nth-child(2) li:nth-child(1) .text
 </p>]]></text>
 <feedback format="html">
 <text><![CDATA[<p>
@@ -192,17 +202,7 @@ False
 </answer>
 <answer fraction="0" format="html">
 <text><![CDATA[<p>
-%Y %m %d
-</p>]]></text>
-<feedback format="html">
-<text><![CDATA[<p>
-False
-</p>]]></text>
-</feedback>
-</answer>
-<answer fraction="0" format="html">
-<text><![CDATA[<p>
-%b %d %m
+.hide-for-small-only .text
 </p>]]></text>
 <feedback format="html">
 <text><![CDATA[<p>
@@ -215,7 +215,7 @@ False
 
 <question type="multichoice">
 <name>
-<text> R03 Q1 : rexams_week-03_lubridate </text>
+<text> R03 Q1 : rexams_week-04_selector-gadget </text>
 </name>
 <questiontext format="html">
 <text><![CDATA[
@@ -242,16 +242,16 @@ False
 }
 </style>
 <p>
-<p>The official way of representing the date for <em>International Speak Like a Pirate Day</em> this year is 2025-09-19 (i.e. Friday, September 19, 2025). Which of the format strings below would represent this as 2025 19 September?</p>
+<p>Examine the ATU webpage for <strong>https://www.atu.ie/</strong>. Which is the correct <strong>css</strong> selector for <strong>Staff Hub</strong>?</p>
 </p>]]></text>
 </questiontext>
 <generalfeedback format="html">
 <text><![CDATA[<p>
-<p>Use the R command <code>format(as.Date("2025-09-19", my_format))</code> where <code>my_format</code> is a string specifier like <code>"%y %m %y"</code>.</p>
+<p>Either use <code>Ctrl+U</code> to examine the html code for the webpage, or more simply, use the <strong><em>Selector Gagdet</em></strong> browser plugin.</p>
 <ul>
+<li> False </li>
+<li> False </li>
 <li> True </li>
-<li> False </li>
-<li> False </li>
 <li> False </li>
 <li> False </li>
 </ul>
@@ -262,9 +262,29 @@ False
 <shuffleanswers>false</shuffleanswers>
 <single>true</single>
 <answernumbering>abc</answernumbering>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+.m-b-1
+</p>]]></text>
+<feedback format="html">
+<text><![CDATA[<p>
+False
+</p>]]></text>
+</feedback>
+</answer>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+.cell:nth-child(1) li:nth-child(3) .text
+</p>]]></text>
+<feedback format="html">
+<text><![CDATA[<p>
+False
+</p>]]></text>
+</feedback>
+</answer>
 <answer fraction="100" format="html">
 <text><![CDATA[<p>
-%Y %d %B
+.menu-item-48 a
 </p>]]></text>
 <feedback format="html">
 <text><![CDATA[<p>
@@ -274,7 +294,7 @@ True
 </answer>
 <answer fraction="0" format="html">
 <text><![CDATA[<p>
-%A %b %d %Y
+.menu-item-49 a
 </p>]]></text>
 <feedback format="html">
 <text><![CDATA[<p>
@@ -284,27 +304,7 @@ False
 </answer>
 <answer fraction="0" format="html">
 <text><![CDATA[<p>
-%y %b %d
-</p>]]></text>
-<feedback format="html">
-<text><![CDATA[<p>
-False
-</p>]]></text>
-</feedback>
-</answer>
-<answer fraction="0" format="html">
-<text><![CDATA[<p>
-%D
-</p>]]></text>
-<feedback format="html">
-<text><![CDATA[<p>
-False
-</p>]]></text>
-</feedback>
-</answer>
-<answer fraction="0" format="html">
-<text><![CDATA[<p>
-%b %d %m
+.menu-item-55 .has-menu
 </p>]]></text>
 <feedback format="html">
 <text><![CDATA[<p>
@@ -317,7 +317,7 @@ False
 
 <question type="multichoice">
 <name>
-<text> R04 Q1 : rexams_week-03_lubridate </text>
+<text> R04 Q1 : rexams_week-04_selector-gadget </text>
 </name>
 <questiontext format="html">
 <text><![CDATA[
@@ -344,118 +344,16 @@ False
 }
 </style>
 <p>
-<p>The official way of representing the date for <em>International Speak Like a Pirate Day</em> this year is 2025-09-19 (i.e. Friday, September 19, 2025). Which of the format strings below would represent this as Sept 19 09?</p>
+<p>Examine the ATU webpage for <strong>https://www.atu.ie/</strong>. Which is the correct <strong>css</strong> selector for <strong>IT Services</strong>?</p>
 </p>]]></text>
 </questiontext>
 <generalfeedback format="html">
 <text><![CDATA[<p>
-<p>Use the R command <code>format(as.Date("2025-09-19", my_format))</code> where <code>my_format</code> is a string specifier like <code>"%y %m %y"</code>.</p>
+<p>Either use <code>Ctrl+U</code> to examine the html code for the webpage, or more simply, use the <strong><em>Selector Gagdet</em></strong> browser plugin.</p>
 <ul>
 <li> False </li>
-<li> False </li>
-<li> False </li>
-<li> False </li>
 <li> True </li>
-</ul>
-</p>]]></text>
-</generalfeedback>
-<penalty>0</penalty>
-<defaultgrade>1</defaultgrade>
-<shuffleanswers>false</shuffleanswers>
-<single>true</single>
-<answernumbering>abc</answernumbering>
-<answer fraction="0" format="html">
-<text><![CDATA[<p>
-%y %B %d
-</p>]]></text>
-<feedback format="html">
-<text><![CDATA[<p>
-False
-</p>]]></text>
-</feedback>
-</answer>
-<answer fraction="0" format="html">
-<text><![CDATA[<p>
-%D
-</p>]]></text>
-<feedback format="html">
-<text><![CDATA[<p>
-False
-</p>]]></text>
-</feedback>
-</answer>
-<answer fraction="0" format="html">
-<text><![CDATA[<p>
-%Y %d %B
-</p>]]></text>
-<feedback format="html">
-<text><![CDATA[<p>
-False
-</p>]]></text>
-</feedback>
-</answer>
-<answer fraction="0" format="html">
-<text><![CDATA[<p>
-%y %b %d
-</p>]]></text>
-<feedback format="html">
-<text><![CDATA[<p>
-False
-</p>]]></text>
-</feedback>
-</answer>
-<answer fraction="100" format="html">
-<text><![CDATA[<p>
-%b %d %m
-</p>]]></text>
-<feedback format="html">
-<text><![CDATA[<p>
-True
-</p>]]></text>
-</feedback>
-</answer>
-</question>
-
-
-<question type="multichoice">
-<name>
-<text> R05 Q1 : rexams_week-03_lubridate </text>
-</name>
-<questiontext format="html">
-<text><![CDATA[
-<style type="text/css" rel="stylesheet">
-/* tables with alternating shading */
-.table_shade {
-    border-collapse: collapse;
-    border-spacing: 0;
-    border:1px solid #FFFFFF;
-    background-color: #FFFFFF;
-}
-.table_shade th {
-    border:1px solid #FFFFFF;
-    background: #D5D5D5;
-}
-.table_shade td {
-    border:1px solid #FFFFFF;
-}
-.table_shade .odd {
-    background: #EEEEEE;
-}
-.table_shade .even {
-    background: #FBFBFB;
-}
-</style>
-<p>
-<p>The official way of representing the date for <em>International Speak Like a Pirate Day</em> this year is 2025-09-19 (i.e. Friday, September 19, 2025). Which of the format strings below would represent this as 2025 19 September?</p>
-</p>]]></text>
-</questiontext>
-<generalfeedback format="html">
-<text><![CDATA[<p>
-<p>Use the R command <code>format(as.Date("2025-09-19", my_format))</code> where <code>my_format</code> is a string specifier like <code>"%y %m %y"</code>.</p>
-<ul>
 <li> False </li>
-<li> False </li>
-<li> True </li>
 <li> False </li>
 <li> False </li>
 </ul>
@@ -468,17 +366,7 @@ True
 <answernumbering>abc</answernumbering>
 <answer fraction="0" format="html">
 <text><![CDATA[<p>
-%A %b %d %Y
-</p>]]></text>
-<feedback format="html">
-<text><![CDATA[<p>
-False
-</p>]]></text>
-</feedback>
-</answer>
-<answer fraction="0" format="html">
-<text><![CDATA[<p>
-%y %b %d
+.hide-for-small-only .text
 </p>]]></text>
 <feedback format="html">
 <text><![CDATA[<p>
@@ -488,7 +376,7 @@ False
 </answer>
 <answer fraction="100" format="html">
 <text><![CDATA[<p>
-%Y %d %B
+.cell:nth-child(1) li:nth-child(3) .text
 </p>]]></text>
 <feedback format="html">
 <text><![CDATA[<p>
@@ -498,7 +386,7 @@ True
 </answer>
 <answer fraction="0" format="html">
 <text><![CDATA[<p>
-%y %B %d
+.menu-item-55 .has-menu
 </p>]]></text>
 <feedback format="html">
 <text><![CDATA[<p>
@@ -508,7 +396,17 @@ False
 </answer>
 <answer fraction="0" format="html">
 <text><![CDATA[<p>
-%b %d %m
+.menu-item-49 a
+</p>]]></text>
+<feedback format="html">
+<text><![CDATA[<p>
+False
+</p>]]></text>
+</feedback>
+</answer>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+.menu-item-47 a
 </p>]]></text>
 <feedback format="html">
 <text><![CDATA[<p>
@@ -521,7 +419,7 @@ False
 
 <question type="multichoice">
 <name>
-<text> R06 Q1 : rexams_week-03_lubridate </text>
+<text> R05 Q1 : rexams_week-04_selector-gadget </text>
 </name>
 <questiontext format="html">
 <text><![CDATA[
@@ -548,114 +446,12 @@ False
 }
 </style>
 <p>
-<p>The official way of representing the date for <em>International Speak Like a Pirate Day</em> this year is 2025-09-19 (i.e. Friday, September 19, 2025). Which of the format strings below would represent this as 25 September 19?</p>
+<p>Examine the ATU webpage for <strong>https://www.atu.ie/</strong>. Which is the correct <strong>css</strong> selector for <strong>Research and Innovation</strong>?</p>
 </p>]]></text>
 </questiontext>
 <generalfeedback format="html">
 <text><![CDATA[<p>
-<p>Use the R command <code>format(as.Date("2025-09-19", my_format))</code> where <code>my_format</code> is a string specifier like <code>"%y %m %y"</code>.</p>
-<ul>
-<li> False </li>
-<li> False </li>
-<li> True </li>
-<li> False </li>
-<li> False </li>
-</ul>
-</p>]]></text>
-</generalfeedback>
-<penalty>0</penalty>
-<defaultgrade>1</defaultgrade>
-<shuffleanswers>false</shuffleanswers>
-<single>true</single>
-<answernumbering>abc</answernumbering>
-<answer fraction="0" format="html">
-<text><![CDATA[<p>
-%Y %d %B
-</p>]]></text>
-<feedback format="html">
-<text><![CDATA[<p>
-False
-</p>]]></text>
-</feedback>
-</answer>
-<answer fraction="0" format="html">
-<text><![CDATA[<p>
-%Y %m %d
-</p>]]></text>
-<feedback format="html">
-<text><![CDATA[<p>
-False
-</p>]]></text>
-</feedback>
-</answer>
-<answer fraction="100" format="html">
-<text><![CDATA[<p>
-%y %B %d
-</p>]]></text>
-<feedback format="html">
-<text><![CDATA[<p>
-True
-</p>]]></text>
-</feedback>
-</answer>
-<answer fraction="0" format="html">
-<text><![CDATA[<p>
-%D
-</p>]]></text>
-<feedback format="html">
-<text><![CDATA[<p>
-False
-</p>]]></text>
-</feedback>
-</answer>
-<answer fraction="0" format="html">
-<text><![CDATA[<p>
-%b %d %m
-</p>]]></text>
-<feedback format="html">
-<text><![CDATA[<p>
-False
-</p>]]></text>
-</feedback>
-</answer>
-</question>
-
-
-<question type="multichoice">
-<name>
-<text> R07 Q1 : rexams_week-03_lubridate </text>
-</name>
-<questiontext format="html">
-<text><![CDATA[
-<style type="text/css" rel="stylesheet">
-/* tables with alternating shading */
-.table_shade {
-    border-collapse: collapse;
-    border-spacing: 0;
-    border:1px solid #FFFFFF;
-    background-color: #FFFFFF;
-}
-.table_shade th {
-    border:1px solid #FFFFFF;
-    background: #D5D5D5;
-}
-.table_shade td {
-    border:1px solid #FFFFFF;
-}
-.table_shade .odd {
-    background: #EEEEEE;
-}
-.table_shade .even {
-    background: #FBFBFB;
-}
-</style>
-<p>
-<p>The official way of representing the date for <em>International Speak Like a Pirate Day</em> this year is 2025-09-19 (i.e. Friday, September 19, 2025). Which of the format strings below would represent this as 2025 09 19?</p>
-</p>]]></text>
-</questiontext>
-<generalfeedback format="html">
-<text><![CDATA[<p>
-<p>Use the R command <code>format(as.Date("2025-09-19", my_format))</code> where <code>my_format</code> is a string specifier like <code>"%y %m %y"</code>.</p>
+<p>Either use <code>Ctrl+U</code> to examine the html code for the webpage, or more simply, use the <strong><em>Selector Gagdet</em></strong> browser plugin.</p>
 <ul>
 <li> False </li>
 <li> False </li>
@@ -672,7 +468,7 @@ False
 <answernumbering>abc</answernumbering>
 <answer fraction="0" format="html">
 <text><![CDATA[<p>
-%y %b %d
+.cell:nth-child(1) li:nth-child(3) .text
 </p>]]></text>
 <feedback format="html">
 <text><![CDATA[<p>
@@ -682,7 +478,7 @@ False
 </answer>
 <answer fraction="0" format="html">
 <text><![CDATA[<p>
-%Y %d %B
+.menu-item-49 a
 </p>]]></text>
 <feedback format="html">
 <text><![CDATA[<p>
@@ -692,7 +488,7 @@ False
 </answer>
 <answer fraction="0" format="html">
 <text><![CDATA[<p>
-%b %d %m
+.menu-item-55 .has-menu
 </p>]]></text>
 <feedback format="html">
 <text><![CDATA[<p>
@@ -702,7 +498,7 @@ False
 </answer>
 <answer fraction="0" format="html">
 <text><![CDATA[<p>
-%Y %B %d
+.menu-item-47 a
 </p>]]></text>
 <feedback format="html">
 <text><![CDATA[<p>
@@ -712,7 +508,7 @@ False
 </answer>
 <answer fraction="100" format="html">
 <text><![CDATA[<p>
-%Y %m %d
+.cell:nth-child(2) li:nth-child(1) .text
 </p>]]></text>
 <feedback format="html">
 <text><![CDATA[<p>
@@ -725,7 +521,7 @@ True
 
 <question type="multichoice">
 <name>
-<text> R08 Q1 : rexams_week-03_lubridate </text>
+<text> R06 Q1 : rexams_week-04_selector-gadget </text>
 </name>
 <questiontext format="html">
 <text><![CDATA[
@@ -752,216 +548,12 @@ True
 }
 </style>
 <p>
-<p>The official way of representing the date for <em>International Speak Like a Pirate Day</em> this year is 2025-09-19 (i.e. Friday, September 19, 2025). Which of the format strings below would represent this as Friday Sept 19 2025?</p>
+<p>Examine the ATU webpage for <strong>https://www.atu.ie/</strong>. Which is the correct <strong>css</strong> selector for <strong>Campus Locations</strong>?</p>
 </p>]]></text>
 </questiontext>
 <generalfeedback format="html">
 <text><![CDATA[<p>
-<p>Use the R command <code>format(as.Date("2025-09-19", my_format))</code> where <code>my_format</code> is a string specifier like <code>"%y %m %y"</code>.</p>
-<ul>
-<li> False </li>
-<li> False </li>
-<li> True </li>
-<li> False </li>
-<li> False </li>
-</ul>
-</p>]]></text>
-</generalfeedback>
-<penalty>0</penalty>
-<defaultgrade>1</defaultgrade>
-<shuffleanswers>false</shuffleanswers>
-<single>true</single>
-<answernumbering>abc</answernumbering>
-<answer fraction="0" format="html">
-<text><![CDATA[<p>
-%y %m %d
-</p>]]></text>
-<feedback format="html">
-<text><![CDATA[<p>
-False
-</p>]]></text>
-</feedback>
-</answer>
-<answer fraction="0" format="html">
-<text><![CDATA[<p>
-%Y %B %d
-</p>]]></text>
-<feedback format="html">
-<text><![CDATA[<p>
-False
-</p>]]></text>
-</feedback>
-</answer>
-<answer fraction="100" format="html">
-<text><![CDATA[<p>
-%A %b %d %Y
-</p>]]></text>
-<feedback format="html">
-<text><![CDATA[<p>
-True
-</p>]]></text>
-</feedback>
-</answer>
-<answer fraction="0" format="html">
-<text><![CDATA[<p>
-%D
-</p>]]></text>
-<feedback format="html">
-<text><![CDATA[<p>
-False
-</p>]]></text>
-</feedback>
-</answer>
-<answer fraction="0" format="html">
-<text><![CDATA[<p>
-%y %B %d
-</p>]]></text>
-<feedback format="html">
-<text><![CDATA[<p>
-False
-</p>]]></text>
-</feedback>
-</answer>
-</question>
-
-
-<question type="multichoice">
-<name>
-<text> R09 Q1 : rexams_week-03_lubridate </text>
-</name>
-<questiontext format="html">
-<text><![CDATA[
-<style type="text/css" rel="stylesheet">
-/* tables with alternating shading */
-.table_shade {
-    border-collapse: collapse;
-    border-spacing: 0;
-    border:1px solid #FFFFFF;
-    background-color: #FFFFFF;
-}
-.table_shade th {
-    border:1px solid #FFFFFF;
-    background: #D5D5D5;
-}
-.table_shade td {
-    border:1px solid #FFFFFF;
-}
-.table_shade .odd {
-    background: #EEEEEE;
-}
-.table_shade .even {
-    background: #FBFBFB;
-}
-</style>
-<p>
-<p>The official way of representing the date for <em>International Speak Like a Pirate Day</em> this year is 2025-09-19 (i.e. Friday, September 19, 2025). Which of the format strings below would represent this as 2025 09 19?</p>
-</p>]]></text>
-</questiontext>
-<generalfeedback format="html">
-<text><![CDATA[<p>
-<p>Use the R command <code>format(as.Date("2025-09-19", my_format))</code> where <code>my_format</code> is a string specifier like <code>"%y %m %y"</code>.</p>
-<ul>
-<li> False </li>
-<li> False </li>
-<li> False </li>
-<li> True </li>
-<li> False </li>
-</ul>
-</p>]]></text>
-</generalfeedback>
-<penalty>0</penalty>
-<defaultgrade>1</defaultgrade>
-<shuffleanswers>false</shuffleanswers>
-<single>true</single>
-<answernumbering>abc</answernumbering>
-<answer fraction="0" format="html">
-<text><![CDATA[<p>
-%D
-</p>]]></text>
-<feedback format="html">
-<text><![CDATA[<p>
-False
-</p>]]></text>
-</feedback>
-</answer>
-<answer fraction="0" format="html">
-<text><![CDATA[<p>
-%Y %B %d
-</p>]]></text>
-<feedback format="html">
-<text><![CDATA[<p>
-False
-</p>]]></text>
-</feedback>
-</answer>
-<answer fraction="0" format="html">
-<text><![CDATA[<p>
-%b %d %m
-</p>]]></text>
-<feedback format="html">
-<text><![CDATA[<p>
-False
-</p>]]></text>
-</feedback>
-</answer>
-<answer fraction="100" format="html">
-<text><![CDATA[<p>
-%Y %m %d
-</p>]]></text>
-<feedback format="html">
-<text><![CDATA[<p>
-True
-</p>]]></text>
-</feedback>
-</answer>
-<answer fraction="0" format="html">
-<text><![CDATA[<p>
-%Y %d %B
-</p>]]></text>
-<feedback format="html">
-<text><![CDATA[<p>
-False
-</p>]]></text>
-</feedback>
-</answer>
-</question>
-
-
-<question type="multichoice">
-<name>
-<text> R10 Q1 : rexams_week-03_lubridate </text>
-</name>
-<questiontext format="html">
-<text><![CDATA[
-<style type="text/css" rel="stylesheet">
-/* tables with alternating shading */
-.table_shade {
-    border-collapse: collapse;
-    border-spacing: 0;
-    border:1px solid #FFFFFF;
-    background-color: #FFFFFF;
-}
-.table_shade th {
-    border:1px solid #FFFFFF;
-    background: #D5D5D5;
-}
-.table_shade td {
-    border:1px solid #FFFFFF;
-}
-.table_shade .odd {
-    background: #EEEEEE;
-}
-.table_shade .even {
-    background: #FBFBFB;
-}
-</style>
-<p>
-<p>The official way of representing the date for <em>International Speak Like a Pirate Day</em> this year is 2025-09-19 (i.e. Friday, September 19, 2025). Which of the format strings below would represent this as 2025 September 19?</p>
-</p>]]></text>
-</questiontext>
-<generalfeedback format="html">
-<text><![CDATA[<p>
-<p>Use the R command <code>format(as.Date("2025-09-19", my_format))</code> where <code>my_format</code> is a string specifier like <code>"%y %m %y"</code>.</p>
+<p>Either use <code>Ctrl+U</code> to examine the html code for the webpage, or more simply, use the <strong><em>Selector Gagdet</em></strong> browser plugin.</p>
 <ul>
 <li> False </li>
 <li> False </li>
@@ -978,7 +570,7 @@ False
 <answernumbering>abc</answernumbering>
 <answer fraction="0" format="html">
 <text><![CDATA[<p>
-%Y %d %B
+.menu-item-55 .has-menu
 </p>]]></text>
 <feedback format="html">
 <text><![CDATA[<p>
@@ -988,7 +580,7 @@ False
 </answer>
 <answer fraction="0" format="html">
 <text><![CDATA[<p>
-%D
+.cell:nth-child(1) li:nth-child(3) .text
 </p>]]></text>
 <feedback format="html">
 <text><![CDATA[<p>
@@ -998,7 +590,7 @@ False
 </answer>
 <answer fraction="0" format="html">
 <text><![CDATA[<p>
-%b %d %m
+.menu-item-48 a
 </p>]]></text>
 <feedback format="html">
 <text><![CDATA[<p>
@@ -1008,7 +600,7 @@ False
 </answer>
 <answer fraction="0" format="html">
 <text><![CDATA[<p>
-%A %b %d %Y
+.menu-item-49 a
 </p>]]></text>
 <feedback format="html">
 <text><![CDATA[<p>
@@ -1018,7 +610,7 @@ False
 </answer>
 <answer fraction="100" format="html">
 <text><![CDATA[<p>
-%Y %B %d
+.hide-for-small-only .text
 </p>]]></text>
 <feedback format="html">
 <text><![CDATA[<p>
@@ -1031,7 +623,7 @@ True
 
 <question type="multichoice">
 <name>
-<text> R11 Q1 : rexams_week-03_lubridate </text>
+<text> R07 Q1 : rexams_week-04_selector-gadget </text>
 </name>
 <questiontext format="html">
 <text><![CDATA[
@@ -1058,12 +650,12 @@ True
 }
 </style>
 <p>
-<p>The official way of representing the date for <em>International Speak Like a Pirate Day</em> this year is 2025-09-19 (i.e. Friday, September 19, 2025). Which of the format strings below would represent this as Sept 19 09?</p>
+<p>Examine the ATU webpage for <strong>https://www.atu.ie/</strong>. Which is the correct <strong>css</strong> selector for <strong>Student Hub</strong>?</p>
 </p>]]></text>
 </questiontext>
 <generalfeedback format="html">
 <text><![CDATA[<p>
-<p>Use the R command <code>format(as.Date("2025-09-19", my_format))</code> where <code>my_format</code> is a string specifier like <code>"%y %m %y"</code>.</p>
+<p>Either use <code>Ctrl+U</code> to examine the html code for the webpage, or more simply, use the <strong><em>Selector Gagdet</em></strong> browser plugin.</p>
 <ul>
 <li> True </li>
 <li> False </li>
@@ -1080,7 +672,7 @@ True
 <answernumbering>abc</answernumbering>
 <answer fraction="100" format="html">
 <text><![CDATA[<p>
-%b %d %m
+.menu-item-47 a
 </p>]]></text>
 <feedback format="html">
 <text><![CDATA[<p>
@@ -1090,7 +682,7 @@ True
 </answer>
 <answer fraction="0" format="html">
 <text><![CDATA[<p>
-%y %B %d
+.cell:nth-child(2) li:nth-child(1) .text
 </p>]]></text>
 <feedback format="html">
 <text><![CDATA[<p>
@@ -1100,7 +692,7 @@ False
 </answer>
 <answer fraction="0" format="html">
 <text><![CDATA[<p>
-%D
+.m-b-1
 </p>]]></text>
 <feedback format="html">
 <text><![CDATA[<p>
@@ -1110,7 +702,7 @@ False
 </answer>
 <answer fraction="0" format="html">
 <text><![CDATA[<p>
-%Y %B %d
+.menu-item-48 a
 </p>]]></text>
 <feedback format="html">
 <text><![CDATA[<p>
@@ -1120,7 +712,7 @@ False
 </answer>
 <answer fraction="0" format="html">
 <text><![CDATA[<p>
-%y %d %m
+.menu-item-49 a
 </p>]]></text>
 <feedback format="html">
 <text><![CDATA[<p>
@@ -1133,7 +725,7 @@ False
 
 <question type="multichoice">
 <name>
-<text> R12 Q1 : rexams_week-03_lubridate </text>
+<text> R08 Q1 : rexams_week-04_selector-gadget </text>
 </name>
 <questiontext format="html">
 <text><![CDATA[
@@ -1160,18 +752,18 @@ False
 }
 </style>
 <p>
-<p>The official way of representing the date for <em>International Speak Like a Pirate Day</em> this year is 2025-09-19 (i.e. Friday, September 19, 2025). Which of the format strings below would represent this as Friday Sept 19 2025?</p>
+<p>Examine the ATU webpage for <strong>https://www.atu.ie/</strong>. Which is the correct <strong>css</strong> selector for <strong>Student Hub</strong>?</p>
 </p>]]></text>
 </questiontext>
 <generalfeedback format="html">
 <text><![CDATA[<p>
-<p>Use the R command <code>format(as.Date("2025-09-19", my_format))</code> where <code>my_format</code> is a string specifier like <code>"%y %m %y"</code>.</p>
+<p>Either use <code>Ctrl+U</code> to examine the html code for the webpage, or more simply, use the <strong><em>Selector Gagdet</em></strong> browser plugin.</p>
 <ul>
 <li> False </li>
 <li> False </li>
 <li> False </li>
-<li> False </li>
 <li> True </li>
+<li> False </li>
 </ul>
 </p>]]></text>
 </generalfeedback>
@@ -1182,7 +774,7 @@ False
 <answernumbering>abc</answernumbering>
 <answer fraction="0" format="html">
 <text><![CDATA[<p>
-%Y %m %d
+.cell:nth-child(1) li:nth-child(3) .text
 </p>]]></text>
 <feedback format="html">
 <text><![CDATA[<p>
@@ -1192,7 +784,7 @@ False
 </answer>
 <answer fraction="0" format="html">
 <text><![CDATA[<p>
-%b %d %m
+.cell:nth-child(2) li:nth-child(1) .text
 </p>]]></text>
 <feedback format="html">
 <text><![CDATA[<p>
@@ -1202,17 +794,7 @@ False
 </answer>
 <answer fraction="0" format="html">
 <text><![CDATA[<p>
-%y %d %m
-</p>]]></text>
-<feedback format="html">
-<text><![CDATA[<p>
-False
-</p>]]></text>
-</feedback>
-</answer>
-<answer fraction="0" format="html">
-<text><![CDATA[<p>
-%y %B %d
+.menu-item-48 a
 </p>]]></text>
 <feedback format="html">
 <text><![CDATA[<p>
@@ -1222,11 +804,225 @@ False
 </answer>
 <answer fraction="100" format="html">
 <text><![CDATA[<p>
-%A %b %d %Y
+.menu-item-47 a
 </p>]]></text>
 <feedback format="html">
 <text><![CDATA[<p>
 True
+</p>]]></text>
+</feedback>
+</answer>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+.m-b-1
+</p>]]></text>
+<feedback format="html">
+<text><![CDATA[<p>
+False
+</p>]]></text>
+</feedback>
+</answer>
+</question>
+
+
+<question type="multichoice">
+<name>
+<text> R09 Q1 : rexams_week-04_selector-gadget </text>
+</name>
+<questiontext format="html">
+<text><![CDATA[
+<style type="text/css" rel="stylesheet">
+/* tables with alternating shading */
+.table_shade {
+    border-collapse: collapse;
+    border-spacing: 0;
+    border:1px solid #FFFFFF;
+    background-color: #FFFFFF;
+}
+.table_shade th {
+    border:1px solid #FFFFFF;
+    background: #D5D5D5;
+}
+.table_shade td {
+    border:1px solid #FFFFFF;
+}
+.table_shade .odd {
+    background: #EEEEEE;
+}
+.table_shade .even {
+    background: #FBFBFB;
+}
+</style>
+<p>
+<p>Examine the ATU webpage for <strong>https://www.atu.ie/</strong>. Which is the correct <strong>css</strong> selector for <strong>Research and Innovation</strong>?</p>
+</p>]]></text>
+</questiontext>
+<generalfeedback format="html">
+<text><![CDATA[<p>
+<p>Either use <code>Ctrl+U</code> to examine the html code for the webpage, or more simply, use the <strong><em>Selector Gagdet</em></strong> browser plugin.</p>
+<ul>
+<li> False </li>
+<li> False </li>
+<li> False </li>
+<li> True </li>
+<li> False </li>
+</ul>
+</p>]]></text>
+</generalfeedback>
+<penalty>0</penalty>
+<defaultgrade>1</defaultgrade>
+<shuffleanswers>false</shuffleanswers>
+<single>true</single>
+<answernumbering>abc</answernumbering>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+.m-b-1
+</p>]]></text>
+<feedback format="html">
+<text><![CDATA[<p>
+False
+</p>]]></text>
+</feedback>
+</answer>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+.menu-item-49 a
+</p>]]></text>
+<feedback format="html">
+<text><![CDATA[<p>
+False
+</p>]]></text>
+</feedback>
+</answer>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+.hide-for-small-only .text
+</p>]]></text>
+<feedback format="html">
+<text><![CDATA[<p>
+False
+</p>]]></text>
+</feedback>
+</answer>
+<answer fraction="100" format="html">
+<text><![CDATA[<p>
+.cell:nth-child(2) li:nth-child(1) .text
+</p>]]></text>
+<feedback format="html">
+<text><![CDATA[<p>
+True
+</p>]]></text>
+</feedback>
+</answer>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+.menu-item-55 .has-menu
+</p>]]></text>
+<feedback format="html">
+<text><![CDATA[<p>
+False
+</p>]]></text>
+</feedback>
+</answer>
+</question>
+
+
+<question type="multichoice">
+<name>
+<text> R10 Q1 : rexams_week-04_selector-gadget </text>
+</name>
+<questiontext format="html">
+<text><![CDATA[
+<style type="text/css" rel="stylesheet">
+/* tables with alternating shading */
+.table_shade {
+    border-collapse: collapse;
+    border-spacing: 0;
+    border:1px solid #FFFFFF;
+    background-color: #FFFFFF;
+}
+.table_shade th {
+    border:1px solid #FFFFFF;
+    background: #D5D5D5;
+}
+.table_shade td {
+    border:1px solid #FFFFFF;
+}
+.table_shade .odd {
+    background: #EEEEEE;
+}
+.table_shade .even {
+    background: #FBFBFB;
+}
+</style>
+<p>
+<p>Examine the ATU webpage for <strong>https://www.atu.ie/</strong>. Which is the correct <strong>css</strong> selector for <strong>Staff Hub</strong>?</p>
+</p>]]></text>
+</questiontext>
+<generalfeedback format="html">
+<text><![CDATA[<p>
+<p>Either use <code>Ctrl+U</code> to examine the html code for the webpage, or more simply, use the <strong><em>Selector Gagdet</em></strong> browser plugin.</p>
+<ul>
+<li> False </li>
+<li> False </li>
+<li> False </li>
+<li> True </li>
+<li> False </li>
+</ul>
+</p>]]></text>
+</generalfeedback>
+<penalty>0</penalty>
+<defaultgrade>1</defaultgrade>
+<shuffleanswers>false</shuffleanswers>
+<single>true</single>
+<answernumbering>abc</answernumbering>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+.cell:nth-child(1) li:nth-child(3) .text
+</p>]]></text>
+<feedback format="html">
+<text><![CDATA[<p>
+False
+</p>]]></text>
+</feedback>
+</answer>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+.menu-item-49 a
+</p>]]></text>
+<feedback format="html">
+<text><![CDATA[<p>
+False
+</p>]]></text>
+</feedback>
+</answer>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+.menu-item-55 .has-menu
+</p>]]></text>
+<feedback format="html">
+<text><![CDATA[<p>
+False
+</p>]]></text>
+</feedback>
+</answer>
+<answer fraction="100" format="html">
+<text><![CDATA[<p>
+.menu-item-48 a
+</p>]]></text>
+<feedback format="html">
+<text><![CDATA[<p>
+True
+</p>]]></text>
+</feedback>
+</answer>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+.menu-item-47 a
+</p>]]></text>
+<feedback format="html">
+<text><![CDATA[<p>
+False
 </p>]]></text>
 </feedback>
 </answer>

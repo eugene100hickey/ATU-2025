@@ -1,0 +1,54 @@
+```{r data generation, echo = FALSE, results = "hide", message=F, warning=F}
+library(exams)
+library(tidyverse)
+library(rvest)
+
+year <- 2000:2022 |> 
+  sample(1)
+new_url <- glue::glue("https://www.imdb.com/search/title/?title_type=feature&year={year}-01-01,{year}-12-31")
+
+answer_list <- tribble(~feature, ~node,
+                       "number of votes (in thousands, divide IMDB figures by 1,000)",".sort-num_votes-visible span:nth-child(2)",
+                       "gross takings (in billion dolars, divide IMDB figures by 1,000)", ".ghost~ .text-muted+ span",
+                       "star ratings", ".ratings-imdb-rating strong",
+                       "movie duration in minutes", ".runtime"
+                       )
+
+w <- read_html(new_url)
+index <- sample(1:4, 1)
+question <- answer_list$feature[index]
+css <- answer_list$node[index]
+
+data_html <- html_nodes(w, css)
+my_data <- html_text2(data_html) |> 
+  str_remove_all(",") |> 
+  str_remove_all("\\$") |> 
+  str_remove_all("M") |> 
+  str_remove_all(" min")
+
+
+solution <- my_data |> as.numeric() |> mean(na.rm = T) |> signif(3)
+
+
+if(index %in% 1:2){
+  solution <- solution / 1e3
+}
+
+```
+
+
+Question
+========
+Examine the movie database webpage for __`r year`__ at __`r new_url`__. What is the mean value for the `r answer_list$feature[index]`? Just give the numerical answer, don't include units.
+
+Solution
+========
+Use `read_html()`, followed by `html_nodes()`, and then `html_text2()`.
+
+
+Meta-information
+================
+extype: num
+exsolution: `r solution`
+exname: imdb
+extol: `r solution*0.02`
