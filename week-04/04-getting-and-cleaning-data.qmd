@@ -222,12 +222,14 @@ fa_list <- function(x, incremental = FALSE) {
 
 - Might need to do this:
 
-    - Install 64 bit Java from [java.com](https://java.com/en/download/manual.jsp).
+    - Install 64 bit Java from [java.com](https://java.com/en/download/manual.jsp){target="_blank"}.
     - Then in windows cmd run
-    - setx PATH `"C:\Program Files\Java\jre1.8.0_211\bin\server;%PATH%"` (make sure your path is correct).
+    - set PATH `"C:\Program Files\Java\jre1.8.0_211\bin\server;%PATH%"` (make sure your path is correct).
     - Then in RStudio run `Sys.setenv(JAVA_HOME="")`
     
 - then `remotes::install_github(c("ropensci/tabulizerjars", "ropensci/tabulizer"), INSTALL_opts = "--no-multiarch")`
+
+- can be a lot easier just to work in [posit.cloud](https://posit.cloud/){target="_blank"}
 
 :::
 
@@ -235,7 +237,7 @@ fa_list <- function(x, incremental = FALSE) {
 
 ---
 
-- [organ transplant an donation data from the NHS](https://nhsbtdbe.blob.core.windows.net/umbraco-assets-corp/29388/weekly-statistics.pdf)
+- [organ transplant an donation data from the NHS](https://nhsbtdbe.blob.core.windows.net/umbraco-assets-corp/29388/weekly-statistics.pdf){target="_blank"}
 
 ```{r}
 library(tabulizer)
@@ -246,7 +248,7 @@ extract_tables(organ_transplant, output = "data.frame") |> pluck(1) |> gt::gt()
 
 ## Other File Formats
 
-- see the bottom of [this page](https://www.epirhandbook.com/en/import-and-export.html) to see some other file formats that `rio::import()` can handle.
+- see the bottom of [this page](https://www.epirhandbook.com/en/new_pages/importing.html){target="_blank"} to see some other file formats that `rio::import()` can handle.
 
 - includes *SPSS* files ([.sav]{.underline}), *Minitab* files ([.mtp]{.underline}), *Matlab* files ([.mat]{.underline}), etc.....
 
@@ -311,7 +313,7 @@ extract_tables(organ_transplant, output = "data.frame") |> pluck(1) |> gt::gt()
 
 ## Political Science
 
-- list of useful packages [here](https://rforpoliticalscience.com/2023/04/07/top-r-packages-for-downloading-political-science-and-economics-datasets/)
+- list of useful packages [here](https://rforpoliticalscience.com/2023/04/07/top-r-packages-for-downloading-political-science-and-economics-datasets/){target="_blank"}
 
 ## Ecology
 
@@ -319,19 +321,19 @@ extract_tables(organ_transplant, output = "data.frame") |> pluck(1) |> gt::gt()
 
 - `rgbif`
 
-- `GIFT` with this [tutorial](https://cran.r-project.org/web/packages/GIFT/vignettes/GIFT.html)
+- `GIFT` with this [tutorial](https://cran.r-project.org/web/packages/GIFT/vignettes/GIFT.html){target="_blank"}
 
 ## Earth Observation - Satellite Images
 
-- good resource for Ireland is [Sentinel2](https://scihub.copernicus.eu/)
+- good resource for Ireland is [Sentinel2](https://scihub.copernicus.eu/){target="_blank"}
 
     - need to make an account on Copernicus
     
     - R package `sen2r`
     
-    - see [this presentation](https://www.youtube.com/watch?v=k1K6nqgtRL8) for a walkthrough
+    - see [this presentation](https://www.youtube.com/watch?v=k1K6nqgtRL8){target="_blank"} for a walkthrough
     
-- also [Planet.com](https://www.planet.com/)
+- also [Planet.com](https://www.planet.com/){target="_blank"}
 
     - free (but limited) academic access
 
@@ -359,7 +361,7 @@ extract_tables(organ_transplant, output = "data.frame") |> pluck(1) |> gt::gt()
 
     - read in the whole web page (`read_html()`)
     
-    - select out the elements that you want (`html_nodes()`)
+    - select out the elements that you want (`html_elements()`)
     
     - format the results (`html_text2()`)
     
@@ -371,13 +373,13 @@ extract_tables(organ_transplant, output = "data.frame") |> pluck(1) |> gt::gt()
 
 ::: {style="font-size: 45%; list-style-position: outside; padding-left: 0em;"}
 
-1. Use `rio::import()` to read in the *Ferris Wheel* dataset available from [https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-08-09/wheels.csv](https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-08-09/wheels.csv). Where is the highest ferris wheel?
+1. Use `rio::import()` to read in the *Ferris Wheel* dataset available from [https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-08-09/wheels.csv](https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-08-09/wheels.csv){target="_blank"}. Where is the highest ferris wheel?
 
 1. Look at the example excel file called `deaths.xlsx` from the `readxl` package (find it using `system.file(package = "readxl)` then look in the `extdata` directory). Read the `"other"` sheet from this file using the `import()` function. Note that the first four rows are full of junk so they should be skipped. See if you can figure out what the *Date of Birth* column represents.
 
 1. Make a new *googlesheet* in the **Chrome** browser. After you've entered some data, click **Share** (top right corner). Click **General Access** and choose *Anyone with the link*. **Copy the link**. Go to RStudio now and use the link you've  copied to import this googlesheet into R.
 
-1.  Have a look at the IPCC climate report from 2017 available [here](https://www.ipcc.ch/site/assets/uploads/2017/09/WG1AR5_AnnexII_FINAL.pdf). Use `tabulizer` to read in the table on page 10 of this report as a data.frame.
+1.  Have a look at the IPCC climate report from 2017 available [here](https://www.ipcc.ch/site/assets/uploads/2017/09/WG1AR5_AnnexII_FINAL.pdf){target="_blank"}. Use `tabulizer` to read in the table on page 10 of this report as a data.frame.
 
 1. Install the `eurostat` package. Search for datasets on *diabetes* using the `search_eurostat()` function. Get the *eurostat* dataset on screening of diabetes by sex, age, and education from 2014-2019. Decode the column values using `get_eurostat_dic()` (e.g. `get_eurostat_dic("age")`). Find the incidence of diabetes/cardiovascular that has been detected for [*less than one year*]{.underline} in [*Slovenia*]{.underline} in [*2019*]{.underline} for people of [*all*]{.underline} genders who are [*older than 75*]{.underline} with [*Upper secondary and post-secondary non-tertiary education*]{.underline}.
 
@@ -385,7 +387,7 @@ extract_tables(organ_transplant, output = "data.frame") |> pluck(1) |> gt::gt()
 
 1.  Install **Selector Gadget** as a Chrome extension. Go to the [RTE](website). Find the *css* selector for the top navigation bar (where it says *"News Sport Entertainment..."*).
 
-1. Go to the wikipedia page for the [English Premier League Season 2020/2021](https://en.wikipedia.org/wiki/2020%E2%80%9321_Premier_League). Find the css selector for the *Best Goalkeeper* (should be something like "**tr:nth-child(11) .infobox-data a**"). Use `read_html()`, `html_nodes()`, and `html_text2()` from the `rvest` package to find the best goalkepper for this season.
+1. Go to the wikipedia page for the [English Premier League Season 2020/2021](https://en.wikipedia.org/wiki/2020%E2%80%9321_Premier_League){target="_blank"}. Find the css selector for the *Best Goalkeeper* (should be something like "**tr:nth-child(11) .infobox-data a**"). Use `read_html()`, `html_nodes()`, and `html_text2()` from the `rvest` package to find the best goalkepper for this season.
 
 :::
 

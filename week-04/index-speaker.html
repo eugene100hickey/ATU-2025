@@ -347,12 +347,13 @@ worksheet later on)</p></li>
 <li><p>Need <strong>Java</strong> installed, and R needs to know about it.</p></li>
 <li><p>Might need to do this:</p>
 <ul>
-<li>Install 64 bit Java from <a href="https://java.com/en/download/manual.jsp">java.com</a>.</li>
+<li>Install 64 bit Java from <a href="https://java.com/en/download/manual.jsp" target="_blank">java.com</a>.</li>
 <li>Then in windows cmd run</li>
-<li>setx PATH <code>"C:\Program Files\Java\jre1.8.0_211\bin\server;%PATH%"</code> (make sure your path is correct).</li>
+<li>set PATH <code>"C:\Program Files\Java\jre1.8.0_211\bin\server;%PATH%"</code> (make sure your path is correct).</li>
 <li>Then in RStudio run <code>Sys.setenv(JAVA_HOME="")</code></li>
 </ul></li>
 <li><p>then <code>remotes::install_github(c("ropensci/tabulizerjars", "ropensci/tabulizer"), INSTALL_opts = "--no-multiarch")</code></p></li>
+<li><p>can be a lot easier just to work in <a href="https://posit.cloud/" target="_blank">posit.cloud</a></p></li>
 </ul>
 </div>
 </div>
@@ -362,30 +363,30 @@ worksheet later on)</p></li>
 <section class="slide level2">
 
 <ul>
-<li><a href="https://nhsbtdbe.blob.core.windows.net/umbraco-assets-corp/29388/weekly-statistics.pdf">organ transplant an donation data from the NHS</a></li>
+<li><a href="https://nhsbtdbe.blob.core.windows.net/umbraco-assets-corp/29388/weekly-statistics.pdf" target="_blank">organ transplant an donation data from the NHS</a></li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a><span class="fu">library</span>(tabulizer)</span>
 <span id="cb1-2"><a href=""></a>organ_transplant <span class="ot">&lt;-</span> <span class="st">"https://nhsbtdbe.blob.core.windows.net/umbraco-assets-corp/18494/centre-specific-activity-report.pdf"</span></span>
 <span id="cb1-3"><a href=""></a><span class="fu">extract_tables</span>(organ_transplant, <span class="at">output =</span> <span class="st">"data.frame"</span>) <span class="sc">|&gt;</span> <span class="fu">pluck</span>(<span class="dv">1</span>) <span class="sc">|&gt;</span> gt<span class="sc">::</span><span class="fu">gt</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="qaskbdieyq" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#qaskbdieyq table {
+<div id="qsktdjcqfb" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#qsktdjcqfb table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#qaskbdieyq thead, #qaskbdieyq tbody, #qaskbdieyq tfoot, #qaskbdieyq tr, #qaskbdieyq td, #qaskbdieyq th {
+#qsktdjcqfb thead, #qsktdjcqfb tbody, #qsktdjcqfb tfoot, #qsktdjcqfb tr, #qsktdjcqfb td, #qsktdjcqfb th {
   border-style: none;
 }
 
-#qaskbdieyq p {
+#qsktdjcqfb p {
   margin: 0;
   padding: 0;
 }
 
-#qaskbdieyq .gt_table {
+#qsktdjcqfb .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -411,12 +412,12 @@ worksheet later on)</p></li>
   border-left-color: #D3D3D3;
 }
 
-#qaskbdieyq .gt_caption {
+#qsktdjcqfb .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#qaskbdieyq .gt_title {
+#qsktdjcqfb .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -428,7 +429,7 @@ worksheet later on)</p></li>
   border-bottom-width: 0;
 }
 
-#qaskbdieyq .gt_subtitle {
+#qsktdjcqfb .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -440,7 +441,7 @@ worksheet later on)</p></li>
   border-top-width: 0;
 }
 
-#qaskbdieyq .gt_heading {
+#qsktdjcqfb .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -452,13 +453,13 @@ worksheet later on)</p></li>
   border-right-color: #D3D3D3;
 }
 
-#qaskbdieyq .gt_bottom_border {
+#qsktdjcqfb .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#qaskbdieyq .gt_col_headings {
+#qsktdjcqfb .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -473,7 +474,7 @@ worksheet later on)</p></li>
   border-right-color: #D3D3D3;
 }
 
-#qaskbdieyq .gt_col_heading {
+#qsktdjcqfb .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -493,7 +494,7 @@ worksheet later on)</p></li>
   overflow-x: hidden;
 }
 
-#qaskbdieyq .gt_column_spanner_outer {
+#qsktdjcqfb .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -505,15 +506,15 @@ worksheet later on)</p></li>
   padding-right: 4px;
 }
 
-#qaskbdieyq .gt_column_spanner_outer:first-child {
+#qsktdjcqfb .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#qaskbdieyq .gt_column_spanner_outer:last-child {
+#qsktdjcqfb .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#qaskbdieyq .gt_column_spanner {
+#qsktdjcqfb .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -525,11 +526,11 @@ worksheet later on)</p></li>
   width: 100%;
 }
 
-#qaskbdieyq .gt_spanner_row {
+#qsktdjcqfb .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#qaskbdieyq .gt_group_heading {
+#qsktdjcqfb .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -555,7 +556,7 @@ worksheet later on)</p></li>
   text-align: left;
 }
 
-#qaskbdieyq .gt_empty_group_heading {
+#qsktdjcqfb .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -570,15 +571,15 @@ worksheet later on)</p></li>
   vertical-align: middle;
 }
 
-#qaskbdieyq .gt_from_md > :first-child {
+#qsktdjcqfb .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#qaskbdieyq .gt_from_md > :last-child {
+#qsktdjcqfb .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#qaskbdieyq .gt_row {
+#qsktdjcqfb .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -597,7 +598,7 @@ worksheet later on)</p></li>
   overflow-x: hidden;
 }
 
-#qaskbdieyq .gt_stub {
+#qsktdjcqfb .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -610,7 +611,7 @@ worksheet later on)</p></li>
   padding-right: 5px;
 }
 
-#qaskbdieyq .gt_stub_row_group {
+#qsktdjcqfb .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -624,15 +625,15 @@ worksheet later on)</p></li>
   vertical-align: top;
 }
 
-#qaskbdieyq .gt_row_group_first td {
+#qsktdjcqfb .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#qaskbdieyq .gt_row_group_first th {
+#qsktdjcqfb .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#qaskbdieyq .gt_summary_row {
+#qsktdjcqfb .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -642,16 +643,16 @@ worksheet later on)</p></li>
   padding-right: 5px;
 }
 
-#qaskbdieyq .gt_first_summary_row {
+#qsktdjcqfb .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#qaskbdieyq .gt_first_summary_row.thick {
+#qsktdjcqfb .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#qaskbdieyq .gt_last_summary_row {
+#qsktdjcqfb .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -661,7 +662,7 @@ worksheet later on)</p></li>
   border-bottom-color: #D3D3D3;
 }
 
-#qaskbdieyq .gt_grand_summary_row {
+#qsktdjcqfb .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -671,7 +672,7 @@ worksheet later on)</p></li>
   padding-right: 5px;
 }
 
-#qaskbdieyq .gt_first_grand_summary_row {
+#qsktdjcqfb .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -681,7 +682,7 @@ worksheet later on)</p></li>
   border-top-color: #D3D3D3;
 }
 
-#qaskbdieyq .gt_last_grand_summary_row_top {
+#qsktdjcqfb .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -691,11 +692,11 @@ worksheet later on)</p></li>
   border-bottom-color: #D3D3D3;
 }
 
-#qaskbdieyq .gt_striped {
+#qsktdjcqfb .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#qaskbdieyq .gt_table_body {
+#qsktdjcqfb .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -704,7 +705,7 @@ worksheet later on)</p></li>
   border-bottom-color: #D3D3D3;
 }
 
-#qaskbdieyq .gt_footnotes {
+#qsktdjcqfb .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -718,7 +719,7 @@ worksheet later on)</p></li>
   border-right-color: #D3D3D3;
 }
 
-#qaskbdieyq .gt_footnote {
+#qsktdjcqfb .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -727,7 +728,7 @@ worksheet later on)</p></li>
   padding-right: 5px;
 }
 
-#qaskbdieyq .gt_sourcenotes {
+#qsktdjcqfb .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -741,7 +742,7 @@ worksheet later on)</p></li>
   border-right-color: #D3D3D3;
 }
 
-#qaskbdieyq .gt_sourcenote {
+#qsktdjcqfb .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -749,72 +750,72 @@ worksheet later on)</p></li>
   padding-right: 5px;
 }
 
-#qaskbdieyq .gt_left {
+#qsktdjcqfb .gt_left {
   text-align: left;
 }
 
-#qaskbdieyq .gt_center {
+#qsktdjcqfb .gt_center {
   text-align: center;
 }
 
-#qaskbdieyq .gt_right {
+#qsktdjcqfb .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#qaskbdieyq .gt_font_normal {
+#qsktdjcqfb .gt_font_normal {
   font-weight: normal;
 }
 
-#qaskbdieyq .gt_font_bold {
+#qsktdjcqfb .gt_font_bold {
   font-weight: bold;
 }
 
-#qaskbdieyq .gt_font_italic {
+#qsktdjcqfb .gt_font_italic {
   font-style: italic;
 }
 
-#qaskbdieyq .gt_super {
+#qsktdjcqfb .gt_super {
   font-size: 65%;
 }
 
-#qaskbdieyq .gt_footnote_marks {
+#qsktdjcqfb .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#qaskbdieyq .gt_asterisk {
+#qsktdjcqfb .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#qaskbdieyq .gt_indent_1 {
+#qsktdjcqfb .gt_indent_1 {
   text-indent: 5px;
 }
 
-#qaskbdieyq .gt_indent_2 {
+#qsktdjcqfb .gt_indent_2 {
   text-indent: 10px;
 }
 
-#qaskbdieyq .gt_indent_3 {
+#qsktdjcqfb .gt_indent_3 {
   text-indent: 15px;
 }
 
-#qaskbdieyq .gt_indent_4 {
+#qsktdjcqfb .gt_indent_4 {
   text-indent: 20px;
 }
 
-#qaskbdieyq .gt_indent_5 {
+#qsktdjcqfb .gt_indent_5 {
   text-indent: 25px;
 }
 
-#qaskbdieyq .katex-display {
+#qsktdjcqfb .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#qaskbdieyq div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#qsktdjcqfb div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1023,7 +1024,7 @@ worksheet later on)</p></li>
 <section id="other-file-formats" class="slide level2">
 <h2>Other File Formats</h2>
 <ul>
-<li><p>see the bottom of <a href="https://www.epirhandbook.com/en/import-and-export.html">this page</a> to see some other file formats that <code>rio::import()</code> can handle.</p></li>
+<li><p>see the bottom of <a href="https://www.epirhandbook.com/en/new_pages/importing.html" target="_blank">this page</a> to see some other file formats that <code>rio::import()</code> can handle.</p></li>
 <li><p>includes <em>SPSS</em> files (<u>.sav</u>), <em>Minitab</em> files (<u>.mtp</u>), <em>Matlab</em> files (<u>.mat</u>), etc…..</p></li>
 </ul>
 </section>
@@ -1083,7 +1084,7 @@ worksheet later on)</p></li>
 <section id="political-science" class="slide level2">
 <h2>Political Science</h2>
 <ul>
-<li>list of useful packages <a href="https://rforpoliticalscience.com/2023/04/07/top-r-packages-for-downloading-political-science-and-economics-datasets/">here</a></li>
+<li>list of useful packages <a href="https://rforpoliticalscience.com/2023/04/07/top-r-packages-for-downloading-political-science-and-economics-datasets/" target="_blank">here</a></li>
 </ul>
 </section>
 <section id="ecology" class="slide level2">
@@ -1091,19 +1092,19 @@ worksheet later on)</p></li>
 <ul>
 <li><p><code>rfishbase</code></p></li>
 <li><p><code>rgbif</code></p></li>
-<li><p><code>GIFT</code> with this <a href="https://cran.r-project.org/web/packages/GIFT/vignettes/GIFT.html">tutorial</a></p></li>
+<li><p><code>GIFT</code> with this <a href="https://cran.r-project.org/web/packages/GIFT/vignettes/GIFT.html" target="_blank">tutorial</a></p></li>
 </ul>
 </section>
 <section id="earth-observation---satellite-images" class="slide level2">
 <h2>Earth Observation - Satellite Images</h2>
 <ul>
-<li><p>good resource for Ireland is <a href="https://scihub.copernicus.eu/">Sentinel2</a></p>
+<li><p>good resource for Ireland is <a href="https://scihub.copernicus.eu/" target="_blank">Sentinel2</a></p>
 <ul>
 <li><p>need to make an account on Copernicus</p></li>
 <li><p>R package <code>sen2r</code></p></li>
-<li><p>see <a href="https://www.youtube.com/watch?v=k1K6nqgtRL8">this presentation</a> for a walkthrough</p></li>
+<li><p>see <a href="https://www.youtube.com/watch?v=k1K6nqgtRL8" target="_blank">this presentation</a> for a walkthrough</p></li>
 </ul></li>
-<li><p>also <a href="https://www.planet.com/">Planet.com</a></p>
+<li><p>also <a href="https://www.planet.com/" target="_blank">Planet.com</a></p>
 <ul>
 <li>free (but limited) academic access</li>
 </ul></li>
@@ -1129,7 +1130,7 @@ worksheet later on)</p></li>
 <li><p>three step process</p>
 <ul>
 <li><p>read in the whole web page (<code>read_html()</code>)</p></li>
-<li><p>select out the elements that you want (<code>html_nodes()</code>)</p></li>
+<li><p>select out the elements that you want (<code>html_elements()</code>)</p></li>
 <li><p>format the results (<code>html_text2()</code>)</p></li>
 </ul></li>
 <li><p>to figure out the elements part, the Chrome Extension called <em>Selector Gadget</em> is very useful. Could also look at the page source by <u>Ctrl+U</u></p></li>
@@ -1144,14 +1145,14 @@ worksheet later on)</p></li>
 <h2>Perform the Following Tasks:</h2>
 <div style="font-size: 45%; list-style-position: outside; padding-left: 0em;">
 <ol type="1">
-<li><p>Use <code>rio::import()</code> to read in the <em>Ferris Wheel</em> dataset available from <a href="https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-08-09/wheels.csv">https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-08-09/wheels.csv</a>. Where is the highest ferris wheel?</p></li>
+<li><p>Use <code>rio::import()</code> to read in the <em>Ferris Wheel</em> dataset available from <a href="https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-08-09/wheels.csv" target="_blank">https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-08-09/wheels.csv</a>. Where is the highest ferris wheel?</p></li>
 <li><p>Look at the example excel file called <code>deaths.xlsx</code> from the <code>readxl</code> package (find it using <code>system.file(package = "readxl)</code> then look in the <code>extdata</code> directory). Read the <code>"other"</code> sheet from this file using the <code>import()</code> function. Note that the first four rows are full of junk so they should be skipped. See if you can figure out what the <em>Date of Birth</em> column represents.</p></li>
 <li><p>Make a new <em>googlesheet</em> in the <strong>Chrome</strong> browser. After you’ve entered some data, click <strong>Share</strong> (top right corner). Click <strong>General Access</strong> and choose <em>Anyone with the link</em>. <strong>Copy the link</strong>. Go to RStudio now and use the link you’ve copied to import this googlesheet into R.</p></li>
-<li><p>Have a look at the IPCC climate report from 2017 available <a href="https://www.ipcc.ch/site/assets/uploads/2017/09/WG1AR5_AnnexII_FINAL.pdf">here</a>. Use <code>tabulizer</code> to read in the table on page 10 of this report as a data.frame.</p></li>
+<li><p>Have a look at the IPCC climate report from 2017 available <a href="https://www.ipcc.ch/site/assets/uploads/2017/09/WG1AR5_AnnexII_FINAL.pdf" target="_blank">here</a>. Use <code>tabulizer</code> to read in the table on page 10 of this report as a data.frame.</p></li>
 <li><p>Install the <code>eurostat</code> package. Search for datasets on <em>diabetes</em> using the <code>search_eurostat()</code> function. Get the <em>eurostat</em> dataset on screening of diabetes by sex, age, and education from 2014-2019. Decode the column values using <code>get_eurostat_dic()</code> (e.g.&nbsp;<code>get_eurostat_dic("age")</code>). Find the incidence of diabetes/cardiovascular that has been detected for <u><em>less than one year</em></u> in <u><em>Slovenia</em></u> in <u><em>2019</em></u> for people of <u><em>all</em></u> genders who are <u><em>older than 75</em></u> with <u><em>Upper secondary and post-secondary non-tertiary education</em></u>.</p></li>
 <li><p>Install the <code>BiocManager</code> package (<code>install.packages("BiocManager")</code>). Install the <code>rentrez</code> and <code>seqinr</code> packages from <code>Bioconductor</code> (e.g.&nbsp;<code>BiocManager::install("rentrez")</code>). Find the <a href="">NCBI</a> accession numbers for the <em>BRCA1</em> cancer gene using <code>z &lt;- entrez_search(db = "nuccore", term = "brca1")</code>. This returns a list of 5 elements, the first of which (<code>z[[1]]</code>) will be the relevant accession numbers. Take the first of these accession numbers and fetch the gene sequence using <code>entrez_fetch(db = "nuccore", id = "my_accession_numbber", rettype = "fasta")</code>.</p></li>
 <li><p>Install <strong>Selector Gadget</strong> as a Chrome extension. Go to the <a href="website">RTE</a>. Find the <em>css</em> selector for the top navigation bar (where it says <em>“News Sport Entertainment…”</em>).</p></li>
-<li><p>Go to the wikipedia page for the <a href="https://en.wikipedia.org/wiki/2020%E2%80%9321_Premier_League">English Premier League Season 2020/2021</a>. Find the css selector for the <em>Best Goalkeeper</em> (should be something like “<strong>tr:nth-child(11) .infobox-data a</strong>”). Use <code>read_html()</code>, <code>html_nodes()</code>, and <code>html_text2()</code> from the <code>rvest</code> package to find the best goalkepper for this season.</p></li>
+<li><p>Go to the wikipedia page for the <a href="https://en.wikipedia.org/wiki/2020%E2%80%9321_Premier_League" target="_blank">English Premier League Season 2020/2021</a>. Find the css selector for the <em>Best Goalkeeper</em> (should be something like “<strong>tr:nth-child(11) .infobox-data a</strong>”). Use <code>read_html()</code>, <code>html_nodes()</code>, and <code>html_text2()</code> from the <code>rvest</code> package to find the best goalkepper for this season.</p></li>
 </ol>
 </div>
 </section>
