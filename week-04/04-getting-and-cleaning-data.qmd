@@ -369,23 +369,30 @@ extract_tables(organ_transplant, output = "data.frame") |> pluck(1) |> gt::gt()
 
 ## Perform the Following Tasks:
 
-::: {style="font-size: 45%; list-style-position: outside; padding-left: 0em;"}
+::: {style="font-size: 65%; list-style-position: outside; padding-left: 0em;"}
 
-1. Use `rio::import()` to read in the *Ferris Wheel* dataset available from [https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-08-09/wheels.csv](https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-08-09/wheels.csv){target="_blank"}. Where is the highest ferris wheel? __[Golden Gate Flyer]__
+(@) Use `rio::import()` to read in the *Ferris Wheel* dataset available from [https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-08-09/wheels.csv](https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-08-09/wheels.csv){target="_blank"}. Where is the highest ferris wheel? __[Golden Gate Flyer]__
 
-1. Look at the example excel file called `deaths.xlsx` from the `readxl` package (find it using `system.file(package = "readxl")` then look in the `extdata` directory). Read the `"other"` sheet from this file using the `import()` function. Note that the first four rows are full of junk so they should be skipped. See if you can figure out what the *Date of Birth* column represents. __[days since 1900]__
+(@) Look at the example excel file called `deaths.xlsx` from the `readxl` package (find it using `system.file(package = "readxl")` then look in the `extdata` directory). Read the `"other"` sheet from this file using the `import()` function. Note that the first four rows are full of junk so they should be skipped. See if you can figure out what the *Date of Birth* column represents. __[days since 1900]__
 
-1. Make a new *googlesheet* in the **Chrome** browser. After you've entered some data, click **Share** (top right corner). Click **General Access** and choose *Anyone with the link*. **Copy the link**. Go to RStudio now and use the link you've  copied to import this googlesheet into R.
+(@) Make a new *googlesheet* in the **Chrome** browser. After you've entered some data, click **Share** (top right corner). Click **General Access** and choose *Anyone with the link*. **Copy the link**. Go to RStudio now and use the link you've  copied to import this googlesheet into R.
 
-1.  Have a look at the Department of Education SCHOOL SELF-EVALUATION GUIDELINES 2016-2020 [here](https://assets.gov.ie/static/documents/school-self-evaluation-guidelines-2016-2020-primary.pdf){target="_blank"}. Use `tabulizer` to read in the table on page 27 of this report as a data.frame (note, it'll be the sixth table `tabulizer` encounters).
+(@)  Have a look at the Department of Education SCHOOL SELF-EVALUATION GUIDELINES 2016-2020 [here](https://assets.gov.ie/static/documents/school-self-evaluation-guidelines-2016-2020-primary.pdf){target="_blank"}. Use `tabulizer` to read in the table on page 27 of this report as a data.frame (note, it'll be the sixth table `tabulizer` encounters).
 
-1. Install the `eurostat` package. Search for datasets on *diabetes* using the `search_eurostat()` function. Get the *eurostat* dataset on screening of diabetes by sex, age, and education from 2014-2019. Decode the column values using `get_eurostat_dic()` (e.g. `get_eurostat_dic("hlthcare")`). Find the incidence of diabetes/cardiovascular that has been detected for [*less than one year*]{.underline} in [*Slovenia*]{.underline} in [*2019*]{.underline} for people of [*all*]{.underline} genders who are [*older than 75*]{.underline} with [*Upper secondary and post-secondary non-tertiary education (levels 3 and 4)*]{.underline}. __[74, 87.4, 77.2]__
+:::
 
-1. Install the `BiocManager` package (`install.packages("BiocManager")`). Install the `rentrez` and `seqinr` packages from `Bioconductor` (e.g. `BiocManager::install("rentrez")`). Find the [NCBI]() accession numbers for the *BRCA1* cancer gene using `z <- entrez_search(db = "nuccore", term = "brca1")`. This returns a list of 5 elements, the first of which (`z[[1]]`) will be the relevant accession numbers. Take the first of these accession numbers and fetch the gene sequence using `entrez_fetch(db = "nuccore", id = "my_accession_numbber", rettype = "fasta")`.
+##
 
-1.  Install **Selector Gadget** as a Chrome extension. Go to the [RTE](website). Find the *css* selector for the top navigation bar (where it says *"News Sport Entertainment..."*). __[".primary-nav__link""]__
+::: {style="font-size: 65%; list-style-position: outside; padding-left: 0em;"}
 
-1. Go to the wikipedia page for the [English Premier League Season 2020/2021](https://en.wikipedia.org/wiki/2023%E2%80%9324_Premier_League){target="_blank"}. Find the css selector for the *Best Goalkeeper* (should be something like "**tr:nth-child(11) .infobox-data a**"). Use `read_html()`, `html_elements()`, and `html_text2()` from the `rvest` package to find the best goalkepper for this season. __[David Raya]__
+
+(@) Install the `eurostat` package. Search for datasets on *diabetes* using the `search_eurostat()` function. Get the *eurostat* dataset on screening of diabetes by sex, age, and education from 2014-2019. Decode the column values using `get_eurostat_dic()` (e.g. `get_eurostat_dic("hlthcare")`). Find the incidence of diabetes/cardiovascular that has been detected for [*less than one year*]{.underline} in [*Slovenia*]{.underline} in [*2019*]{.underline} for people of [*all*]{.underline} genders who are [*older than 75*]{.underline} with [*Upper secondary and post-secondary non-tertiary education (levels 3 and 4)*]{.underline}. __[74, 87.4, 77.2]__
+
+(@) Install the `BiocManager` package (`install.packages("BiocManager")`). Install the `rentrez` and `seqinr` packages from `Bioconductor` (e.g. `BiocManager::install("rentrez")`). Find the [NCBI]() accession numbers for the *BRCA1* cancer gene using `z <- entrez_search(db = "nuccore", term = "brca1")`. This returns a list of 5 elements, the first of which (`z[[1]]`) will be the relevant accession numbers. Take the first of these accession numbers and fetch the gene sequence using `entrez_fetch(db = "nuccore", id = "my_accession_numbber", rettype = "fasta")`.
+
+(@)  Install **Selector Gadget** as a Chrome extension. Go to the [RTE](website). Find the *css* selector for the top navigation bar (where it says *"News Sport Entertainment..."*). __[".primary-nav__link""]__
+
+(@) Go to the wikipedia page for the [English Premier League Season 2020/2021](https://en.wikipedia.org/wiki/2023%E2%80%9324_Premier_League){target="_blank"}. Find the css selector for the *Best Goalkeeper* (should be something like "**tr:nth-child(11) .infobox-data a**"). Use `read_html()`, `html_elements()`, and `html_text2()` from the `rvest` package to find the best goalkepper for this season. __[David Raya]__
 
 :::
 
