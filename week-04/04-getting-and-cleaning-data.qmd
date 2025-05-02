@@ -89,6 +89,26 @@ fa_list <- function(x, incremental = FALSE) {
     
     - web scraping
 
+## Ethics
+
+- Accessing data comes with some caveats
+
+    - just because it's on a webpage doesn't mean we can use it as we want
+    
+    - must be:
+    
+        + public
+        
+        + non-personal
+        
+        + factual
+   
+    - also, be mindful of giving appropriate credit
+   
+    - and, of course, GDPR
+
+- [This link](https://r4ds.hadley.nz/webscraping.html#scraping-ethics-and-legalities) discusses the issue nicely
+
 ## Reading in from Files
 
 - getting data from a csv file
