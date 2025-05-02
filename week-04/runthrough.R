@@ -17,7 +17,7 @@ import(here(.libPaths()[1], "readxl", "extdata", "datasets.xls"), which = "quake
 here(system.file(package="tabulizer"), "examples", "data.pdf") |> extract_tables(output = "data.frame") |> pluck(1)
 
 organ_transplant <- "https://nhsbtdbe.blob.core.windows.net/umbraco-assets-corp/18494/centre-specific-activity-report.pdf"
-extract_tables(organ_transplant, output = "data.frame") |> pluck(1) |> gt::gt()
+extract_tables(organ_transplant, output = "data.frame", pages = 1) |> pluck(1) |> gt::gt()
 
 auth_setup("mastodon.social", "public")
 z <- get_timeline_hashtag(hashtag = "eurovision", instance = "mastodon.social", limit = 20) 

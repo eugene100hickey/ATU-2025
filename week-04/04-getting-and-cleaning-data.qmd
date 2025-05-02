@@ -227,7 +227,7 @@ fa_list <- function(x, incremental = FALSE) {
     - use `object_returned_by_extract_tables[[1]]` to get the first table
     
 `here(system.file(package="tabulizer"), "examples", "data.pdf") |> `
-`extract_tables(output = "data.frame") |> `
+`extract_tables(output = "data.frame", pages = 1) |> `
 `pluck(1)`
 
 :::
@@ -260,7 +260,7 @@ fa_list <- function(x, incremental = FALSE) {
 ```{r}
 library(tabulizer)
 organ_transplant <- "https://nhsbtdbe.blob.core.windows.net/umbraco-assets-corp/18494/centre-specific-activity-report.pdf"
-extract_tables(organ_transplant, output = "data.frame") |> pluck(1) |> gt::gt()
+extract_tables(organ_transplant, output = "data.frame", pages = 2) |> pluck(1) |> gt::gt()
 ```
 
 
@@ -406,7 +406,8 @@ extract_tables(organ_transplant, output = "data.frame") |> pluck(1) |> gt::gt()
 ::: {style="font-size: 65%; list-style-position: outside; padding-left: 0em;"}
 
 
-(@) Install the `eurostat` package. Search for datasets on *diabetes* using the `search_eurostat()` function. Get the *eurostat* dataset on screening of diabetes by sex, age, and education from 2014-2019. Decode the column values using `get_eurostat_dic()` (e.g. `get_eurostat_dic("hlthcare")`). Find the incidence of diabetes/cardiovascular that has been detected for [*less than one year*]{.underline} in [*Slovenia*]{.underline} in [*2019*]{.underline} for people of [*all*]{.underline} genders who are [*older than 75*]{.underline} with [*Upper secondary and post-secondary non-tertiary education (levels 3 and 4)*]{.underline}. __[74, 87.4, 77.2]__
+(@) Install the `eurostat` package. Search for datasets on *education* using the `search_eurostat()` function. Get the *eurostat* dataset on __"Quality of education"__ (the code should be __"med_ps24"__). Decode the column values using `get_eurostat_dic()` (e.g. `get_eurostat_dic("indic_md")`). 
+Find the [*Annual*]{.underline},  [*Proportion of youth (20-24 years) having attained ISCED 3 level, total (%)*]{.underline} in [*Palestine*]{.underline} in [*2014*]{.underline}. __[35.8%]__
 
 (@) Install the `BiocManager` package (`install.packages("BiocManager")`). Install the `rentrez` and `seqinr` packages from `Bioconductor` (e.g. `BiocManager::install("rentrez")`). Find the [NCBI]() accession numbers for the *BRCA1* cancer gene using `z <- entrez_search(db = "nuccore", term = "brca1")`. This returns a list of 5 elements, the first of which (`z[[1]]`) will be the relevant accession numbers. Take the first of these accession numbers and fetch the gene sequence using `entrez_fetch(db = "nuccore", id = "my_accession_numbber", rettype = "fasta")`.
 
