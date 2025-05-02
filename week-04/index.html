@@ -305,12 +305,9 @@ Introduction to Statistical Computing <br> Getting &amp; Cleaning Data
 <li><p>main function we’ll use is <code>import()</code></p>
 <ul>
 <li><p><code>import("some-file-name.xlsx")</code></p></li>
-<li><p><code>import(here(system.file("examples", package = "rio"), "noheader.csv"))</code></p></li>
-<li><p><code>import("https://raw.githubusercontent.com/rfordatascience/tidytuesday/</code> <code>master/data/2023/2023-02-14/age_gaps.csv")</code></p></li>
-<li><p>can specify sheet from <em>excel</em>, <code>import(here(.libPaths()[1],</code></p></li>
-</ul>
-<p><code>"rio", "examples", "iris.xls"), which = "Sheet2")</code></p>
-<ul>
+<li><p><code>import(system.file("extdata", package = "dslabs", "olive.csv"))</code></p></li>
+<li><p><code>import("https://github.com/rfordatascience/tidytuesday/raw/refs/heads/main/data/2025/2025-01-21/exped_tidy.csv")</code></p></li>
+<li><p>can specify sheet from <em>excel</em>, <code>import(here(.libPaths()[1], "readxl", "extdata", "datasets.xls"), which = "quakes")</code></p></li>
 <li><p>can skip the first few rows with <code>skip = 4</code></p></li>
 <li><p>also works with <strong>googlesheets</strong>. Pass in web address that we can get from<br>
 the <em>Share</em> section of the googlesheet (we’ll look at this in this weeks<br>
@@ -370,23 +367,23 @@ worksheet later on)</p></li>
 <span id="cb1-2"><a href=""></a>organ_transplant <span class="ot">&lt;-</span> <span class="st">"https://nhsbtdbe.blob.core.windows.net/umbraco-assets-corp/18494/centre-specific-activity-report.pdf"</span></span>
 <span id="cb1-3"><a href=""></a><span class="fu">extract_tables</span>(organ_transplant, <span class="at">output =</span> <span class="st">"data.frame"</span>) <span class="sc">|&gt;</span> <span class="fu">pluck</span>(<span class="dv">1</span>) <span class="sc">|&gt;</span> gt<span class="sc">::</span><span class="fu">gt</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="qsktdjcqfb" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#qsktdjcqfb table {
+<div id="ktjsfdcxws" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ktjsfdcxws table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#qsktdjcqfb thead, #qsktdjcqfb tbody, #qsktdjcqfb tfoot, #qsktdjcqfb tr, #qsktdjcqfb td, #qsktdjcqfb th {
+#ktjsfdcxws thead, #ktjsfdcxws tbody, #ktjsfdcxws tfoot, #ktjsfdcxws tr, #ktjsfdcxws td, #ktjsfdcxws th {
   border-style: none;
 }
 
-#qsktdjcqfb p {
+#ktjsfdcxws p {
   margin: 0;
   padding: 0;
 }
 
-#qsktdjcqfb .gt_table {
+#ktjsfdcxws .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -412,12 +409,12 @@ worksheet later on)</p></li>
   border-left-color: #D3D3D3;
 }
 
-#qsktdjcqfb .gt_caption {
+#ktjsfdcxws .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#qsktdjcqfb .gt_title {
+#ktjsfdcxws .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -429,7 +426,7 @@ worksheet later on)</p></li>
   border-bottom-width: 0;
 }
 
-#qsktdjcqfb .gt_subtitle {
+#ktjsfdcxws .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -441,7 +438,7 @@ worksheet later on)</p></li>
   border-top-width: 0;
 }
 
-#qsktdjcqfb .gt_heading {
+#ktjsfdcxws .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -453,13 +450,13 @@ worksheet later on)</p></li>
   border-right-color: #D3D3D3;
 }
 
-#qsktdjcqfb .gt_bottom_border {
+#ktjsfdcxws .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#qsktdjcqfb .gt_col_headings {
+#ktjsfdcxws .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -474,7 +471,7 @@ worksheet later on)</p></li>
   border-right-color: #D3D3D3;
 }
 
-#qsktdjcqfb .gt_col_heading {
+#ktjsfdcxws .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -494,7 +491,7 @@ worksheet later on)</p></li>
   overflow-x: hidden;
 }
 
-#qsktdjcqfb .gt_column_spanner_outer {
+#ktjsfdcxws .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -506,15 +503,15 @@ worksheet later on)</p></li>
   padding-right: 4px;
 }
 
-#qsktdjcqfb .gt_column_spanner_outer:first-child {
+#ktjsfdcxws .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#qsktdjcqfb .gt_column_spanner_outer:last-child {
+#ktjsfdcxws .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#qsktdjcqfb .gt_column_spanner {
+#ktjsfdcxws .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -526,11 +523,11 @@ worksheet later on)</p></li>
   width: 100%;
 }
 
-#qsktdjcqfb .gt_spanner_row {
+#ktjsfdcxws .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#qsktdjcqfb .gt_group_heading {
+#ktjsfdcxws .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -556,7 +553,7 @@ worksheet later on)</p></li>
   text-align: left;
 }
 
-#qsktdjcqfb .gt_empty_group_heading {
+#ktjsfdcxws .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -571,15 +568,15 @@ worksheet later on)</p></li>
   vertical-align: middle;
 }
 
-#qsktdjcqfb .gt_from_md > :first-child {
+#ktjsfdcxws .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#qsktdjcqfb .gt_from_md > :last-child {
+#ktjsfdcxws .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#qsktdjcqfb .gt_row {
+#ktjsfdcxws .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -598,7 +595,7 @@ worksheet later on)</p></li>
   overflow-x: hidden;
 }
 
-#qsktdjcqfb .gt_stub {
+#ktjsfdcxws .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -611,7 +608,7 @@ worksheet later on)</p></li>
   padding-right: 5px;
 }
 
-#qsktdjcqfb .gt_stub_row_group {
+#ktjsfdcxws .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -625,15 +622,15 @@ worksheet later on)</p></li>
   vertical-align: top;
 }
 
-#qsktdjcqfb .gt_row_group_first td {
+#ktjsfdcxws .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#qsktdjcqfb .gt_row_group_first th {
+#ktjsfdcxws .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#qsktdjcqfb .gt_summary_row {
+#ktjsfdcxws .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -643,16 +640,16 @@ worksheet later on)</p></li>
   padding-right: 5px;
 }
 
-#qsktdjcqfb .gt_first_summary_row {
+#ktjsfdcxws .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#qsktdjcqfb .gt_first_summary_row.thick {
+#ktjsfdcxws .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#qsktdjcqfb .gt_last_summary_row {
+#ktjsfdcxws .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -662,7 +659,7 @@ worksheet later on)</p></li>
   border-bottom-color: #D3D3D3;
 }
 
-#qsktdjcqfb .gt_grand_summary_row {
+#ktjsfdcxws .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -672,7 +669,7 @@ worksheet later on)</p></li>
   padding-right: 5px;
 }
 
-#qsktdjcqfb .gt_first_grand_summary_row {
+#ktjsfdcxws .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -682,7 +679,7 @@ worksheet later on)</p></li>
   border-top-color: #D3D3D3;
 }
 
-#qsktdjcqfb .gt_last_grand_summary_row_top {
+#ktjsfdcxws .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -692,11 +689,11 @@ worksheet later on)</p></li>
   border-bottom-color: #D3D3D3;
 }
 
-#qsktdjcqfb .gt_striped {
+#ktjsfdcxws .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#qsktdjcqfb .gt_table_body {
+#ktjsfdcxws .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -705,7 +702,7 @@ worksheet later on)</p></li>
   border-bottom-color: #D3D3D3;
 }
 
-#qsktdjcqfb .gt_footnotes {
+#ktjsfdcxws .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -719,7 +716,7 @@ worksheet later on)</p></li>
   border-right-color: #D3D3D3;
 }
 
-#qsktdjcqfb .gt_footnote {
+#ktjsfdcxws .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -728,7 +725,7 @@ worksheet later on)</p></li>
   padding-right: 5px;
 }
 
-#qsktdjcqfb .gt_sourcenotes {
+#ktjsfdcxws .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -742,7 +739,7 @@ worksheet later on)</p></li>
   border-right-color: #D3D3D3;
 }
 
-#qsktdjcqfb .gt_sourcenote {
+#ktjsfdcxws .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -750,72 +747,72 @@ worksheet later on)</p></li>
   padding-right: 5px;
 }
 
-#qsktdjcqfb .gt_left {
+#ktjsfdcxws .gt_left {
   text-align: left;
 }
 
-#qsktdjcqfb .gt_center {
+#ktjsfdcxws .gt_center {
   text-align: center;
 }
 
-#qsktdjcqfb .gt_right {
+#ktjsfdcxws .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#qsktdjcqfb .gt_font_normal {
+#ktjsfdcxws .gt_font_normal {
   font-weight: normal;
 }
 
-#qsktdjcqfb .gt_font_bold {
+#ktjsfdcxws .gt_font_bold {
   font-weight: bold;
 }
 
-#qsktdjcqfb .gt_font_italic {
+#ktjsfdcxws .gt_font_italic {
   font-style: italic;
 }
 
-#qsktdjcqfb .gt_super {
+#ktjsfdcxws .gt_super {
   font-size: 65%;
 }
 
-#qsktdjcqfb .gt_footnote_marks {
+#ktjsfdcxws .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#qsktdjcqfb .gt_asterisk {
+#ktjsfdcxws .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#qsktdjcqfb .gt_indent_1 {
+#ktjsfdcxws .gt_indent_1 {
   text-indent: 5px;
 }
 
-#qsktdjcqfb .gt_indent_2 {
+#ktjsfdcxws .gt_indent_2 {
   text-indent: 10px;
 }
 
-#qsktdjcqfb .gt_indent_3 {
+#ktjsfdcxws .gt_indent_3 {
   text-indent: 15px;
 }
 
-#qsktdjcqfb .gt_indent_4 {
+#ktjsfdcxws .gt_indent_4 {
   text-indent: 20px;
 }
 
-#qsktdjcqfb .gt_indent_5 {
+#ktjsfdcxws .gt_indent_5 {
   text-indent: 25px;
 }
 
-#qsktdjcqfb .katex-display {
+#ktjsfdcxws .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#qsktdjcqfb div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#ktjsfdcxws div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1098,10 +1095,10 @@ worksheet later on)</p></li>
 <section id="earth-observation---satellite-images" class="slide level2">
 <h2>Earth Observation - Satellite Images</h2>
 <ul>
-<li><p>good resource for Ireland is <a href="https://scihub.copernicus.eu/" target="_blank">Sentinel2</a></p>
+<li><p>good resource for Ireland is <a href="https://www.copernicus.eu/en/access-data" target="_blank">Sentinel2</a></p>
 <ul>
 <li><p>need to make an account on Copernicus</p></li>
-<li><p>R package <code>sen2r</code></p></li>
+<li><p>R packages <code>sentinel2</code> and <code>sen2r</code></p></li>
 <li><p>see <a href="https://www.youtube.com/watch?v=k1K6nqgtRL8" target="_blank">this presentation</a> for a walkthrough</p></li>
 </ul></li>
 <li><p>also <a href="https://www.planet.com/" target="_blank">Planet.com</a></p>
@@ -1145,14 +1142,14 @@ worksheet later on)</p></li>
 <h2>Perform the Following Tasks:</h2>
 <div style="font-size: 45%; list-style-position: outside; padding-left: 0em;">
 <ol type="1">
-<li><p>Use <code>rio::import()</code> to read in the <em>Ferris Wheel</em> dataset available from <a href="https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-08-09/wheels.csv" target="_blank">https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-08-09/wheels.csv</a>. Where is the highest ferris wheel?</p></li>
-<li><p>Look at the example excel file called <code>deaths.xlsx</code> from the <code>readxl</code> package (find it using <code>system.file(package = "readxl)</code> then look in the <code>extdata</code> directory). Read the <code>"other"</code> sheet from this file using the <code>import()</code> function. Note that the first four rows are full of junk so they should be skipped. See if you can figure out what the <em>Date of Birth</em> column represents.</p></li>
+<li><p>Use <code>rio::import()</code> to read in the <em>Ferris Wheel</em> dataset available from <a href="https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-08-09/wheels.csv" target="_blank">https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-08-09/wheels.csv</a>. Where is the highest ferris wheel? <strong>[Golden Gate Flyer]</strong></p></li>
+<li><p>Look at the example excel file called <code>deaths.xlsx</code> from the <code>readxl</code> package (find it using <code>system.file(package = "readxl")</code> then look in the <code>extdata</code> directory). Read the <code>"other"</code> sheet from this file using the <code>import()</code> function. Note that the first four rows are full of junk so they should be skipped. See if you can figure out what the <em>Date of Birth</em> column represents. <strong>[days since 1900]</strong></p></li>
 <li><p>Make a new <em>googlesheet</em> in the <strong>Chrome</strong> browser. After you’ve entered some data, click <strong>Share</strong> (top right corner). Click <strong>General Access</strong> and choose <em>Anyone with the link</em>. <strong>Copy the link</strong>. Go to RStudio now and use the link you’ve copied to import this googlesheet into R.</p></li>
-<li><p>Have a look at the IPCC climate report from 2017 available <a href="https://www.ipcc.ch/site/assets/uploads/2017/09/WG1AR5_AnnexII_FINAL.pdf" target="_blank">here</a>. Use <code>tabulizer</code> to read in the table on page 10 of this report as a data.frame.</p></li>
-<li><p>Install the <code>eurostat</code> package. Search for datasets on <em>diabetes</em> using the <code>search_eurostat()</code> function. Get the <em>eurostat</em> dataset on screening of diabetes by sex, age, and education from 2014-2019. Decode the column values using <code>get_eurostat_dic()</code> (e.g.&nbsp;<code>get_eurostat_dic("age")</code>). Find the incidence of diabetes/cardiovascular that has been detected for <u><em>less than one year</em></u> in <u><em>Slovenia</em></u> in <u><em>2019</em></u> for people of <u><em>all</em></u> genders who are <u><em>older than 75</em></u> with <u><em>Upper secondary and post-secondary non-tertiary education</em></u>.</p></li>
+<li><p>Have a look at the Department of Education SCHOOL SELF-EVALUATION GUIDELINES 2016-2020 <a href="https://assets.gov.ie/static/documents/school-self-evaluation-guidelines-2016-2020-primary.pdf" target="_blank">here</a>. Use <code>tabulizer</code> to read in the table on page 27 of this report as a data.frame (note, it’ll be the sixth table <code>tabulizer</code> encounters).</p></li>
+<li><p>Install the <code>eurostat</code> package. Search for datasets on <em>diabetes</em> using the <code>search_eurostat()</code> function. Get the <em>eurostat</em> dataset on screening of diabetes by sex, age, and education from 2014-2019. Decode the column values using <code>get_eurostat_dic()</code> (e.g.&nbsp;<code>get_eurostat_dic("hlthcare")</code>). Find the incidence of diabetes/cardiovascular that has been detected for <u><em>less than one year</em></u> in <u><em>Slovenia</em></u> in <u><em>2019</em></u> for people of <u><em>all</em></u> genders who are <u><em>older than 75</em></u> with <u><em>Upper secondary and post-secondary non-tertiary education (levels 3 and 4)</em></u>. <strong>[74, 87.4, 77.2]</strong></p></li>
 <li><p>Install the <code>BiocManager</code> package (<code>install.packages("BiocManager")</code>). Install the <code>rentrez</code> and <code>seqinr</code> packages from <code>Bioconductor</code> (e.g.&nbsp;<code>BiocManager::install("rentrez")</code>). Find the <a href="">NCBI</a> accession numbers for the <em>BRCA1</em> cancer gene using <code>z &lt;- entrez_search(db = "nuccore", term = "brca1")</code>. This returns a list of 5 elements, the first of which (<code>z[[1]]</code>) will be the relevant accession numbers. Take the first of these accession numbers and fetch the gene sequence using <code>entrez_fetch(db = "nuccore", id = "my_accession_numbber", rettype = "fasta")</code>.</p></li>
-<li><p>Install <strong>Selector Gadget</strong> as a Chrome extension. Go to the <a href="website">RTE</a>. Find the <em>css</em> selector for the top navigation bar (where it says <em>“News Sport Entertainment…”</em>).</p></li>
-<li><p>Go to the wikipedia page for the <a href="https://en.wikipedia.org/wiki/2020%E2%80%9321_Premier_League" target="_blank">English Premier League Season 2020/2021</a>. Find the css selector for the <em>Best Goalkeeper</em> (should be something like “<strong>tr:nth-child(11) .infobox-data a</strong>”). Use <code>read_html()</code>, <code>html_nodes()</code>, and <code>html_text2()</code> from the <code>rvest</code> package to find the best goalkepper for this season.</p></li>
+<li><p>Install <strong>Selector Gadget</strong> as a Chrome extension. Go to the <a href="website">RTE</a>. Find the <em>css</em> selector for the top navigation bar (where it says <em>“News Sport Entertainment…”</em>). <strong>[“.primary-nav__link””]</strong></p></li>
+<li><p>Go to the wikipedia page for the <a href="https://en.wikipedia.org/wiki/2023%E2%80%9324_Premier_League" target="_blank">English Premier League Season 2020/2021</a>. Find the css selector for the <em>Best Goalkeeper</em> (should be something like “<strong>tr:nth-child(11) .infobox-data a</strong>”). Use <code>read_html()</code>, <code>html_elements()</code>, and <code>html_text2()</code> from the <code>rvest</code> package to find the best goalkepper for this season. <strong>[David Raya]</strong></p></li>
 </ol>
 </div>
 </section>
