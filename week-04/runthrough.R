@@ -54,3 +54,22 @@ my_selector <- "tr:nth-child(11) .infobox-data a"
 my_html <- read_html(my_url)
 z <- html_elements(my_html, my_selector)
 html_text2(z)
+
+
+# Fri May  2 18:07:42 2025 ------------------------------
+
+education <- search_eurostat("education")
+my_feature <- get_eurostat_dic("indic_md")
+z <- get_eurostat(id = "G25103")
+
+z |> filter(duration == "Y_LT1",
+            geo == "SI", 
+            TIME_PERIOD == "2019-01-01", 
+            sex == "T",
+            age == "Y_GE75", 
+            isced11 == "ED3_4")
+
+
+#####
+# (@) Install the `eurostat` package. Search for datasets on *diabetes* using the `search_eurostat()` function. Get the *eurostat* dataset on screening of diabetes by sex, age, and education from 2014-2019. Decode the column values using `get_eurostat_dic()` (e.g. `get_eurostat_dic("hlthcare")`). Find the incidence of diabetes/cardiovascular that has been detected for [*less than one year*]{.underline} in [*Slovenia*]{.underline} in [*2019*]{.underline} for people of [*all*]{.underline} genders who are [*older than 75*]{.underline} with [*Upper secondary and post-secondary non-tertiary education (levels 3 and 4)*]{.underline}. __[74, 87.4, 77.2]__
+#####
