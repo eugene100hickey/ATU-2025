@@ -512,19 +512,67 @@ dslabs::gapminder %>%
   labs(caption = "@Data Gapminder (WHO)",
        y = "Life Expectancy in 2007", 
        x = "") +
-  geom_col(fill = "firebrick4") + #ROTATE
-  geom_point(colour = "firebrick4", size = 4) + #ROTATE
-  geom_segment(size = 2, colour = "firebrick4", y = 0) + geom_point(colour = "firebrick4", size = 4) + #ROTATE
-  labs(x = "")
+  geom_col(fill = "firebrick4") + 
+  labs(x = "") #BREAK
   
 ```
 
 
-`r flipbookr:::chunq_reveal("colplot-gapminder", title = "Column Plot", lcolw = "40", rcolw = "60", chunk_options = "fig.height = 8, fig.width = 10", smallcode = TRUE, break_type = "rotate")`
+`r flipbookr:::chunq_reveal("colplot-gapminder", title = "Column Plot", lcolw = "40", rcolw = "60", chunk_options = "fig.height = 8, fig.width = 10", smallcode = TRUE)`
 
 
 ---
 
+```{r}
+#| label: colplot-gapminder1
+#| echo: false
+#| eval: false
+
+dslabs::gapminder %>% 
+  filter(year == "2007") %>% 
+  group_by(continent) %>% 
+  summarise(life_exp_2007 = mean(life_expectancy)) %>%
+  ggplot(aes(continent, life_exp_2007, xend = continent, yend = life_exp_2007)) + 
+  coord_flip() +
+  labs(caption = "@Data Gapminder (WHO)",
+       y = "Life Expectancy in 2007", 
+       x = "") +
+  geom_point(colour = "firebrick4", size = 4) + 
+  labs(x = "") #BREAK
+  
+```
+
+
+`r flipbookr:::chunq_reveal("colplot-gapminder1", title = "Column Plot", lcolw = "40", rcolw = "60", chunk_options = "fig.height = 8, fig.width = 10", smallcode = TRUE)`
+
+
+---
+
+```{r}
+#| label: colplot-gapminder2
+#| echo: false
+#| eval: false
+
+dslabs::gapminder %>% 
+  filter(year == "2007") %>% 
+  group_by(continent) %>% 
+  summarise(life_exp_2007 = mean(life_expectancy)) %>%
+  ggplot(aes(continent, life_exp_2007, xend = continent, yend = life_exp_2007)) + 
+  coord_flip() +
+  labs(caption = "@Data Gapminder (WHO)",
+       y = "Life Expectancy in 2007", 
+       x = "") +
+  geom_point(colour = "firebrick4", size = 4) + 
+  geom_segment(size = 2, colour = "firebrick4", y = 0) + geom_point(colour = "firebrick4", size = 4) + 
+  labs(x = "") #BREAK
+  
+```
+
+
+`r flipbookr:::chunq_reveal("colplot-gapminder2", title = "Column Plot", lcolw = "40", rcolw = "60", chunk_options = "fig.height = 8, fig.width = 10", smallcode = TRUE)`
+
+
+---
 
 ```{r}
 #| label: lollypop-gapminder
