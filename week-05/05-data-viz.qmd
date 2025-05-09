@@ -496,7 +496,6 @@ movies |>
 ```
 
 
-##
 
 ```{r}
 #| label: colplot-penguins
@@ -719,6 +718,349 @@ scatter + plot_spacer() + jittered
 ```
 
 
+
+## Choice of Colours in R
+
+- colours are very important
+
+    - second only to position for perception
+    
+- can carry information
+
+- also important to be visually pleasing
+
+- worthwhile to make your figures aesthetically attractive
+
+    - visualisations that are engaging are more effective
+
+
+## Types of Colour Scales
+
+- qualitative
+
+    - suite of colours that are easily distinguished
+    - no heirarchy
+    - caters for visual impairments
+
+```{r qualitative_palette, echo = F, message = F, warning=F, fig.height=4}
+library(tidyverse)
+library(RColorBrewer)
+library(dslabs)
+library(MASS)
+display.brewer.pal(8, name = "Accent")
+```
+
+---
+
+
+- sequential
+
+    - band of colours that are increasingly intense
+    - go from low to high
+    
+    
+```{r sequential_palette, echo = F, message = F, warning=F, fig.height=4}
+display.brewer.pal(8, name = "BuGn")
+```
+
+---
+
+- diverging
+
+    - suite of colours that go from minus to plus
+    - contrasting colours at each end
+    - something bland and neutral in the middle
+
+    
+```{r diverging_palette, echo = F, message = F, warning=F, fig.height=4}
+display.brewer.pal(8, name = "PRGn")
+```
+---
+
+## Getting Colours in R
+
+- some really great packages
+
+    - `RColorBrewer()`
+    
+        - excellent package giving fine control over palette choice
+        
+    - `viridis()`
+    
+        - excels at palettes for vision-impaired readers
+        
+    - `paletteer()`
+    
+        - collection of palettes from various sources
+        
+    - `wesanderson`
+    
+        - *names(wes_palettes)* followed by *wes_palette("BottleRocket1")*
+
+---
+
+- more....
+
+    - `tvthemes()`
+    
+        - not just colours, but layouts and fonts
+        - everything from Game of Thrones to Spongebob (yes, really)
+        
+    - `ggsci()`, palettes for scientific publications (Lancet, AAAS, etc)
+    
+    - `colorspace()`
+    
+        - resources for picking colours
+        - choose_color() and choose_palette()
+        - can convert colours based on vision deficiencies
+        - will convert from colour descriptions, e.g. hex2RGB()
+        
+- and a [cheatsheet](https://www.nceas.ucsb.edu/~frazier/RSpatialGuides/colorPaletteCheatsheet.pdf){target="_blank"}
+
+---
+
+## Ways of Describing Colours
+
+- by name: "red", "cyan", "violetred4", "thistle".....
+
+    - get full list of 657 available in R from _colors()_
+    
+    
+- by hex code: "#f49340", "#40f9f9", "#ee82ef", "#d8bfd1"....
+
+- by rgb values: (249, 67, 64), (64, 249, 249), (57, 14, 30), (216, 191, 209)....
+
+- by hcl values: (53.24, 179.04, 12.17), (91.11, 72.10, 192.17), (32.36, 63.11, 349.86), (80.08, 20.79, 307.73)....
+
+
+## Investigating Colours in R
+
+- the following code shows the first "N" colours in R where N is set to 20 here:
+
+```{r base_colours, message = F, warning = F, fig.height=3}
+N <- 20
+data.frame(col = colors()[1:N]) %>% 
+  ggplot(aes(x = col, fill = col)) + 
+  geom_bar(position = "stack", show.legend = F) + 
+  coord_flip() + 
+  theme_minimal() + 
+  theme(axis.text.x = element_blank(), axis.title.x = element_blank(), axis.text.y = element_blank())
+```
+
+
+## Other Usful Functions
+
+- _show_col()_ from the _scales_ package is super useful
+
+    - e.g. show_col("red") or show_col("#84a412")
+    
+- *rgb()* will give a hex code for a fraction of red, green, blue
+
+    - e.g. rgb(0.4, 0.2, 0.5) gives "#663380"
+    
+- *colourPicker()* from the colourpicker package
+
+    - colourPicker(numCols = 4), opens up shiny app, returns colours
+    
+    
+- *col2rgb()*, also *col2hex()* from the _gplots_ package, and *col2hcl* from the _jmw86069/jamba_ package
+
+    - this last is on github, so you must install the package _devtools_ then do _install_github( jmw86069/jamba)_
+
+
+## Some Websites and Tools
+
+- [coolors.co](https://coolors.co/){target="_blank"}
+
+    - will generate appropriate palettes
+    
+- [colorpicker](http://tristen.ca/hcl-picker/#/hlc/6/1.1/8C4443/845128){target="_blank"}
+
+- [colorspace](http://colorspace.r-forge.r-project.org/articles/hcl_palettes.html#qualitative-palettes){target="_blank"}
+
+- Chrome has an _**Eye Dropper**_ tool
+
+    - click on part of a webpage and it will tell you the colour
+    
+- Nice description of colurs from [Stowers](https://www.uv.es/conesa/CursoR/material/UsingColorInR.pdf){target="_blank"}
+    
+---
+
+## Colours in _ggplot()_
+
+- use for _fill_ and for _col_ aesthetics
+
+- add the _scale_fill_... and _scale_color_... layers to control
+
+- explore these by typing _?scale_fill_ and then TAB to see the range of options
+
+
+
+## Using Themes in R
+
+- We'll also discuss fonts (first) and scales.
+
+- themes give fine control to the appearance of your plots
+
+    - control over text size, fonts, text colour, etc
+    - position of legends, titles, captions, etc
+    - colours of backgrounds
+    - delete unwanted features (like, say, tick marks on an axis)
+
+##
+    
+- large number of preset themes
+
+- several packages with neat bundle of useful themes
+
+- and, of course, we can develop our own theme to have consistent graphics
+
+
+## Fonts
+
+- we'll discuss this first, as often themes require fonts which might not be present
+
+- fonts are a whole world of their own
+
+- see [practicaltypography.com](practicaltypography.com){target="_blank"}
+
+##
+
+- need to be in the system, load them into windows / mac / linux
+
+    - only really works for true type fonts (.ttf)
+    - go to folder where the R library lives and seek out fonts
+    - e.g. R/x86_64-pc/3.6/tvthemes/fonts/SpongeBob
+    - click on .ttf files to install
+    
+- then need to capture them  in R
+
+
+    - install package *extrafont*
+    - run *ttf_import()* with path = folder from above
+    - run *fonts()* to check available fonts
+    - usually need to restart R (*Session* then *Restart R*)
+    
+- can also use [google fonts](https://fonts.google.com/){target="_blank"} (`showtext::font_add_google("my_special_font")`)
+
+
+## Complete Themes
+
+- these set up ggplots with standard appearances
+
+- can always adjust these, but do so in a layer after invoking the theme
+
+- some defaults in ggplot2, see [here](https://ggplot2.tidyverse.org/reference/ggtheme.html){target="_blank"}
+
+- you should experiment with these to see how they look
+
+```{r setup1, echo = F, message=F, warning=F}
+library(tidyverse)
+library(scales)
+library(gapminder)
+```
+
+##
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+```{r themes1}
+penguins %>% ggplot(aes(bill_len, bill_dep, col = species)) + 
+  geom_point() +
+  theme_classic()
+```
+
+:::
+
+::: {.column width="50%"}
+
+```{r themes2}
+penguins %>% ggplot(aes(bill_len, bill_dep, col = species)) + 
+  geom_point() +
+  theme_dark()
+```
+
+:::
+::::
+
+## Complete Themes
+
+::: {style="font-size: 80%;"}
+
+- other package provide supplementary themes
+
+    - *ggthemes*
+    - *ggthemr* (see [here](https://github.com/cttobin/ggthemr){target="_blank"})
+    - *tvthemes* (see [here](https://ryo-n7.github.io/2019-05-16-introducing-tvthemes-package/){target="_blank"})
+    - *hrbrthemes* see [here](https://github.com/hrbrmstr/hrbrthemes){target="_blank"}
+    - *firatheme* (see [here](https://github.com/vankesteren/firatheme){target="_blank"})
+    - *bbplot*, themes from the BBC (see [here](https://github.com/bbc/bbplot){target="_blank"})
+    - *ggtech* themes from companies, e.g. Facebook. See [here](https://github.com/ricardo-bion/ggtech){target="_blank"}
+    
+- [This website](https://rfortherestofus.com/2019/08/themes-to-improve-your-ggplot-figures/){target="_blank"} is pretty good on themes
+- again, make sure you experiment with these
+
+:::
+
+
+## Fine Control Over Themes
+
+- we can change any feature of a theme that we want
+- type *?theme* on the console to see available themes
+- use *element_&&&&&* to replace theme
+- example: *theme(text = element_text(family = "Roboto Sans"))*
+
+##
+
+```{r themes3, fig.height=6}
+penguins %>% ggplot(aes(bill_len, bill_dep, col = species)) + 
+  geom_point() +
+  theme(text = element_text(family = "Ink Free", size = 30, face = "bold"))
+```
+
+##
+
+```{r themes4, fig.height=6}
+penguins %>% ggplot(aes(bill_len, bill_dep, col = species)) + 
+  geom_point() +
+  theme(legend.position = "bottom", axis.text.y = element_blank())
+```
+
+
+
+##
+
+
+
+![](images/get-schwifty.png)
+
+
+##
+
+
+```{r fig.height=4, echo=FALSE}
+font_add(family = "Get Schwifty", regular = "fonts/get_schwifty.ttf")
+showtext_auto()
+theme_bluewhite <- function (base_size = 11, base_family = "Get Schwifty") {
+    theme_bw() %+replace% 
+    theme( text = element_text(size = base_size, family = base_family),
+      panel.grid.major  = element_line(color = "white"),
+      panel.background = element_rect(fill = "lightblue"),
+      panel.border = element_rect(color = "lightblue", fill = NA),
+      axis.line = element_line(color = "lightblue"),
+      axis.ticks = element_line(color = "lightblue"),
+      axis.text = element_text(color = "steelblue")
+      )
+}
+ggplot(ToothGrowth, aes(factor(dose), len)) + # Using our new theme
+  geom_boxplot() +
+  theme_bluewhite(base_size = 24)
+```
+
+
+
 ## Workshop Week 5:
 
 - you have a dataset with the counties of Ireland in one column and their populations in a second column. To produce a bar chart, should you use *geom_col()* or *geom_bar()*?
@@ -728,6 +1070,8 @@ scatter + plot_spacer() + jittered
 -  make a bar chart of the number of each species of pengiun from the *penguins* dataset in *palmerpenguins* (you can *install.packages("palmerpenguins")* from CRAN)
 
 - make a bar chart of the 12 *Carnivora* total sleep times from the *msleep* dataset in *ggplot2*
+
+##
 
 - make a lollipop plot of the 12 *Primates* total sleep times from the *msleep* dataset in *ggplot2*
 
@@ -741,7 +1085,7 @@ movies <- boxoffice(boxoffice_date) %>%
             movie = abbreviate(movie)) %>% 
      head()
 ```
-Plot a pie chart of gross receipt for these top six films (see the [R Graph Gallery](https://r-graph-gallery.com/piechart-ggplot2.html))
+Plot a pie chart of gross receipt for these top six films (see the [R Graph Gallery](https://r-graph-gallery.com/piechart-ggplot2.html){target="_blank"})
 
 
 ## Assignment - Week Five
@@ -794,6 +1138,6 @@ death_prob %>%
 
 - Your improvement  **(2 marks)**
 
-Upload your work (the image and your code) to moodle at [Week Five Assignment - death_prob](https://vlesligo.atu.ie/mod/assign/view.php?id=1092783). The deadline is midnight on Saturday 17th May 2025.
+Upload your work (the image and your code) to moodle at [Week Five Assignment - death_prob](https://vlesligo.atu.ie/mod/assign/view.php?id=1092783){target="_blank"}. The deadline is midnight on Saturday 17th May 2025.
 
 

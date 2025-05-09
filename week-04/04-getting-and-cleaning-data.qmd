@@ -107,7 +107,7 @@ fa_list <- function(x, incremental = FALSE) {
    
     - and, of course, GDPR
 
-- [This link](https://r4ds.hadley.nz/webscraping.html#scraping-ethics-and-legalities) discusses the issue nicely
+- [This link](https://r4ds.hadley.nz/webscraping.html#scraping-ethics-and-legalities){target="_blank"} discusses the issue nicely
 
 ## Reading in from Files
 
