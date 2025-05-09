@@ -397,7 +397,7 @@ Lots of these come from [Top 50 Visualizations in R](http://r-statistics.co/Top5
 
 ## Visualising Amounts
 
-- Visualising Proportions
+- <span style="color: red;"> Visualising Proportions </span>
 
 - <span style="color: red;"> Visualising Distributions </span>
 
@@ -496,125 +496,31 @@ movies |>
 ```
 
 
----
+##
 
 ```{r}
-#| label: colplot-gapminder
+#| label: colplot-penguins
 #| echo: false
 #| eval: false
 
-dslabs::gapminder %>% 
-  filter(year == "2007") %>% 
-  group_by(continent) %>% 
-  summarise(life_exp_2007 = mean(life_expectancy)) %>%
-  ggplot(aes(continent, life_exp_2007, xend = continent, yend = life_exp_2007)) + 
+penguins %>% 
+  group_by(species) %>% 
+  summarise(body_mass = mean(body_mass, na.rm = T)) %>%
+  ggplot(aes(species, body_mass, xend = species, yend = body_mass)) + 
   coord_flip() +
-  labs(caption = "@Data Gapminder (WHO)",
-       y = "Life Expectancy in 2007", 
+  labs(caption = "@PalmerPenguins",
+       y = "Body Mass (g)", 
        x = "") +
-  geom_col(fill = "firebrick4") + 
-  labs(x = "") #BREAK
+  ylim(c(0, 6000)) +
+  geom_col(fill = "firebrick4") + #ROTATE
+  geom_point(colour = "firebrick4", size = 4) + #ROTATE
+  geom_segment(linewidth = 2, colour = "firebrick4", y = 0) + geom_point(colour = "firebrick4", size = 4) + #ROTATE
+  labs(x = "")
   
 ```
 
 
-`r flipbookr:::chunq_reveal("colplot-gapminder", title = "Column Plot", lcolw = "40", rcolw = "60", chunk_options = "fig.height = 8, fig.width = 10", smallcode = TRUE)`
-
-
----
-
-```{r}
-#| label: colplot-gapminder1
-#| echo: false
-#| eval: false
-
-dslabs::gapminder %>% 
-  filter(year == "2007") %>% 
-  group_by(continent) %>% 
-  summarise(life_exp_2007 = mean(life_expectancy)) %>%
-  ggplot(aes(continent, life_exp_2007, xend = continent, yend = life_exp_2007)) + 
-  coord_flip() +
-  labs(caption = "@Data Gapminder (WHO)",
-       y = "Life Expectancy in 2007", 
-       x = "") +
-  geom_point(colour = "firebrick4", size = 4) + 
-  labs(x = "") #BREAK
-  
-```
-
-
-`r flipbookr:::chunq_reveal("colplot-gapminder1", title = "Column Plot", lcolw = "40", rcolw = "60", chunk_options = "fig.height = 8, fig.width = 10", smallcode = TRUE)`
-
-
----
-
-```{r}
-#| label: colplot-gapminder2
-#| echo: false
-#| eval: false
-
-dslabs::gapminder %>% 
-  filter(year == "2007") %>% 
-  group_by(continent) %>% 
-  summarise(life_exp_2007 = mean(life_expectancy)) %>%
-  ggplot(aes(continent, life_exp_2007, xend = continent, yend = life_exp_2007)) + 
-  coord_flip() +
-  labs(caption = "@Data Gapminder (WHO)",
-       y = "Life Expectancy in 2007", 
-       x = "") +
-  geom_point(colour = "firebrick4", size = 4) + 
-  geom_segment(size = 2, colour = "firebrick4", y = 0) + geom_point(colour = "firebrick4", size = 4) + 
-  labs(x = "") #BREAK
-  
-```
-
-
-`r flipbookr:::chunq_reveal("colplot-gapminder2", title = "Column Plot", lcolw = "40", rcolw = "60", chunk_options = "fig.height = 8, fig.width = 10", smallcode = TRUE)`
-
-
----
-
-```{r}
-#| label: lollypop-gapminder
-#| echo: false
-#| eval: false
-
-dslabs::gapminder %>% 
-  filter(year == "2007") %>% 
-  group_by(continent) %>% 
-  summarise(life_exp_2007 = mean(life_expectancy)) %>%
-  mutate(continent = fct_reorder(continent, life_exp_2007)) %>% 
-  ggplot(aes(continent, life_exp_2007)) + 
-  theme_clean() + 
-  geom_point(colour = "firebrick4", size = 10) + 
-  geom_segment(aes(x = continent, xend = continent, y = 0, yend = life_exp_2007),
-               size = 2, colour = "firebrick4") +
-  coord_flip() +
-  labs(caption = "@Data Gapminder (WHO)",
-       y = "Life Expectancy in 2007",
-       x = "")
-```
-
-
-`r flipbookr:::chunq_reveal("lollypop-gapminder", title = "Lollypop Plot", lcolw = "40", rcolw = "60", chunk_options = "fig.height = 8, fig.width = 10", smallcode = TRUE)`
-
-
-## Summary of Amounts
-
-- have categorical variable and a count / quantity
-
-- geom_bar() does a count, does some processing for you
-
-- geom_col() when you have quantities already
-
-- dot plot with geom_point() doesn't have to include origin
-
-- lollypop same as geom_col() but with less ink. Uses geom_point() and geom_segment()
-
-- coord_flip() useful, especially when text labels are long
-
-- important to get order of categorical variable right, fct_reorder() useful
-
+`r flipbookr:::chunq_reveal("colplot-penguins", title = "Column Plot", lcolw = "40", rcolw = "60", chunk_options = "fig.height = 8, fig.width = 10", smallcode = TRUE, break_type = "rotate")`
 
 
 ## Visualising Distributions
