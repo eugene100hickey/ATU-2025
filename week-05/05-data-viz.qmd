@@ -923,7 +923,7 @@ data.frame(col = colors()[1:N]) %>%
 
 - fonts are a whole world of their own
 
-- see [https://practicaltypography.com/](practicaltypography.com){target="_blank"}
+- see [practicaltypography.com](https://practicaltypography.com/){target="_blank"}
 
 ##
 
