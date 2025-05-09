@@ -86,13 +86,13 @@ showtext_auto()
 theme_clean <- function() {
     theme_minimal(base_family = my_font) +
         theme(panel.grid.minor = element_blank(),
-              text = element_text(size = 36, family = my_font),
+              text = element_text(size = 42, family = my_font),
               plot.background = element_rect(fill = "white", color = NA),
-              axis.text = element_text(size = 36),
-              axis.title = element_text(face = "bold", size = 36),
+              axis.text = element_text(size = 42),
+              axis.title = element_text(face = "bold", size = 42),
               strip.text = element_text(face = "bold", size = rel(0.8), hjust = 0),
               strip.background = element_rect(fill = "grey80", color = NA),
-              legend.text = element_text(size = 44))
+              legend.text = element_text(size = 48))
 }
 theme_set(theme_clean())
 
@@ -122,7 +122,7 @@ library(patchwork)
 library(ggridges)
 library(lubridate)
 library(boxoffice)
-library(ggtext)
+library(marquee)
 ```
 
 ```{r ink-free}
@@ -174,13 +174,13 @@ showtext::showtext_auto()
 - aesthetics
     - values that each individual observation (row) has
     - will be different for each observation
-- atrributes
+- attributes
     - values that are shared between all points
     - decide to make everything mint green
 - layers
     - each visualisation is built sequentially
     - add features in layers, one on top of the last
-    - examples: add a plot title, change an axis scale....]
+    - examples: add a plot title, change an axis scale....
 
 :::
 
@@ -192,22 +192,22 @@ showtext::showtext_auto()
 #| echo: false
 #| eval: false
 
-palmerpenguins::penguins %>% drop_na() %>% 
+penguins %>% drop_na() %>% 
   ggplot() +
-  aes(x = flipper_length_mm) +
+  aes(x = flipper_len) +
   scale_x_continuous(breaks = seq(170, 230, by = 20)) +
-  aes(y = bill_length_mm) + 
+  aes(y = bill_len) + 
   geom_point(size = 3, show.legend = F) +
   aes(colour = species) +
   scale_color_manual(values = c("black", "blue", "grey70")) +
   ggalt::geom_encircle(size = 5, show.legend = FALSE) +
   labs(title = "Chinstraps have Short Flippers",
-       subtitle = "<span style = 'color:black;'>Adelie</span>, <span style = 'color:blue;'>Chinstrap</span>, and <span style = 'color:#B0B0B0;'>Gentoo</span> penguins",
+       subtitle = "{.black Adelie}, {.blue Chinstrap}, and {.#B0B0B0 Gentoo} penguins",
        x = "Flipper Length (mm)",
        y = "Bill Length (mm)",
        caption = "@Data from Palmer Penguins") +
   theme(text = element_text(family = "Ink Free", size = 32)) +
-  theme(plot.subtitle = element_markdown(size = 40)) + 
+  theme(plot.subtitle = element_marquee(width = 1)) + 
   facet_grid(~sex)
 
 ```
@@ -432,7 +432,7 @@ Items in <span style="color: red;">red</span> we'll cover this today. In <span s
 #| eval: false
 diamonds %>% 
   ggplot(aes(cut)) + 
-  geom_bar(fill = "firebrick4") + 
+  geom_bar(fill = "dodgerblue1") + 
   ggtitle("Proportion of Cuts of Diamonds") + 
   labs(caption = "@Data tidyverse") +
   coord_flip() +
@@ -477,15 +477,15 @@ movies %>% mutate(movie = fct_reorder(movie, gross)) %>%
   labs(title = glue::glue("Box Office {boxoffice_date_string}"),
        caption = "@Data from BoxOfficeMojo",
        y = "Gross (Million$)") +
-  theme(axis.title.y = element_blank()) +
-  coord_flip()
+  coord_flip() +
+  theme(axis.title.y = element_blank())
 ```
 
 `r flipbookr:::chunq_reveal("box-office", title = "Movie Barplot", lcolw = "40", rcolw = "60", chunk_options = "fig.height = 8, fig.width = 10", smallcode = TRUE)`
 
 ---
 
-```{r}
+```{r echo=FALSE}
 library(gt)
 movies |> 
   select(movie_name, movie) |> 
@@ -506,6 +506,7 @@ penguins %>%
   group_by(species) %>% 
   summarise(body_mass = mean(body_mass, na.rm = T)) %>%
   ggplot(aes(species, body_mass, xend = species, yend = body_mass)) + 
+  theme_clean() +
   coord_flip() +
   labs(caption = "@PalmerPenguins",
        y = "Body Mass (g)", 
@@ -898,7 +899,7 @@ data.frame(col = colors()[1:N]) %>%
 
 ## Using Themes in R
 
-- We'll also discuss fonts (first) and scales.
+- We'll also discuss fonts (first).
 
 - themes give fine control to the appearance of your plots
 
@@ -922,7 +923,7 @@ data.frame(col = colors()[1:N]) %>%
 
 - fonts are a whole world of their own
 
-- see [practicaltypography.com](practicaltypography.com){target="_blank"}
+- see [https://practicaltypography.com/](practicaltypography.com){target="_blank"}
 
 ##
 
@@ -940,6 +941,13 @@ data.frame(col = colors()[1:N]) %>%
     - run *ttf_import()* with path = folder from above
     - run *fonts()* to check available fonts
     - usually need to restart R (*Session* then *Restart R*)
+    
+##
+
+- `showtext` package also useful
+
+   -  `font_add(family = "Get Schwifty", regular = "fonts/get_schwifty.ttf")`
+   -  `showtext_auto()`
     
 - can also use [google fonts](https://fonts.google.com/){target="_blank"} (`showtext::font_add_google("my_special_font")`)
 
@@ -1017,7 +1025,7 @@ penguins %>% ggplot(aes(bill_len, bill_dep, col = species)) +
 ```{r themes3, fig.height=6}
 penguins %>% ggplot(aes(bill_len, bill_dep, col = species)) + 
   geom_point() +
-  theme(text = element_text(family = "Ink Free", size = 30, face = "bold"))
+  theme(text = element_text(family = "Ink Free", size = 40, face = "bold"))
 ```
 
 ##
@@ -1067,7 +1075,7 @@ ggplot(ToothGrowth, aes(factor(dose), len)) + # Using our new theme
 
 - make a bar chart of the number of counties in each of the five US midwest states. Use the *midwest* dataset from *ggplot2*
 
--  make a bar chart of the number of each species of pengiun from the *penguins* dataset in *palmerpenguins* (you can *install.packages("palmerpenguins")* from CRAN)
+-  make a bar chart of the number of each species of pengiun from the *penguins* dataset
 
 - make a bar chart of the 12 *Carnivora* total sleep times from the *msleep* dataset in *ggplot2*
 
