@@ -41,6 +41,9 @@ Run the code line below to read in a data frame called `brain_gene_expression`.
 Use `group_by()` and `summarise()` to calculate the mean gene expression for each gene for each age category. Use this to fill out the table below.
 
 ```{r echo=FALSE}
+
+genes <- genes[order(genes)]
+
 my_table %>% 
   gt() %>% 
   cols_label(ages = "Age Category",
